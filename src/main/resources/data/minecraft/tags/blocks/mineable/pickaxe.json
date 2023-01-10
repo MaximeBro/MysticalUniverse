@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "mysticaluniverse:eterium_block",
+    "mysticaluniverse:infested_eterium_block",
+    "mysticaluniverse:eterium_ore"
+  ]
+}

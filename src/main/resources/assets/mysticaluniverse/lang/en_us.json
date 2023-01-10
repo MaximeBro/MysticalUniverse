@@ -1,0 +1,16 @@
+{
+  "item.mysticaluniverse.charged_eterium_ingot": "Charged Eterium Ingot",
+  "item.mysticaluniverse.eterium_ingot": "Eterium Ingot",
+  "item.mysticaluniverse.eterium_stick": "Eterium Stick",
+  "item.mysticaluniverse.eterium_coal": "Eterium Coal",
+  "item.mysticaluniverse.liquid_ether_bucket": "Liquid Ether Bucket",
+
+  "block.mysticaluniverse.eterium_block": "Eterium Block",
+  "block.mysticaluniverse.infested_eterium_block": "Infested Eterium Block",
+  "block.mysticaluniverse.charged_eterium_block": "Charged Eterium Block",
+  "block.mysticaluniverse.eterium_ore": "Eterium Ore",
+  "block.mysticaluniverse.refined_eterium_block": "Refined Eterium Block",
+  "block.mysticaluniverse.infused_eterium_furnace": "Infused Eterium Furnace",
+
+  "itemGroup.mysticaluniverse.mysticalgroup": "Mystical Universe"
+}

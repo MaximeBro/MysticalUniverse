@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "pattern": [
+    "C#C",
+    "FFF",
+    "C#C"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticaluniverse:eterium_ingot"
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "C": {
+      "item": "mysticaluniverse:charged_eterium_ingot"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:infused_eterium_furnace"
+  }
+}

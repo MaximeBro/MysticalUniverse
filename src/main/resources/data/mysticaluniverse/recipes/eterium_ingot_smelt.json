@@ -1,0 +1,11 @@
+{
+  "type": "mysticaluniverse:iefurnace_smelting",
+  "ingredients": [
+    {
+      "item": "mysticaluniverse:eterium_ore"
+    }
+  ],
+  "output": {
+    "item": "mysticaluniverse:eterium_ingot"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "eterium",
+  "ingredients": [
+    {
+      "item": "mysticaluniverse:eterium_block"
+    }
+  ],
+  "result": {
+    "item": "mysticaluniverse:eterium_ingot",
+    "count": 9
+  }
+}

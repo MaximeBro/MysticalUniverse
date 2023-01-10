@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "pattern": [
+    " # ",
+    "#C#",
+    " # "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:coal"
+    },
+    "#": {
+      "item": "mysticaluniverse:eterium_ingot"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:eterium_coal"
+  }
+}
