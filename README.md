@@ -15,9 +15,10 @@ Misc :
   
   
   ### Things planned
+  - New textures for the mortar and pestle
+  - Adding a custom crafting table (5x5)
   - Adding new recipes to the IEFurnace + FluidHandling
   - Adding the Eterium Infuser MachineBlock
   - Adding the Eterium Composter
-  - Adding the mortar and pestle item
   - Adding flowers generating ether via composting
   - Adding custom villagers trades
