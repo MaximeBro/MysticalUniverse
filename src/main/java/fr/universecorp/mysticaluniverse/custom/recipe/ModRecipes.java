@@ -1,6 +1,13 @@
 package fr.universecorp.mysticaluniverse.custom.recipe;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
+import fr.universecorp.mysticaluniverse.registry.ModItems;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.item.ItemStack;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeManager;
+import net.minecraft.recipe.ShapedRecipe;
+import net.minecraft.server.network.ServerRecipeBook;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 

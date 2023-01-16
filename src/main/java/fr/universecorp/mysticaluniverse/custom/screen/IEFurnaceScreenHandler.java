@@ -1,12 +1,15 @@
 package fr.universecorp.mysticaluniverse.custom.screen;
 
+import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.ModFuelSlot;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.ModResultSlot;
+import fr.universecorp.mysticaluniverse.util.FluidStack;
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ArrayPropertyDelegate;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
@@ -16,21 +19,26 @@ public class IEFurnaceScreenHandler extends ScreenHandler {
 
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
+    public final IEFurnaceBlockEntity blockEntity;
+    public FluidStack fluidStack;
 
-    public IEFurnaceScreenHandler(int syncId, PlayerInventory inventory) {
-        this(syncId, inventory, new SimpleInventory(3), new ArrayPropertyDelegate(4));
+    public IEFurnaceScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()), new ArrayPropertyDelegate(4));
     }
 
-    public IEFurnaceScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
+    public IEFurnaceScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
         super(ModScreenHandlers.IEFURNACE_SCREEN_HANDLER, syncId);
-        checkSize( inventory, 3);
-        this.inventory = inventory;
+        checkSize(((Inventory) entity), 4);
+        this.inventory = (Inventory) entity;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
+        this.blockEntity = (IEFurnaceBlockEntity) entity;
+        this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
-        this.addSlot(new ModFuelSlot(inventory, 0, 56, 53));
-        this.addSlot(new Slot(inventory, 1, 56, 17));
-        this.addSlot(new ModResultSlot(inventory, 2, 116, 35));
+        this.addSlot(new ModFuelSlot(inventory, 0, 61, 53));
+        this.addSlot(new Slot(inventory, 1, 61, 17));
+        this.addSlot(new ModResultSlot(playerInventory.player, inventory, 2, 121, 35));
+        this.addSlot(new Slot(inventory, 3, 10, 35));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -38,11 +46,24 @@ public class IEFurnaceScreenHandler extends ScreenHandler {
         addProperties(delegate);
     }
 
+
+    public void setFluid(FluidStack stack) {
+        this.fluidStack = stack;
+    }
+
     public boolean isCrafting() {
         return this.propertyDelegate.get(0) > 0;
     }
 
     public boolean hasFuel() { return this.propertyDelegate.get(2) > 0; }
+
+    public int getScaledFluidProgress() {
+        int fluidProgress = (int) this.fluidStack.amount;
+        int maxCapacity = 10000;
+        int fluidProgressSize = 52;
+
+        return maxCapacity != 0 ? (int) ( ((float)fluidProgress / (float)maxCapacity) * fluidProgressSize ) : 0;
+    }
 
     public int getScaledFuelProgress() {
         int fuelProgress = this.propertyDelegate.get(2);

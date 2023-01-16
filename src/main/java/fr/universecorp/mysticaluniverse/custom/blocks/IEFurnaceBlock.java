@@ -2,14 +2,22 @@ package fr.universecorp.mysticaluniverse.custom.blocks;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
+import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
+import fr.universecorp.mysticaluniverse.registry.ModFluids;
+import fr.universecorp.mysticaluniverse.registry.ModItems;
+import fr.universecorp.mysticaluniverse.util.FluidStack;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
+import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
@@ -81,15 +89,51 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if(!world.isClient) {
-            NamedScreenHandlerFactory screenHandlerFactory = (IEFurnaceBlockEntity) world.getBlockEntity(pos);
 
-            if(screenHandlerFactory != null) {
-                player.openHandledScreen(screenHandlerFactory);
-            }
+        IEFurnaceBlockEntity entity = ((IEFurnaceBlockEntity) world.getBlockEntity(pos));
+
+        // RIGHT CLICK WITH LIQUID ETHER BUCKET
+        if(!player.getStackInHand(hand).isEmpty() && player.getStackInHand(hand).getItem() == ModFluids.LIQUID_ETHER_BUCKET) {
+
+            if(entity.fluidStorage.amount < entity.fluidStorage.getCapacity() &&
+              (entity.fluidStorage.amount + FluidStack.convertDropletsToMb(FluidConstants.BUCKET)) <= entity.fluidStorage.getCapacity()) {
+                entity.setFluidLevel(entity.fluidStorage.variant,
+                        entity.fluidStorage.amount + FluidStack.convertDropletsToMb(FluidConstants.BUCKET));
+
+                player.setStackInHand(hand, new ItemStack(Items.BUCKET, 1));
+
+            } else { openScreen(player, world, pos); }
+
+
+        } else { // RIGHT CLICK WITH EMPTY BUCKET
+            if(!player.getStackInHand(hand).isEmpty() && player.getStackInHand(hand).getItem() == Items.BUCKET) {
+
+                if(entity.fluidStorage.amount >= FluidStack.convertDropletsToMb(FluidConstants.BUCKET)) {
+                    entity.setFluidLevel(entity.fluidStorage.variant,
+                                 entity.fluidStorage.amount - FluidStack.convertDropletsToMb(FluidConstants.BUCKET));
+
+                    player.getMainHandStack().decrement(1);
+                    if(player.getMainHandStack().getCount() == 0) {
+                        player.setStackInHand(hand, new ItemStack(ModFluids.LIQUID_ETHER_BUCKET, 1));
+                    }
+                    else { player.giveItemStack(new ItemStack(ModFluids.LIQUID_ETHER_BUCKET, 1)); }
+                }
+
+
+            } else { openScreen(player, world, pos); }
         }
 
         return ActionResult.SUCCESS;
+    }
+
+    public void openScreen(PlayerEntity player, World world, BlockPos pos) {
+        if (!world.isClient) {
+            NamedScreenHandlerFactory screenHandlerFactory = ((IEFurnaceBlockEntity) world.getBlockEntity(pos));
+
+            if (screenHandlerFactory != null) {
+                player.openHandledScreen(screenHandlerFactory);
+            }
+        }
     }
 
     @Nullable
@@ -104,6 +148,8 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
         return checkType(type, ModBlockEntities.IEFURNACE, IEFurnaceBlockEntity::tick);
     }
 
+
+    // Particle effects when the furnace is consuming fuel
     public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
         if ((Boolean)state.get(LIT)) {
             double d = (double)pos.getX() + 0.5;

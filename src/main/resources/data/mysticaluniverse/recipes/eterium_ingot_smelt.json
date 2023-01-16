@@ -1,8 +1,10 @@
 {
   "type": "mysticaluniverse:iefurnace_smelting",
+  "group": "eterium",
+  "experience": 0.7,
   "ingredients": [
     {
-      "item": "mysticaluniverse:eterium_ore"
+      "item": "mysticaluniverse:eterium_dust"
     }
   ],
   "output": {

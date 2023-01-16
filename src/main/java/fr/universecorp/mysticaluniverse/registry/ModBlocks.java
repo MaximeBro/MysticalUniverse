@@ -58,6 +58,7 @@ public class ModBlocks {
     );
 
 
+
     public static void registerAll() {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_block"), ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_ore"), ETERIUM_ORE);

@@ -18,7 +18,9 @@ public class ChargedEteriumIngot extends Item {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        if(!Screen.hasShiftDown()) {
+        tooltip.add(Text.literal("§7Press §e§oshift §7to see more informations ..."));
+
+        if(Screen.hasShiftDown()) {
             tooltip.add(Text.literal("§b - Luminescent"));
             tooltip.add(Text.literal("§7Retains §9ether §7in it"));
         }
