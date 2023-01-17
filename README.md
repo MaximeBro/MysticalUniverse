@@ -15,6 +15,12 @@ Misc :
 
 
   ### Things planned
+<<<<<<< HEAD
+=======
+  To-Do List:
+  https://trello.com/b/kpNoyklO/mysticaluniverse
+  
+>>>>>>> 28f069bf55e99293e72fcdf7f8b200d7581dc382
   - Adding new recipes to the IEFurnace
   - Adding the Eterium Infuser MachineBlock
   - Adding the Eterium Composter
