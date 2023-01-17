@@ -7,6 +7,8 @@ import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
+import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -97,8 +99,13 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
 
             if(entity.fluidStorage.amount < entity.fluidStorage.getCapacity() &&
               (entity.fluidStorage.amount + FluidStack.convertDropletsToMb(FluidConstants.BUCKET)) <= entity.fluidStorage.getCapacity()) {
-                entity.setFluidLevel(entity.fluidStorage.variant,
-                        entity.fluidStorage.amount + FluidStack.convertDropletsToMb(FluidConstants.BUCKET));
+                try(Transaction transaction = Transaction.openOuter()) {
+                    entity.fluidStorage.insert(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER),
+                            FluidStack.convertDropletsToMb(FluidConstants.BUCKET), transaction);
+                    transaction.commit();
+
+                    entity.setStack(3, new ItemStack(Items.BUCKET));
+                }
 
                 player.setStackInHand(hand, new ItemStack(Items.BUCKET, 1));
 
@@ -109,8 +116,11 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
             if(!player.getStackInHand(hand).isEmpty() && player.getStackInHand(hand).getItem() == Items.BUCKET) {
 
                 if(entity.fluidStorage.amount >= FluidStack.convertDropletsToMb(FluidConstants.BUCKET)) {
-                    entity.setFluidLevel(entity.fluidStorage.variant,
-                                 entity.fluidStorage.amount - FluidStack.convertDropletsToMb(FluidConstants.BUCKET));
+                    try(Transaction transaction = Transaction.openOuter()) {
+                        entity.fluidStorage.extract(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER),
+                                FluidStack.convertDropletsToMb(FluidConstants.BUCKET), transaction);
+                        transaction.commit();
+                    }
 
                     player.getMainHandStack().decrement(1);
                     if(player.getMainHandStack().getCount() == 0) {

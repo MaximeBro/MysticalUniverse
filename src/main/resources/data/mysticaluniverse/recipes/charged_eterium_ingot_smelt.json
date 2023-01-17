@@ -4,10 +4,10 @@
   "experience": 0.7,
   "ingredients": [
     {
-      "item": "mysticaluniverse:eterium_dust"
+      "item": "mysticaluniverse:eterium_ingot"
     }
   ],
   "output": {
-    "item": "mysticaluniverse:eterium_ingot"
+    "item": "mysticaluniverse:charged_eterium_ingot"
   }
 }

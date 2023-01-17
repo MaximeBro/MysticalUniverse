@@ -232,7 +232,7 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
 
         if(hasRecipe(entity)) {
             entity.removeStack(1, 1);
-            entity.setStack(2, new ItemStack(ModItems.ETERIUM_INGOT,
+            entity.setStack(2, new ItemStack(ModItems.CHARGED_ETERIUM_INGOT,
                         entity.getStack(2).getCount() + 1));
 
 
@@ -292,8 +292,6 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
         if(side == Direction.DOWN) { return false; }
         if(side == Direction.UP && slot == 1 && !isFuel(stack) || side == Direction.UP && slot == 0 && isFuel(stack)) { return true; }
         if(side == Direction.UP) { return false; }
-
-        System.out.println(side);
 
         return switch(dir) {
             case SOUTH -> side == Direction.EAST && slot == 1 && !isFuel(stack)  || // RIGHT SIDE ITEM

@@ -8,13 +8,13 @@
   ],
   "key": {
     "#": {
-      "item": "mysticaluniverse:eterium_ingot"
+      "item": "mysticaluniverse:eterium_dust"
     },
     "F": {
       "item": "minecraft:furnace"
     },
     "C": {
-      "item": "mysticaluniverse:charged_eterium_ingot"
+      "item": "mysticaluniverse:eterium_ingot"
     }
   },
   "result": {

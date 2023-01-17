@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "pattern": [
+    "P",
+    "M"
+  ],
+  "key": {
+    "P": {
+      "item": "mysticaluniverse:eterium_pestle"
+    },
+    "M": {
+      "item": "mysticaluniverse:eterium_mortar"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:mortar_and_pestle"
+  }
+}

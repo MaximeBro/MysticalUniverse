@@ -2,16 +2,15 @@
   "type": "minecraft:crafting_shaped",
   "group": "eterium",
   "pattern": [
-    " # ",
-    "#C#",
-    " # "
+    "C# ",
+    "#  "
   ],
   "key": {
     "C": {
       "item": "minecraft:coal"
     },
     "#": {
-      "item": "mysticaluniverse:eterium_ingot"
+      "item": "mysticaluniverse:eterium_dust"
     }
   },
   "result": {
