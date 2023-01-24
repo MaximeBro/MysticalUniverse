@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mycelium",
+  "pattern": [
+    "P P",
+    " P "
+  ],
+  "key": {
+    "P": {
+      "item": "mysticaluniverse:mycelium_planks"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:mycelium_mortar"
+  }
+}

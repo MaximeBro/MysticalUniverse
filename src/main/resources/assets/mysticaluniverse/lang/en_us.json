@@ -2,12 +2,13 @@
   "item.mysticaluniverse.charged_eterium_ingot": "Charged Eterium Ingot",
   "item.mysticaluniverse.eterium_ingot": "Eterium Ingot",
   "item.mysticaluniverse.eterium_dust": "Eterium Dust",
-  "item.mysticaluniverse.eterium_stick": "Eterium Stick",
+  "item.mysticaluniverse.mycelium_stick": "Mycelium Stick",
   "item.mysticaluniverse.eterium_coal": "Eterium Coal",
   "item.mysticaluniverse.liquid_ether_bucket": "Liquid Ether Bucket",
-  "item.mysticaluniverse.eterium_pestle": "Eterium Pestle",
-  "item.mysticaluniverse.eterium_mortar": "Eterium Mortar",
+  "item.mysticaluniverse.mycelium_pestle": "Mycelium Pestle",
+  "item.mysticaluniverse.mycelium_mortar": "Mycelium Mortar",
   "item.mysticaluniverse.mortar_and_pestle": "Mortar and Pestle",
+
 
   "block.mysticaluniverse.eterium_block": "Eterium Block",
   "block.mysticaluniverse.infested_eterium_block": "Infested Eterium Block",
@@ -15,12 +16,17 @@
   "block.mysticaluniverse.eterium_ore": "Eterium Ore",
   "block.mysticaluniverse.refined_eterium_block": "Refined Eterium Block",
   "block.mysticaluniverse.infused_eterium_furnace": "Infused Eterium Furnace",
+  "block.mysticaluniverse.infused_core_block": "Infused Core Block",
+  "block.mysticaluniverse.mycelium_log": "Mycelium Log",
+  "block.mysticaluniverse.mycelium_planks": "Mycelium Planks",
+  "block.mysticaluniverse.mycelium_leaves": "Mycelium Leaves",
+  "block.mysticaluniverse.mycelium_sapling": "Mycelium Sapling",
+
 
   "block.mysticaluniverse.still_liquid_ether": "Liquid Ether",
+  "mysticaluniverse.tooltip.liquid.amount.with.capacity": "%s / %s mB",
+  "mysticaluniverse.tooltip.liquid.amount": "%s mB",
   "block.minecraft.empty": "Empty",
 
-  "itemGroup.mysticaluniverse.mysticalgroup": "Mystical Universe",
-
-  "mysticaluniverse.tooltip.liquid.amount.with.capacity": "%s / %s mB",
-  "mysticaluniverse.tooltip.liquid.amount": "%s mB"
+  "itemGroup.mysticaluniverse.mysticalgroup": "Mystical Universe"
 }

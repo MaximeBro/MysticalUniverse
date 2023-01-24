@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "pattern": [
+    "SCS",
+    "CBC",
+    "SCS"
+  ],
+  "key": {
+    "C": {
+      "item": "mysticaluniverse:charged_eterium_ingot"
+    },
+    "B": {
+      "item": "mysticaluniverse:eterium_block"
+    },
+    "S": {
+      "item": "mysticaluniverse:mycelium_stick"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:infused_core_block"
+  }
+}

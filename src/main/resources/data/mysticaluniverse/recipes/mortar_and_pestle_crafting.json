@@ -1,16 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "eterium",
+  "group": "mycelium",
   "pattern": [
     "P",
     "M"
   ],
   "key": {
     "P": {
-      "item": "mysticaluniverse:eterium_pestle"
+      "item": "mysticaluniverse:mycelium_pestle"
     },
     "M": {
-      "item": "mysticaluniverse:eterium_mortar"
+      "item": "mysticaluniverse:mycelium_mortar"
     }
   },
   "result": {

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mycelium",
+  "pattern": [
+    "P",
+    "S"
+  ],
+  "key": {
+    "P": {
+      "item": "mysticaluniverse:mycelium_planks"
+    },
+    "S": {
+      "item": "mysticaluniverse:mycelium_stick"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:mycelium_pestle"
+  }
+}

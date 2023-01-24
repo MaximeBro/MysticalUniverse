@@ -35,10 +35,10 @@ public class IEFurnaceScreenHandler extends ScreenHandler {
         this.blockEntity = (IEFurnaceBlockEntity) entity;
         this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
-        this.addSlot(new ModFuelSlot(inventory, 0, 61, 53));
-        this.addSlot(new Slot(inventory, 1, 61, 17));
-        this.addSlot(new ModResultSlot(playerInventory.player, inventory, 2, 121, 35));
-        this.addSlot(new Slot(inventory, 3, 10, 35));
+        this.addSlot(new ModFuelSlot(inventory, 0, 61, 53));                            // Fuel Slot
+        this.addSlot(new Slot(inventory, 1, 61, 17));                                   // Ingredient Slot
+        this.addSlot(new ModResultSlot(playerInventory.player, inventory, 2, 121, 35)); // Recipe output Slot
+        this.addSlot(new Slot(inventory, 3, 10, 35));                                   // Fluid Slot (buckets)
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

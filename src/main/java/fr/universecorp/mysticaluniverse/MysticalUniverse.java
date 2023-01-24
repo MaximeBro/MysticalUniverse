@@ -5,6 +5,7 @@ import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.recipe.ModRecipes;
 import fr.universecorp.mysticaluniverse.custom.screen.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
+import fr.universecorp.mysticaluniverse.registry.ModFlammableBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
 import fr.universecorp.mysticaluniverse.world.feature.ModConfiguredFeatures;
@@ -15,6 +16,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
+
 
 public class MysticalUniverse implements ModInitializer {
 
@@ -28,17 +30,22 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModBlocks.ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModItems.ETERIUM_INGOT));
                 stacks.add(new ItemStack(ModItems.ETERIUM_DUST));
-                stacks.add(new ItemStack(ModBlocks.REFINED_ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModBlocks.INFESTED_ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModItems.CHARGED_ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModItems.CHARGED_ETERIUM_INGOT));
-                stacks.add(new ItemStack(ModItems.ETERIUM_STICK));
                 stacks.add(new ItemStack(ModItems.ETERIUM_COAL));
                 stacks.add(new ItemStack(ModFluids.LIQUID_ETHER_BUCKET));
                 stacks.add(new ItemStack(ModBlocks.INFUSED_ETERIUM_FURNACE));
-                stacks.add(new ItemStack(ModItems.ETERIUM_PESTLE));
-                stacks.add(new ItemStack(ModItems.ETERIUM_MORTAR));
+                stacks.add(new ItemStack(ModBlocks.REFINED_ETERIUM_BLOCK));
+                stacks.add(new ItemStack(ModItems.MYCELIUM_PESTLE));
+                stacks.add(new ItemStack(ModItems.MYCELIUM_MORTAR));
                 stacks.add(new ItemStack(ModItems.MORTAR_AND_PESTLE));
+                stacks.add(new ItemStack(ModItems.INFUSED_CORE_BLOCK));
+                stacks.add(new ItemStack(ModItems.MYCELIUM_LOG));
+                stacks.add(new ItemStack(ModItems.MYCELIUM_PLANKS));
+                stacks.add(new ItemStack(ModItems.MYCELIUM_LEAVES));
+                stacks.add(new ItemStack(ModItems.MYCELIUM_SAPLING));
+                stacks.add(new ItemStack(ModItems.MYCELIUM_STICK));
             })
             .build();
 
@@ -51,6 +58,7 @@ public class MysticalUniverse implements ModInitializer {
         ModBlocks.registerAll();
         ModFluids.register();
         ModBlockEntities.registerBlockEntities();
+        ModFlammableBlocks.registerFlammableBlocks();
         ModOreGeneration.generateOres();
         ModScreenHandlers.registerAllScreenHandlers();
         ModRecipes.registerRecipes();

@@ -3,6 +3,7 @@ package fr.universecorp.mysticaluniverse;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.custom.screen.ModScreenHandlers;
+import fr.universecorp.mysticaluniverse.registry.ModBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
@@ -18,6 +19,9 @@ import net.minecraft.util.Identifier;
 public class MysticalUniverseClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_LEAVES, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_SAPLING, RenderLayer.getCutout());
+
 
         ModMessages.registerS2CPacket();
 

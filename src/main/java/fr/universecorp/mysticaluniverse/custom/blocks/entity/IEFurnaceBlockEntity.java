@@ -270,18 +270,31 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
         return stack.getItem() == ModItems.ETERIUM_COAL;
     }
 
+    public boolean isBucket(ItemStack stack) {
+        return stack.getItem().equals(Items.BUCKET) || stack.getItem().equals(ModFluids.LIQUID_ETHER_BUCKET);
+    }
+
+    public boolean canInsertBucket(ItemStack stack) {
+
+        if(this.getStack(3).isEmpty())
+            return true;
+
+        return this.getStack(3).getItem().equals(Items.BUCKET) && stack.getItem().equals(Items.BUCKET) &&
+                this.getStack(3).getCount() + stack.getCount() < this.getStack(3).getMaxCount();
+    }
+
 
 
     // ***************** //
-    // SIDED INVENTORIES
+    // SIDED INVENTORIES //
     // ***************** //
     /*
-     * Front side : no insert/extract
-     * Back side : insert item & fuel
-     * Left side : insert item
-     * Right side : insert item
-     * Top side : insert item & fuel
-     * Bottom side : extract item (from the output slot)
+     * Front side   : none
+     * Back side    : insert fluid
+     * Left side    : insert ingredients & fuel
+     * Right side   : extract recipe output / empty bucket from fluid slot
+     * Top side     : none
+     * Bottom side  : none
      */
     // ***************** //
 
@@ -289,30 +302,24 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
         Direction dir = this.getWorld().getBlockState(this.pos).get(IEFurnaceBlock.FACING);
 
-        if(side == Direction.DOWN) { return false; }
-        if(side == Direction.UP && slot == 1 && !isFuel(stack) || side == Direction.UP && slot == 0 && isFuel(stack)) { return true; }
-        if(side == Direction.UP) { return false; }
+        if(side == Direction.DOWN || side == Direction.UP) { return false; }
 
         return switch(dir) {
-            case SOUTH -> side == Direction.EAST && slot == 1 && !isFuel(stack)  || // RIGHT SIDE ITEM
-                          side == Direction.WEST && slot == 1 && !isFuel(stack)  || // LEFT SIDE ITEM
-                          side == Direction.NORTH && slot == 1 && !isFuel(stack) || // BACK SIDE ITEM
-                          side == Direction.NORTH && slot == 0 && isFuel(stack);    // BACK SIDE FUEL
+            case SOUTH -> side == Direction.WEST  && slot == 1 && !isFuel(stack) ||           // LEFT SIDE ITEM
+                          side == Direction.WEST  && slot == 0 && isFuel(stack)  ||           // LEFT SIDE FUEL
+                          side == Direction.NORTH && slot == 3 && canInsertBucket(stack);     // BACK SIDE FLUID
 
-            case WEST -> side == Direction.SOUTH && slot == 1 && !isFuel(stack) || // RIGHT SIDE ITEM
-                         side == Direction.NORTH && slot == 1 && !isFuel(stack) || // LEFT SIDE ITEM
-                         side == Direction.EAST && slot == 1 && !isFuel(stack)  || // BACK SIDE ITEM
-                         side == Direction.EAST && slot == 0 && isFuel(stack);     // BACK SIDE FUEL
+            case WEST -> side == Direction.NORTH && slot == 1 && !isFuel(stack) ||            // LEFT SIDE ITEM
+                         side == Direction.NORTH && slot == 0 && isFuel(stack)  ||            // LEFT SIDE FUEL
+                         side == Direction.EAST  && slot == 3 && canInsertBucket(stack);      // BACK SIDE FLUID
 
-            case EAST -> side == Direction.NORTH && slot == 1 && !isFuel(stack) || // RIGHT SIDE ITEM
-                         side == Direction.SOUTH && slot == 1 && !isFuel(stack) || // LEFT SIDE ITEM
-                         side == Direction.WEST && slot == 1 && !isFuel(stack)  || // BACK SIDE ITEM
-                         side == Direction.WEST && slot == 0 && isFuel(stack);     // BACK SIDE FUEL
+            case EAST -> side == Direction.SOUTH && slot == 1 && !isFuel(stack) ||            // LEFT SIDE ITEM
+                         side == Direction.SOUTH && slot == 0 && isFuel(stack)  ||            // LEFT SIDE FUEL
+                         side == Direction.WEST  && slot == 3 && canInsertBucket(stack);      // BACK SIDE FLUID
 
-            case NORTH -> side == Direction.WEST && slot == 1 && !isFuel(stack)  || // RIGHT SIDE ITEM
-                          side == Direction.EAST && slot == 1 && !isFuel(stack)  || // LEFT SIDE ITEM
-                          side == Direction.SOUTH && slot == 1 && !isFuel(stack) || // BACK SIDE ITEM
-                          side == Direction.SOUTH && slot == 0 && isFuel(stack);    // BACK SIDE FUEL
+            case NORTH -> side == Direction.EAST  && slot == 1 && !isFuel(stack) ||           // LEFT SIDE ITEM
+                          side == Direction.EAST  && slot == 0 && isFuel(stack)  ||           // LEFT SIDE FUEL
+                          side == Direction.SOUTH && slot == 3 && canInsertBucket(stack);     // BACK SIDE FLUID
 
             default -> false;
         };
@@ -320,12 +327,20 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
 
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction side) {
-        return side == Direction.DOWN && slot == 2;
+        Direction dir = this.getWorld().getBlockState(this.pos).get(IEFurnaceBlock.FACING);
+
+        return switch (dir) {
+
+            case SOUTH -> side == Direction.EAST && slot == 3 && stack.getItem().equals(Items.BUCKET) || // Extract Empty Bucket
+                          side == Direction.EAST && slot == 2;                                           // Extract Recipe output Item
+
+            default -> false;
+        };
     }
 
 
     // ***************** //
-    // FLUID HANDLING
+    // FLUID HANDLING    //
     // ***************** //
 
     public final SingleVariantStorage<FluidVariant> fluidStorage = new SingleVariantStorage<FluidVariant>() {

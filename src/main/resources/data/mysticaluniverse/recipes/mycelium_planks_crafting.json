@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mycelium",
+  "ingredients": [
+    {
+      "item": "mysticaluniverse:mycelium_log"
+    }
+  ],
+  "result": {
+    "item": "mysticaluniverse:mycelium_planks",
+    "count": 4
+  }
+}

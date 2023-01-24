@@ -19,7 +19,9 @@ public class ChargedEteriumBlock extends Block {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable BlockView world, List<Text> tooltip, TooltipContext options) {
-        if(!Screen.hasShiftDown()) {
+        tooltip.add(Text.literal("§7Press §e§oshift §7to see more informations"));
+
+        if(Screen.hasShiftDown()) {
             tooltip.add(Text.literal("§b - Luminescent"));
             tooltip.add(Text.literal("§7Retains much §9ether §7in it"));
         }
