@@ -1,11 +1,11 @@
-# MysticalUniverse
+# Mystica4lUniverse
 
 ## Blocks & Items
 - Items :
-  - Eterium Ingot, Eterium Coal, Charged Eterium Ingot, Eterium Stick, Liquid Ether Bucket, Eterium Pestle, Eterium Mortar, Mortar and Pestle, Eterium Dust
+  - Eterium Ingot, Eterium Coal, Charged Eterium Ingot, Mycelium Stick, Liquid Ether Bucket, Eterium Pestle, Eterium Mortar, Mortar and Pestle, Eterium Dust, Mycelium Sapling
 
 - Blocks :
-  - Eterium Block, Charged Eterium Block, Refined Eterium Block, Eterium Ore
+  - Eterium Block, Charged Eterium Block, Refined Eterium Block, Eterium Ore, Mycelium Log, Mycelium Planks, Mycelium Leaves
 
 BlockEntities :
   - Infused Eterium Furnace
@@ -24,3 +24,4 @@ Misc :
   - Adding the Eterium Composter
   - Adding flowers generating ether via composting
   - Adding custom villagers trades
+  - Adding the Blue Clematite (base flower)
