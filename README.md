@@ -1,4 +1,4 @@
-# Mystica4lUniverse
+# MysticalUniverse
 
 ## Blocks & Items
 - Items :

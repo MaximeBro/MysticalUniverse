@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "pattern": [
+    "ECE",
+    "CEC",
+    "ECE"
+  ],
+  "key": {
+    "C": {
+      "item": "mysticaluniverse:charged_eterium_ingot"
+    },
+    "E": {
+      "item": "mysticaluniverse:eterium_ingot"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:refined_eterium_block"
+  }
+}
