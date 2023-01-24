@@ -9,6 +9,7 @@ import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
+import java.io.ObjectInputFilter;
 import java.util.List;
 
 public class ModConfiguredFeatures {
@@ -29,6 +30,12 @@ public class ModConfiguredFeatures {
                     BlockStateProvider.of(ModBlocks.MYCELIUM_LEAVES),
                     new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
                     new TwoLayersFeatureSize(0, 0, 0)).ignoreVines().build());
+
+
+    public static final RegistryEntry<ConfiguredFeature<RandomPatchFeatureConfig, ?>> BLUE_CLEMATITE =
+            ConfiguredFeatures.register("blue_clematite", Feature.FLOWER,
+                    ConfiguredFeatures.createRandomPatchFeatureConfig(64, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.BLUE_CLEMATITE)))));
 
     public static void registerConfiguredFeatures() {
         System.out.println("ModConfiguredFeatures DEBUG");

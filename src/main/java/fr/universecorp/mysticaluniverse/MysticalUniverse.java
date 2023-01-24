@@ -9,6 +9,7 @@ import fr.universecorp.mysticaluniverse.registry.ModFlammableBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
 import fr.universecorp.mysticaluniverse.world.feature.ModConfiguredFeatures;
+import fr.universecorp.mysticaluniverse.world.gen.ModFlowerGeneration;
 import fr.universecorp.mysticaluniverse.world.gen.ModOreGeneration;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
@@ -46,6 +47,7 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.MYCELIUM_LEAVES));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_SAPLING));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_STICK));
+                stacks.add(new ItemStack(ModItems.BLUE_CLEMATITE));
             })
             .build();
 
@@ -60,6 +62,7 @@ public class MysticalUniverse implements ModInitializer {
         ModBlockEntities.registerBlockEntities();
         ModFlammableBlocks.registerFlammableBlocks();
         ModOreGeneration.generateOres();
+        ModFlowerGeneration.generateFlowers();
         ModScreenHandlers.registerAllScreenHandlers();
         ModRecipes.registerRecipes();
 

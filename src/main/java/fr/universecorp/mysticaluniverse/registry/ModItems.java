@@ -37,6 +37,7 @@ public class ModItems {
     public static final BlockItem MYCELIUM_PLANKS = new BlockItem(ModBlocks.MYCELIUM_PLANKS, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem MYCELIUM_LEAVES = new BlockItem(ModBlocks.MYCELIUM_LEAVES, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem MYCELIUM_SAPLING = new BlockItem(ModBlocks.MYCELIUM_SAPLING, new FabricItemSettings().group(MYSTICAL_GROUP));
+    public static final BlockItem BLUE_CLEMATITE = new BlockItem(ModBlocks.BLUE_CLEMATITE, new FabricItemSettings().group(MYSTICAL_GROUP));
 
 
     public static void registerAll() {
@@ -64,5 +65,6 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_planks"), MYCELIUM_PLANKS);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_leaves"), MYCELIUM_LEAVES);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_sapling"), MYCELIUM_SAPLING);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "blue_clematite"), BLUE_CLEMATITE);
     }
 }

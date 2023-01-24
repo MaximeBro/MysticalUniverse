@@ -7,6 +7,7 @@ import fr.universecorp.mysticaluniverse.world.feature.tree.MyceliumSaplingGenera
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -82,6 +83,12 @@ public class ModBlocks {
     );
 
 
+    public static final Block BLUE_CLEMATITE = new FlowerBlock(
+            StatusEffects.SATURATION, 7,
+            FabricBlockSettings.copy(Blocks.DANDELION)
+    );
+
+
 
     public static void registerAll() {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_block"), ETERIUM_BLOCK);
@@ -95,5 +102,6 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_planks"), MYCELIUM_PLANKS);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_leaves"), MYCELIUM_LEAVES);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_sapling"), MYCELIUM_SAPLING);
+        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "blue_clematite"), BLUE_CLEMATITE);
     }
 }

@@ -21,6 +21,7 @@ public class MysticalUniverseClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_SAPLING, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLUE_CLEMATITE, RenderLayer.getCutout());
 
 
         ModMessages.registerS2CPacket();

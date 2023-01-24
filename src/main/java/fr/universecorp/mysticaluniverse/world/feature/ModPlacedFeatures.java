@@ -14,6 +14,12 @@ public class ModPlacedFeatures {
             ModConfiguredFeatures.ETERIUM_ORE, modifiersWithCount(7,
             HeightRangePlacementModifier.trapezoid(YOffset.aboveBottom(-80), YOffset.fixed(8))));
 
+
+    public static final RegistryEntry<PlacedFeature> BLUE_CLEMATITE = PlacedFeatures.register("blue_clematite_placed",
+            ModConfiguredFeatures.BLUE_CLEMATITE, RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(),
+            PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()
+    );
+
     private static List<PlacementModifier> modifiers(PlacementModifier countModifier, PlacementModifier heightModifier) {
         return List.of(countModifier, SquarePlacementModifier.of(), heightModifier, BiomePlacementModifier.of());
     }
