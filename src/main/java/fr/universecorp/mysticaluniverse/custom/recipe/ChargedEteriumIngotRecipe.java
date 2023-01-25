@@ -2,8 +2,10 @@ package fr.universecorp.mysticaluniverse.custom.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.client.realms.util.JsonUtils;
+import fr.universecorp.mysticaluniverse.registry.ModBlocks;
+import fr.universecorp.mysticaluniverse.registry.ModItems;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.recipe.*;
@@ -12,13 +14,14 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class EteriumIngotRecipe implements Recipe<SimpleInventory> {
+public class ChargedEteriumIngotRecipe implements Recipe<SimpleInventory> {
     private final Identifier id;
     private final ItemStack output;
     private final DefaultedList<Ingredient> recipeItems;
 
 
-    public EteriumIngotRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
+
+    public ChargedEteriumIngotRecipe(Identifier id, ItemStack output, DefaultedList<Ingredient> recipeItems) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
@@ -29,6 +32,11 @@ public class EteriumIngotRecipe implements Recipe<SimpleInventory> {
         if(world.isClient) { return false; }
 
         return recipeItems.get(0).test(inventory.getStack(1));
+    }
+
+    @Override
+    public ItemStack createIcon() {
+        return new ItemStack(ModBlocks.INFUSED_ETERIUM_FURNACE);
     }
 
     @Override
@@ -61,18 +69,18 @@ public class EteriumIngotRecipe implements Recipe<SimpleInventory> {
         return Type.INSTANCE;
     }
 
-    public static class Type implements RecipeType<EteriumIngotRecipe> {
+    public static class Type implements RecipeType<ChargedEteriumIngotRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
         public static final String ID = "iefurnace_smelting";
     }
 
-    public static class Serializer implements RecipeSerializer<EteriumIngotRecipe> {
+    public static class Serializer implements RecipeSerializer<ChargedEteriumIngotRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         public static final String ID = "iefurnace_smelting";
 
         @Override
-        public EteriumIngotRecipe read(Identifier id, JsonObject json) {
+        public ChargedEteriumIngotRecipe read(Identifier id, JsonObject json) {
             ItemStack output = ShapedRecipe.outputFromJson(JsonHelper.getObject(json, "output"));
 
             JsonArray ingredients = JsonHelper.getArray(json, "ingredients");
@@ -82,11 +90,11 @@ public class EteriumIngotRecipe implements Recipe<SimpleInventory> {
                 inputs.set(i, Ingredient.fromJson(ingredients.get(i)));
             }
 
-            return new EteriumIngotRecipe(id, output, inputs);
+            return new ChargedEteriumIngotRecipe(id, output, inputs);
         }
 
         @Override
-        public EteriumIngotRecipe read(Identifier id, PacketByteBuf buf) {
+        public ChargedEteriumIngotRecipe read(Identifier id, PacketByteBuf buf) {
             DefaultedList<Ingredient> inputs = DefaultedList.ofSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
@@ -94,11 +102,11 @@ public class EteriumIngotRecipe implements Recipe<SimpleInventory> {
             }
 
             ItemStack output = buf.readItemStack();
-            return new EteriumIngotRecipe(id, output, inputs);
+            return new ChargedEteriumIngotRecipe(id, output, inputs);
         }
 
         @Override
-        public void write(PacketByteBuf buf, EteriumIngotRecipe recipe) {
+        public void write(PacketByteBuf buf, ChargedEteriumIngotRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.write(buf);

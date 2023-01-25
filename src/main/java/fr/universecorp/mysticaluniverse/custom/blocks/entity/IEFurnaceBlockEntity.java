@@ -2,7 +2,7 @@ package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
-import fr.universecorp.mysticaluniverse.custom.recipe.EteriumIngotRecipe;
+import fr.universecorp.mysticaluniverse.custom.recipe.ChargedEteriumIngotRecipe;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
@@ -16,7 +16,6 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -28,7 +27,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -88,11 +86,7 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
 
 
     public static boolean canUseAsFuel(ItemStack stack) {
-        if(stack.getItem() == ModItems.ETERIUM_COAL) {
-            return true;
-        }
-
-        return false;
+        return stack.getItem() == ModItems.ETERIUM_COAL;
     }
 
     @Override
@@ -225,16 +219,20 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
     private static void craftItem(@NotNull IEFurnaceBlockEntity entity) {
         World world = entity.world;
 
-        SimpleInventory inventory = new SimpleInventory(entity.size());
-        for(int i=0; i < inventory.size(); i++) {
-            inventory.setStack(i, inventory.getStack(i));
+        SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
+        for (int i = 0; i < entity.inventory.size(); i++) {
+            inventory.setStack(i, entity.getStack(i));
         }
+
+        Optional<ChargedEteriumIngotRecipe> match = world.getRecipeManager()
+                .getFirstMatch(ChargedEteriumIngotRecipe.Type.INSTANCE, inventory, world);
+
 
         if(hasRecipe(entity)) {
             entity.removeStack(1, 1);
-            entity.setStack(2, new ItemStack(ModItems.CHARGED_ETERIUM_INGOT,
-                        entity.getStack(2).getCount() + 1));
+            //entity.setStack(2, new ItemStack(ModItems.CHARGED_ETERIUM_INGOT, entity.getStack(2).getCount() + 1));
 
+            entity.setStack(2, new ItemStack(match.get().getOutput().getItem(), entity.getStack(2).getCount() + 1));
 
             entity.resetProgress();
         }
@@ -248,12 +246,10 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
             inventory.setStack(i, entity.getStack(i));
         }
 
-        Optional<EteriumIngotRecipe> match = world.getRecipeManager()
-                .getFirstMatch(EteriumIngotRecipe.Type.INSTANCE, inventory, world);
+        Optional<ChargedEteriumIngotRecipe> match = world.getRecipeManager()
+                .getFirstMatch(ChargedEteriumIngotRecipe.Type.INSTANCE, inventory, world);
 
-        boolean macthPresent = match.isPresent();
-
-        return macthPresent &&       canInsertAmountIntoOutputSlot(inventory) &&
+        return match.isPresent() &&       canInsertAmountIntoOutputSlot(inventory) &&
                                      canInsertItemIntoOutputSlot(inventory, match.get().getOutput().getItem());
     }
 
