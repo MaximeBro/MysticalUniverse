@@ -58,6 +58,13 @@ public class ModBlocks {
             .nonOpaque()
     );
 
+    public static final Block ETERIUM_CORE_BLOCK = new Block(FabricBlockSettings
+            .of(Material.METAL)
+            .strength(4.0f)
+            .requiresTool()
+            .sounds(BlockSoundGroup.METAL)
+    );
+
     public static final Block INFUSED_CORE_BLOCK = new Block(FabricBlockSettings
             .of(Material.METAL)
             .strength(4.0f)
@@ -97,6 +104,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "refined_eterium_block"), REFINED_ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infested_eterium_block"), INFESTED_ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_furnace"), INFUSED_ETERIUM_FURNACE);
+        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_core_block"), ETERIUM_CORE_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_core_block"), INFUSED_CORE_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_log"), MYCELIUM_LOG);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_planks"), MYCELIUM_PLANKS);

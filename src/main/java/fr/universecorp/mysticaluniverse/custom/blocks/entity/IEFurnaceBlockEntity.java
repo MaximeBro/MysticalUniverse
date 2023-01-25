@@ -2,7 +2,7 @@ package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
-import fr.universecorp.mysticaluniverse.custom.recipe.ChargedEteriumIngotRecipe;
+import fr.universecorp.mysticaluniverse.custom.recipe.IEFurnaceRecipes;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
@@ -224,16 +224,13 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
             inventory.setStack(i, entity.getStack(i));
         }
 
-        Optional<ChargedEteriumIngotRecipe> match = world.getRecipeManager()
-                .getFirstMatch(ChargedEteriumIngotRecipe.Type.INSTANCE, inventory, world);
+        Optional<IEFurnaceRecipes> match = world.getRecipeManager()
+                .getFirstMatch(IEFurnaceRecipes.Type.INSTANCE, inventory, world);
 
 
         if(hasRecipe(entity)) {
             entity.removeStack(1, 1);
-            //entity.setStack(2, new ItemStack(ModItems.CHARGED_ETERIUM_INGOT, entity.getStack(2).getCount() + 1));
-
             entity.setStack(2, new ItemStack(match.get().getOutput().getItem(), entity.getStack(2).getCount() + 1));
-
             entity.resetProgress();
         }
     }
@@ -246,8 +243,8 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
             inventory.setStack(i, entity.getStack(i));
         }
 
-        Optional<ChargedEteriumIngotRecipe> match = world.getRecipeManager()
-                .getFirstMatch(ChargedEteriumIngotRecipe.Type.INSTANCE, inventory, world);
+        Optional<IEFurnaceRecipes> match = world.getRecipeManager()
+                .getFirstMatch(IEFurnaceRecipes.Type.INSTANCE, inventory, world);
 
         return match.isPresent() &&       canInsertAmountIntoOutputSlot(inventory) &&
                                      canInsertItemIntoOutputSlot(inventory, match.get().getOutput().getItem());

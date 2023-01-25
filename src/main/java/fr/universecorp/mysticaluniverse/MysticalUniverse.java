@@ -41,6 +41,7 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.MYCELIUM_PESTLE));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_MORTAR));
                 stacks.add(new ItemStack(ModItems.MORTAR_AND_PESTLE));
+                stacks.add(new ItemStack(ModItems.ETERIUM_CORE_BLOCK));
                 stacks.add(new ItemStack(ModItems.INFUSED_CORE_BLOCK));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_LOG));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_PLANKS));

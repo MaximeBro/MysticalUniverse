@@ -1,0 +1,11 @@
+{
+  "type": "mysticaluniverse:iefurnace_smelting",
+  "ingredients": [
+    {
+      "item": "mysticaluniverse:eterium_core_block"
+    }
+  ],
+  "output": {
+    "item": "mysticaluniverse:infused_core_block"
+  }
+}
