@@ -18,10 +18,7 @@ Misc :
 
   To-Do List:
   https://trello.com/b/kpNoyklO/mysticaluniverse
-  
-  - Adding new recipes to the IEFurnace
-  - Adding the Eterium Infuser MachineBlock
+ 
   - Adding the Eterium Composter
-  - Adding flowers generating ether via composting
+  - Adding flowers that generate ether
   - Adding custom villagers trades
-  - Adding the Blue Clematite (base flower)
