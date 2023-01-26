@@ -104,7 +104,6 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
                             FluidStack.convertDropletsToMb(FluidConstants.BUCKET), transaction);
                     transaction.commit();
 
-                    entity.setStack(3, new ItemStack(Items.BUCKET));
                 }
 
                 player.setStackInHand(hand, new ItemStack(Items.BUCKET, 1));

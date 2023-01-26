@@ -43,7 +43,7 @@ import java.util.Optional;
 
 public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(4, ItemStack.EMPTY);
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(5, ItemStack.EMPTY);
 
     protected final PropertyDelegate propertyDelegate;
     private int progress = 0;
@@ -182,6 +182,10 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
         if(hasFluidSourceInSlot(entity)) {
             transferFluidToFluidStorage(entity);
         }
+
+        if(hasEmptyBucketInSlot(entity)) {
+            transferFluidToBucket(entity);
+        }
     }
 
     private static void extractFluid(IEFurnaceBlockEntity entity) {
@@ -201,13 +205,38 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
                         FluidStack.convertDropletsToMb(FluidConstants.BUCKET), transaction);
                 transaction.commit();
 
-                entity.setStack(3, new ItemStack(Items.BUCKET));
+                entity.setStack(3, ItemStack.EMPTY);
+                if(!entity.getStack(4).isEmpty() && entity.getStack(4).getItem() == Items.BUCKET &&
+                    entity.getStack(4).getCount() < entity.getStack(4).getMaxCount()) {
+
+                    entity.getStack(4).increment(1);
+                } else {
+                    entity.setStack(4, new ItemStack(Items.BUCKET));
+                }
             }
         }
     }
 
+    private static void transferFluidToBucket(IEFurnaceBlockEntity entity) {
+        if(entity.fluidStorage.amount >= FluidStack.convertDropletsToMb(FluidConstants.BUCKET) && entity.getStack(4).isEmpty()) {
+            try(Transaction transaction = Transaction.openOuter()) {
+                entity.fluidStorage.extract(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER),
+                        1000, transaction);
+                transaction.commit();
+
+                entity.getStack(3).decrement(1);
+                entity.setStack(4, new ItemStack(ModFluids.LIQUID_ETHER_BUCKET));
+            }
+        }
+
+    }
+
     private static boolean hasFluidSourceInSlot(IEFurnaceBlockEntity entity) {
         return entity.getStack(3).getItem() == ModFluids.LIQUID_ETHER_BUCKET;
+    }
+
+    public static boolean hasEmptyBucketInSlot(IEFurnaceBlockEntity entity) {
+        return entity.getStack(3).getItem() == Items.BUCKET;
     }
 
     private static boolean isConsumingFuel(IEFurnaceBlockEntity entity) {
@@ -278,8 +307,8 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
         if(this.getStack(3).isEmpty())
             return true;
 
-        return this.getStack(3).getItem().equals(Items.BUCKET) && stack.getItem().equals(Items.BUCKET) &&
-                this.getStack(3).getCount() + stack.getCount() < this.getStack(3).getMaxCount();
+        return this.getStack(4).getItem().equals(Items.BUCKET) && stack.getItem().equals(Items.BUCKET) &&
+                this.getStack(4).getCount() + stack.getCount() < this.getStack(4).getMaxCount();
     }
 
 
@@ -330,7 +359,7 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
 
         return switch (dir) {
 
-            case SOUTH -> side == Direction.EAST && slot == 3 && stack.getItem().equals(Items.BUCKET) || // Extract Empty Bucket
+            case SOUTH -> side == Direction.EAST && slot == 4 && stack.getItem().equals(Items.BUCKET) || // Extract Empty Bucket
                           side == Direction.EAST && slot == 2;                                           // Extract Recipe output Item
 
             default -> false;

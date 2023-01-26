@@ -38,7 +38,8 @@ public class IEFurnaceScreenHandler extends ScreenHandler {
         this.addSlot(new ModFuelSlot(inventory, 0, 61, 53));                            // Fuel Slot
         this.addSlot(new Slot(inventory, 1, 61, 17));                                   // Ingredient Slot
         this.addSlot(new ModResultSlot(playerInventory.player, inventory, 2, 121, 35)); // Recipe output Slot
-        this.addSlot(new Slot(inventory, 3, 10, 35));                                   // Fluid Slot (buckets)
+        this.addSlot(new Slot(inventory, 3, 9, 17));                                   // Fluid Slot (Liquid Ether Bucket)
+        this.addSlot(new Slot(inventory, 4, 9, 53));                                   // Fluid Slot (Empty Buckets)
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
