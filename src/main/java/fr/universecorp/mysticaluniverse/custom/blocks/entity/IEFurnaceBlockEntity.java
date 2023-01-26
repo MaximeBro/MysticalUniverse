@@ -125,8 +125,14 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
 
     @Override
     public Text getDisplayName() {
-        return Text.literal("Infused Eterium Furnace");
+        return Text.translatable("container.iefurnace");
     }
+
+    public Text getContainerName() {
+        return Text.translatable("container.iefurnace");
+    }
+
+
 
     @Nullable
     @Override

@@ -32,6 +32,7 @@ public class ModItems {
     public static final BlockItem REFINED_ETERIUM_BLOCK = new BlockItem(ModBlocks.REFINED_ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem INFESTED_ETERIUM_BLOCK = new BlockItem(ModBlocks.INFESTED_ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem INFUSED_ETERIUM_FURNACE = new BlockItem(ModBlocks.INFUSED_ETERIUM_FURNACE, new FabricItemSettings().maxCount(1).group(MYSTICAL_GROUP));
+    public static final BlockItem INFUSED_ETERIUM_WORKBENCH = new BlockItem(ModBlocks.INFUSED_ETERIUM_WORKBENCH, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem ETERIUM_CORE_BLOCK = new BlockItem(ModBlocks.ETERIUM_CORE_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem INFUSED_CORE_BLOCK = new BlockItem(ModBlocks.INFUSED_CORE_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem MYCELIUM_LOG = new BlockItem(ModBlocks.MYCELIUM_LOG, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
@@ -61,6 +62,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "refined_eterium_block"), REFINED_ETERIUM_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infested_eterium_block"), INFESTED_ETERIUM_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_furnace"), INFUSED_ETERIUM_FURNACE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_workbench"), INFUSED_ETERIUM_WORKBENCH);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "eterium_core_block"), ETERIUM_CORE_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_core_block"), INFUSED_CORE_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_log"), MYCELIUM_LOG);

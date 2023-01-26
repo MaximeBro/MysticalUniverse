@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "mysticaluniverse:block/infused_eterium_workbench",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "mysticaluniverse:block/infused_eterium_workbench",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "mysticaluniverse:block/infused_eterium_workbench",
+      "y": 0
+    },
+    "facing=west": {
+      "model": "mysticaluniverse:block/infused_eterium_workbench",
+      "y": 90
+    }
+  }
+}

@@ -16,6 +16,7 @@
   "block.mysticaluniverse.eterium_ore": "Eterium Ore",
   "block.mysticaluniverse.refined_eterium_block": "Refined Eterium Block",
   "block.mysticaluniverse.infused_eterium_furnace": "Infused Eterium Furnace",
+  "block.mysticaluniverse.infused_eterium_workbench": "Infused Eterium Workbench",
   "block.mysticaluniverse.eterium_core_block": "Eterium Core Block",
   "block.mysticaluniverse.infused_core_block": "Infused Core Block",
   "block.mysticaluniverse.mycelium_log": "Mycelium Log",
@@ -28,6 +29,7 @@
   "mysticaluniverse.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "mysticaluniverse.tooltip.liquid.amount": "%s mB",
   "block.minecraft.empty": "Empty",
+  "mysticaluniverse.container.iefurnace": "Infused Eterium Furnace",
 
   "itemGroup.mysticaluniverse.mysticalgroup": "Mystical Universe"
 }

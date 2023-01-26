@@ -1,0 +1,11 @@
+{
+  "type": "mysticaluniverse:iefurnace_smelting",
+  "ingredients": [
+    {
+      "item": "minecraft:crafting_table"
+    }
+  ],
+  "output": {
+    "item": "mysticaluniverse:infused_eterium_workbench"
+  }
+}

@@ -3,6 +3,7 @@ package fr.universecorp.mysticaluniverse.registry;
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import fr.universecorp.mysticaluniverse.custom.blocks.ChargedEteriumBlock;
 import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
+import fr.universecorp.mysticaluniverse.custom.blocks.IEWorkbench;
 import fr.universecorp.mysticaluniverse.world.feature.tree.MyceliumSaplingGenerator;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -58,6 +59,14 @@ public class ModBlocks {
             .nonOpaque()
     );
 
+    public static final Block INFUSED_ETERIUM_WORKBENCH = new IEWorkbench(FabricBlockSettings
+            .of(Material.WOOD)
+            .sounds(BlockSoundGroup.WOOD)
+            .strength(2.5f)
+            .requiresTool()
+            .nonOpaque()
+    );
+
     public static final Block ETERIUM_CORE_BLOCK = new Block(FabricBlockSettings
             .of(Material.METAL)
             .strength(4.0f)
@@ -104,6 +113,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "refined_eterium_block"), REFINED_ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infested_eterium_block"), INFESTED_ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_furnace"), INFUSED_ETERIUM_FURNACE);
+        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_workbench"), INFUSED_ETERIUM_WORKBENCH);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_core_block"), ETERIUM_CORE_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_core_block"), INFUSED_CORE_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_log"), MYCELIUM_LOG);
