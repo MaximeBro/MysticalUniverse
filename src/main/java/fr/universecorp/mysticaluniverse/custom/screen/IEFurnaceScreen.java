@@ -81,6 +81,7 @@ public class IEFurnaceScreen extends HandledScreen<IEFurnaceScreenHandler> {
         }
     }
 
+
     @Override
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
         renderBackground(matrices);

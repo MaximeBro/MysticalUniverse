@@ -1,7 +1,6 @@
 package fr.universecorp.mysticaluniverse;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
-import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.recipe.ModRecipes;
 import fr.universecorp.mysticaluniverse.custom.screen.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
@@ -50,6 +49,8 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.MYCELIUM_SAPLING));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_STICK));
                 stacks.add(new ItemStack(ModItems.BLUE_CLEMATITE));
+                stacks.add(new ItemStack(ModItems.BLUE_CLEMATITE_ESSENCE));
+                stacks.add(new ItemStack(ModItems.BOTTLE_OF_ETHER));
             })
             .build();
 

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "pattern": [
+    "MC"
+  ],
+  "key": {
+    "M": {
+      "item": "mysticaluniverse:mortar_and_pestle"
+    },
+    "C": {
+    "item": "mysticaluniverse:blue_clematite"
+  }
+},
+  "result": {
+    "item": "mysticaluniverse:blue_clematite_essence",
+    "count": 2
+  }
+}

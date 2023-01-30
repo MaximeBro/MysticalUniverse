@@ -2,6 +2,7 @@ package fr.universecorp.mysticaluniverse;
 
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
+import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreen;
 import fr.universecorp.mysticaluniverse.custom.screen.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
@@ -37,5 +38,6 @@ public class MysticalUniverseClient implements ClientModInitializer {
                 ModFluids.STILL_LIQUID_ETHER, ModFluids.FLOWING_LIQUID_ETHER);
 
         HandledScreens.register(ModScreenHandlers.IEFURNACE_SCREEN_HANDLER, IEFurnaceScreen::new);
+        HandledScreens.register(ModScreenHandlers.IEWORKBENCH_SCREEN_HANDLER, IEWorkbenchScreen::new);
     }
 }

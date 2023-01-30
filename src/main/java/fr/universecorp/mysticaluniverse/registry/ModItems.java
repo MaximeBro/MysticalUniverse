@@ -9,8 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import javax.xml.parsers.SAXParser;
-
 import static fr.universecorp.mysticaluniverse.MysticalUniverse.MYSTICAL_GROUP;
 
 public class ModItems {
@@ -24,6 +22,8 @@ public class ModItems {
     public static final Item MYCELIUM_PESTLE = new Item(new FabricItemSettings().maxCount(1).group(MYSTICAL_GROUP));
     public static final Item MYCELIUM_MORTAR = new Item(new FabricItemSettings().maxCount(1).group(MYSTICAL_GROUP));
     public static final Item MORTAR_AND_PESTLE = new MortarAndPestle(new FabricItemSettings().maxCount(1).group(MYSTICAL_GROUP));
+    public static final Item BOTTLE_OF_ETHER = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
+    public static final Item BLUE_CLEMATITE_ESSENCE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
 
     // BlockItems
     public static final BlockItem ETERIUM_BLOCK = new BlockItem(ModBlocks.ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
@@ -53,6 +53,8 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_pestle"), MYCELIUM_PESTLE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_mortar"), MYCELIUM_MORTAR);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mortar_and_pestle"), MORTAR_AND_PESTLE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "bottle_of_ether"), BOTTLE_OF_ETHER);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "blue_clematite_essence"), BLUE_CLEMATITE_ESSENCE);
 
 
         //BlockItems

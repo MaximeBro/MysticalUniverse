@@ -1,7 +1,9 @@
 package fr.universecorp.mysticaluniverse.custom.networking;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
+import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreenHandler;
+import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -21,6 +23,16 @@ public class FluidSyncS2CPacket {
             blockEntity.setFluidLevel(fluidVariant, fluidLevel);
 
             if(client.player.currentScreenHandler instanceof IEFurnaceScreenHandler screenHandler &&
+                    screenHandler.blockEntity.getPos().equals(position)) {
+                blockEntity.setFluidLevel(fluidVariant, fluidLevel);
+                screenHandler.setFluid(new FluidStack(fluidVariant, fluidLevel));
+            }
+        }
+
+        if(client.world.getBlockEntity(position) instanceof IEWorkbenchBlockEntity blockEntity) {
+            blockEntity.setFluidLevel(fluidVariant, fluidLevel);
+
+            if(client.player.currentScreenHandler instanceof IEWorkbenchScreenHandler screenHandler &&
                     screenHandler.blockEntity.getPos().equals(position)) {
                 blockEntity.setFluidLevel(fluidVariant, fluidLevel);
                 screenHandler.setFluid(new FluidStack(fluidVariant, fluidLevel));

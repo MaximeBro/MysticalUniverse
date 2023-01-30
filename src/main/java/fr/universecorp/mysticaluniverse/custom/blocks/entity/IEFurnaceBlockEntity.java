@@ -125,13 +125,8 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable("container.iefurnace");
+        return Text.of("IEFurnace");
     }
-
-    public Text getContainerName() {
-        return Text.translatable("container.iefurnace");
-    }
-
 
 
     @Nullable

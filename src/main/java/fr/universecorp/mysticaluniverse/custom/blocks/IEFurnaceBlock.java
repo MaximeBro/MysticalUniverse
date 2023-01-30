@@ -2,9 +2,7 @@ package fr.universecorp.mysticaluniverse.custom.blocks;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
-import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
-import fr.universecorp.mysticaluniverse.registry.ModItems;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
@@ -19,13 +17,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -42,6 +41,11 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
     public IEFurnaceBlock(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(LIT, false));
+    }
+
+    @Override
+    public MutableText getName() {
+        return Text.translatable("container.iefurnace");
     }
 
     @Override
@@ -136,7 +140,7 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
     }
 
     public void openScreen(PlayerEntity player, World world, BlockPos pos) {
-        if (!world.isClient) {
+        if (!world.isClient()) {
             NamedScreenHandlerFactory screenHandlerFactory = ((IEFurnaceBlockEntity) world.getBlockEntity(pos));
 
             if (screenHandlerFactory != null) {
