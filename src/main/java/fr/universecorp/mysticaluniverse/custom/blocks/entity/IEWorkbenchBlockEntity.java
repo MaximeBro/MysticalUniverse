@@ -218,6 +218,6 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable(getCachedState().getBlock().getTranslationKey());
+        return Text.of("IEWorkbench");
     }
 }
