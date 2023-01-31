@@ -11,6 +11,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class FluidSyncS2CPacket {
     public static void receive(MinecraftClient client, ClientPlayNetworkHandler handler,
@@ -19,26 +20,29 @@ public class FluidSyncS2CPacket {
         long fluidLevel = buf.readLong();
         BlockPos position = buf.readBlockPos();
 
-        if(client.world.getBlockEntity(position) instanceof IEFurnaceBlockEntity blockEntity) {
-            blockEntity.setFluidLevel(fluidVariant, fluidLevel);
+        World world = client.world;
 
-            if(client.player.currentScreenHandler instanceof IEFurnaceScreenHandler screenHandler &&
-                    screenHandler.blockEntity.getPos().equals(position)) {
+        if(world != null) {
+            if(client.world.getBlockEntity(position) instanceof IEFurnaceBlockEntity blockEntity) {
                 blockEntity.setFluidLevel(fluidVariant, fluidLevel);
-                screenHandler.setFluid(new FluidStack(fluidVariant, fluidLevel));
+
+                if(client.player.currentScreenHandler instanceof IEFurnaceScreenHandler screenHandler &&
+                        screenHandler.blockEntity.getPos().equals(position)) {
+                    blockEntity.setFluidLevel(fluidVariant, fluidLevel);
+                    screenHandler.setFluid(new FluidStack(fluidVariant, fluidLevel));
+                }
+            }
+
+            if(client.world.getBlockEntity(position) instanceof IEWorkbenchBlockEntity blockEntity) {
+                blockEntity.setFluidLevel(fluidVariant, fluidLevel);
+
+                if(client.player.currentScreenHandler instanceof IEWorkbenchScreenHandler screenHandler &&
+                        screenHandler.blockEntity.getPos().equals(position)) {
+                    blockEntity.setFluidLevel(fluidVariant, fluidLevel);
+                    screenHandler.setFluid(new FluidStack(fluidVariant, fluidLevel));
+                }
             }
         }
-
-        if(client.world.getBlockEntity(position) instanceof IEWorkbenchBlockEntity blockEntity) {
-            blockEntity.setFluidLevel(fluidVariant, fluidLevel);
-
-            if(client.player.currentScreenHandler instanceof IEWorkbenchScreenHandler screenHandler &&
-                    screenHandler.blockEntity.getPos().equals(position)) {
-                blockEntity.setFluidLevel(fluidVariant, fluidLevel);
-                screenHandler.setFluid(new FluidStack(fluidVariant, fluidLevel));
-            }
-        }
-
     }
 
 

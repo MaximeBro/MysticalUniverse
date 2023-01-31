@@ -3,7 +3,6 @@ package fr.universecorp.mysticaluniverse.custom.screen;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.EssenceSlot;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.ModResultSlot;
-import fr.universecorp.mysticaluniverse.registry.ModItems;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -36,15 +35,15 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
         this.blockEntity = (IEWorkbenchBlockEntity) entity;
         this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
-        this.addSlot(new ModResultSlot(playerInventory.player, this.inventory, 0,202 - 31, 49 - 32));  // Craft output Slot
-        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 32));                                   // Essence Slot
+        this.addSlot(new ModResultSlot(playerInventory.player, this.inventory, 0,202 - 31, 49 - 26));  // Craft output Slot
+        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 26));                                   // Essence Slot
 
         int nbOfSlots = 0;
         int offSetY = -18;
         int offSetX = 0;
         for(int i=2; i < 27; i++) {
             if(nbOfSlots % 5 == 0) { offSetY+= 18; offSetX=0; }
-            this.addSlot(new Slot(this.inventory, i, 75 - 31 + 18*offSetX, 13 - 32 + offSetY));
+            this.addSlot(new Slot(this.inventory, i, 75 - 31 + 18*offSetX, 13 - 26 + offSetY));
 
             nbOfSlots++;
             offSetX++;
@@ -59,7 +58,6 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
     public void setFluid(FluidStack stack) {
         this.fluidStack = stack;
     }
-
 
 
 
@@ -92,7 +90,7 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
     public int getBubbleHeight() {
         int bubbleProgress = this.propertyDelegate.get(0);
         int maxBubble = this.propertyDelegate.get(1);
-        int bubbleTextureHeight = 30;
+        int bubbleTextureHeight = 33;
 
         return maxBubble != 0 && bubbleProgress != 0 ? bubbleProgress * bubbleTextureHeight / maxBubble : 0;
     }
@@ -101,14 +99,14 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 90 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(PlayerInventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 148));
         }
     }
 

@@ -44,11 +44,6 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
     }
 
     @Override
-    public MutableText getName() {
-        return Text.translatable("container.iefurnace");
-    }
-
-    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING, LIT);
     }

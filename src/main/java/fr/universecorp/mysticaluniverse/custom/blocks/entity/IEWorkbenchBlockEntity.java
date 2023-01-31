@@ -1,6 +1,5 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
-import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
@@ -29,6 +28,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -198,8 +198,26 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
         this.fluidStorage.amount = fluidLevel;
     }
 
+
+
+
+    // ***************** //
+    // SIDED INVENTORIES //
+    // ***************** //
+
+
+    @Override
+    public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
+        return false;
+    }
+
+    @Override
+    public boolean canExtract(int slot, ItemStack stack, Direction side) {
+        return false;
+    }
+
     @Override
     public Text getDisplayName() {
-        return Text.of("IEWorkbench");
+        return Text.translatable(getCachedState().getBlock().getTranslationKey());
     }
 }

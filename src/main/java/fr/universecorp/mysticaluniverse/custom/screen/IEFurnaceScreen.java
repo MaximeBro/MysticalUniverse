@@ -30,6 +30,7 @@ public class IEFurnaceScreen extends HandledScreen<IEFurnaceScreenHandler> {
     protected void init() {
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
+        this.playerInventoryTitleY+= 2;
         assignFluidStackRenderer();
     }
 
@@ -42,6 +43,9 @@ public class IEFurnaceScreen extends HandledScreen<IEFurnaceScreenHandler> {
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
+
+        this.textRenderer.draw(matrices, this.title, (float)this.titleX, (float)this.titleY, 4210752);
+        this.textRenderer.draw(matrices, this.playerInventoryTitle, (float)this.playerInventoryTitleX, (float)this.playerInventoryTitleY, 4210752);
 
         renderFluidTooltip(matrices, mouseX, mouseY, x, y, handler.fluidStack, 35, 17, fluidStackRenderer);
     }

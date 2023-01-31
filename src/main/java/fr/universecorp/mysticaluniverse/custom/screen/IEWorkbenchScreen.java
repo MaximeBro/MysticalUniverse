@@ -24,14 +24,16 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
     private FluidStackRenderer fluidStackRenderer;
 
     public IEWorkbenchScreen(IEWorkbenchScreenHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, inventory, title);
+        super(handler, inventory, Text.of(title.getString()) );
     }
 
     @Override
     protected void init() {
         super.init();
-        titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
-        titleY = -28;
+        super.titleX = (backgroundWidth - textRenderer.getWidth(super.title)) / 2;
+        super.titleY = -24;
+
+        this.playerInventoryTitleY+= 6;
         assignFluidStackRenderer();
     }
 
@@ -43,12 +45,13 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x - 31, y - 32, 0, 0, 239, 198);
+        drawTexture(matrices, x - 31, y - 29, 0, 0, 239, 198);
+
         if(!this.handler.inventory.getStack(1).isEmpty()) {
-            drawTexture(matrices, x + 47 - 31, y + 21 - 32 + this.handler.getBubbleHeight(), 123, 198 + this.handler.getBubbleHeight(), 12, 31 - this.handler.getBubbleHeight());
+            drawTexture(matrices, x + 47 - 31, y + 20 - 29 + this.handler.getBubbleHeight(), 123, 201 + this.handler.getBubbleHeight(), 12, 34 - this.handler.getBubbleHeight());
         }
 
-        fluidStackRenderer.drawFluid(matrices, handler.fluidStack, x - 15, y - 14, 8, 79,
+        fluidStackRenderer.drawFluid(matrices, handler.fluidStack, x - 15, y - 8, 8, 79,
                 FluidStack.convertDropletsToMb(FluidConstants.BUCKET) * 20);
     }
 
@@ -56,8 +59,10 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
     protected void drawForeground(MatrixStack matrices, int mouseX, int mouseY) {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
+        this.textRenderer.draw(matrices, this.title, (float)this.titleX, (float)this.titleY, 4210752);
+        this.textRenderer.draw(matrices, this.playerInventoryTitle, (float)this.playerInventoryTitleX, (float)this.playerInventoryTitleY, 4210752);
 
-        renderFluidTooltip(matrices, mouseX, mouseY, x - 31 - 19 , y - 32, handler.fluidStack, 35, 17, fluidStackRenderer);
+        renderFluidTooltip(matrices, mouseX, mouseY, x - 31 - 19 , y - 26, handler.fluidStack, 35, 17, fluidStackRenderer);
 
         // renderBook (next version)
     }

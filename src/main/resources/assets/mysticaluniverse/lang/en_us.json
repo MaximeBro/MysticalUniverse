@@ -19,6 +19,7 @@
   "block.mysticaluniverse.refined_eterium_block": "Refined Eterium Block",
   "block.mysticaluniverse.infused_eterium_furnace": "Infused Eterium Furnace",
   "block.mysticaluniverse.infused_eterium_workbench": "Infused Eterium Workbench",
+  "block.mysticaluniverse.infused_eterium_workbench": "IEWorkbench",
   "block.mysticaluniverse.eterium_core_block": "Eterium Core Block",
   "block.mysticaluniverse.infused_core_block": "Infused Core Block",
   "block.mysticaluniverse.mycelium_log": "Mycelium Log",
@@ -35,5 +36,7 @@
 
   "itemGroup.mysticaluniverse.mysticalgroup": "Mystical Universe",
 
-  "container.iefurnace": "IEFurnace"
+  "container.iefurnace": "IEFurnace",
+  "mysticaluniverse.ieworkbench": "IEWorkbench",
+  "mysticaluniverse.iefurnace": "IEFurnace"
 }

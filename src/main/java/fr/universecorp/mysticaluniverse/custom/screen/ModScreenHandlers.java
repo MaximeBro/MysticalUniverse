@@ -2,6 +2,7 @@ package fr.universecorp.mysticaluniverse.custom.screen;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
+import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;

@@ -24,9 +24,6 @@ public class MysticalUniverseClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLUE_CLEMATITE, RenderLayer.getCutout());
 
-
-        ModMessages.registerS2CPacket();
-
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_LIQUID_ETHER, ModFluids.FLOWING_LIQUID_ETHER,
                 new SimpleFluidRenderHandler(
                         new Identifier("minecraft:block/water_still"),
@@ -39,5 +36,7 @@ public class MysticalUniverseClient implements ClientModInitializer {
 
         HandledScreens.register(ModScreenHandlers.IEFURNACE_SCREEN_HANDLER, IEFurnaceScreen::new);
         HandledScreens.register(ModScreenHandlers.IEWORKBENCH_SCREEN_HANDLER, IEWorkbenchScreen::new);
+
+        ModMessages.registerS2CPacket();
     }
 }
