@@ -65,9 +65,9 @@ public class IEFurnaceScreen extends HandledScreen<IEFurnaceScreenHandler> {
         drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
 
         renderProgressArrow(matrices, x, y);
-        drawTexture(matrices, x + 35, y + 69 - handler.getScaledFluidProgress(), 177, 78 - handler.getScaledFluidProgress(), 8, handler.getScaledFluidProgress());
-        //fluidStackRenderer.drawFluid(matrices, handler.fluidStack, x + 35, y + 17, 8, 52,
-        //        FluidStack.convertDropletsToMb(FluidConstants.BUCKET) * 10);
+        //drawTexture(matrices, x + 35, y + 69 - handler.getScaledFluidProgress(), 177, 78 - handler.getScaledFluidProgress(), 8, handler.getScaledFluidProgress());
+        fluidStackRenderer.drawFluid(matrices, handler.fluidStack, x + 35, y + 17, 8, 52,
+              FluidStack.convertDropletsToMb(FluidConstants.BUCKET) * 10);
     }
 
     private void renderProgressArrow(MatrixStack matrices, int x, int y) {

@@ -1,6 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.screen;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
+import fr.universecorp.mysticaluniverse.custom.screen.slot.EssenceSlot;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.ModResultSlot;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
@@ -36,7 +37,7 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
         this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
         this.addSlot(new ModResultSlot(playerInventory.player, this.inventory, 0,202 - 31, 49 - 32));  // Craft output Slot
-        this.addSlot(new Slot(this.inventory, 1, 44 - 31, 52 - 32));                                   // Essence Slot
+        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 32));                                   // Essence Slot
 
         int nbOfSlots = 0;
         int offSetY = -18;
