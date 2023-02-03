@@ -2,13 +2,16 @@
 
 ## Blocks & Items
 - Items :
-  - Eterium Ingot, Eterium Coal, Charged Eterium Ingot, Mycelium Stick, Liquid Ether Bucket, Eterium Pestle, Eterium Mortar, Mortar and Pestle, Eterium Dust, Mycelium Sapling
+  - Eterium Ingot, Eterium Coal, Charged Eterium Ingot, Mycelium Stick, Liquid Ether Bucket, Eterium Pestle, Eterium Mortar, Mortar and Pestle, Eterium Dust, Mycelium Sapling, Blue Clematite's Essence, Bottle of Ether
 
 - Blocks :
-  - Eterium Block, Charged Eterium Block, Refined Eterium Block, Eterium Ore, Mycelium Log, Mycelium Planks, Mycelium Leaves
+  - Eterium Block, Charged Eterium Block, Refined Eterium Block, Eterium Ore, Mycelium Log, Mycelium Planks, Mycelium Leaves, Blue Clematite FlowerBlock, Eterium Core Block, Infused Core Block
 
 BlockEntities :
-  - Infused Eterium Furnace
+  - Infused Eterium Furnace (= IEFurnace)
+  - Infused Eterium Workbench (= IEWorkbench)
+  - Infused Eterium Composter (= IEComposter)
+  - Infused Ether Flower (= IEFlower)
 
 Misc :
   - Liquid Ether Fluid
