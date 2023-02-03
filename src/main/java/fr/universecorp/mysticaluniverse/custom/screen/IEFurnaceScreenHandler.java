@@ -1,6 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.screen;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
+import fr.universecorp.mysticaluniverse.custom.screen.slot.FurnaceIngredientSlot;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.ModFuelSlot;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.ModResultSlot;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
@@ -36,10 +37,10 @@ public class IEFurnaceScreenHandler extends ScreenHandler {
         this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
         this.addSlot(new ModFuelSlot(inventory, 0, 61, 53));                            // Fuel Slot
-        this.addSlot(new Slot(inventory, 1, 61, 17));                                   // Ingredient Slot
+        this.addSlot(new FurnaceIngredientSlot(inventory, 1, 61, 17));                  // Ingredient Slot
         this.addSlot(new ModResultSlot(playerInventory.player, inventory, 2, 121, 35)); // Recipe output Slot
-        this.addSlot(new Slot(inventory, 3, 9, 17));                                   // Fluid Slot (Liquid Ether Bucket)
-        this.addSlot(new Slot(inventory, 4, 9, 53));                                   // Fluid Slot (Empty Buckets)
+        this.addSlot(new Slot(inventory, 3, 9, 17));                                    // Fluid Slot (Liquid Ether Bucket)
+        this.addSlot(new Slot(inventory, 4, 9, 53));                                    // Fluid Slot (Empty Buckets)
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);

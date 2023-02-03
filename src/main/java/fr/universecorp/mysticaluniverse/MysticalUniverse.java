@@ -3,10 +3,7 @@ package fr.universecorp.mysticaluniverse;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.custom.recipe.ModRecipes;
 import fr.universecorp.mysticaluniverse.custom.screen.ModScreenHandlers;
-import fr.universecorp.mysticaluniverse.registry.ModBlocks;
-import fr.universecorp.mysticaluniverse.registry.ModFlammableBlocks;
-import fr.universecorp.mysticaluniverse.registry.ModFluids;
-import fr.universecorp.mysticaluniverse.registry.ModItems;
+import fr.universecorp.mysticaluniverse.registry.*;
 import fr.universecorp.mysticaluniverse.world.feature.ModConfiguredFeatures;
 import fr.universecorp.mysticaluniverse.world.gen.ModFlowerGeneration;
 import fr.universecorp.mysticaluniverse.world.gen.ModOreGeneration;
@@ -68,6 +65,7 @@ public class MysticalUniverse implements ModInitializer {
         ModFlowerGeneration.generateFlowers();
         ModScreenHandlers.registerAllScreenHandlers();
         ModRecipes.registerRecipes();
+        ModSerializers.registerModSerializers();
 
         FuelRegistry.INSTANCE.add(ModItems.ETERIUM_COAL, 2400);
 

@@ -23,8 +23,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Text;
 import net.minecraft.util.*;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
@@ -98,6 +96,7 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
 
             if(entity.fluidStorage.amount < entity.fluidStorage.getCapacity() &&
               (entity.fluidStorage.amount + FluidStack.convertDropletsToMb(FluidConstants.BUCKET)) <= entity.fluidStorage.getCapacity()) {
+
                 try(Transaction transaction = Transaction.openOuter()) {
                     entity.fluidStorage.insert(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER),
                             FluidStack.convertDropletsToMb(FluidConstants.BUCKET), transaction);
@@ -114,6 +113,7 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
             if(!player.getStackInHand(hand).isEmpty() && player.getStackInHand(hand).getItem() == Items.BUCKET) {
 
                 if(entity.fluidStorage.amount >= FluidStack.convertDropletsToMb(FluidConstants.BUCKET)) {
+
                     try(Transaction transaction = Transaction.openOuter()) {
                         entity.fluidStorage.extract(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER),
                                 FluidStack.convertDropletsToMb(FluidConstants.BUCKET), transaction);

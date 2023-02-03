@@ -1,6 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
+import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchRecipes;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
@@ -18,6 +19,7 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -31,6 +33,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
 
 public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScreenHandlerFactory, ImplementedInventory {
 
@@ -71,8 +75,6 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
     public DefaultedList<ItemStack> getItems() {
         return this.inventory;
     }
-
-
 
     @Nullable
     @Override
@@ -117,10 +119,30 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
 
         if(hasEssenceInSlot(entity) && !isConsumingEssence(entity)) {
             consumeEssence(entity);
-            markDirty(world, blockPos, blockState);
         }
 
+        if(hasRecipe(entity) && isConsumingEssence(entity)) {
+            craftItem(entity);
+        }
+
+        System.out.println(hasRecipe(entity));
         markDirty(world, blockPos, blockState);
+    }
+
+    public static boolean hasRecipe(IEWorkbenchBlockEntity entity) {
+        World world = entity.world;
+
+        SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
+        for (int i = 0; i < entity.inventory.size(); i++) {
+            inventory.setStack(i, entity.getStack(i));
+        }
+
+        Optional<IEWorkbenchRecipes> recipe = world.getRecipeManager().getFirstMatch(
+                IEWorkbenchRecipes.Type.INSTANCE, inventory, world);
+
+        boolean isPresent = recipe.isPresent();
+
+        return isPresent && entity.inventory.get(0).isEmpty();
     }
 
     public static boolean isConsumingEssence(IEWorkbenchBlockEntity entity) {
@@ -136,6 +158,25 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
         entity.bubbleMaxTime = entity.bubbleTime = 16;
     }
 
+
+    public static void craftItem(IEWorkbenchBlockEntity entity) {
+        World world = entity.world;
+
+        SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
+        for (int i = 0; i < entity.inventory.size(); i++) {
+            inventory.setStack(i, entity.getStack(i));
+        }
+
+        Optional<IEWorkbenchRecipes> recipe = world.getRecipeManager().getFirstMatch(
+                IEWorkbenchRecipes.Type.INSTANCE, inventory, world);
+
+        if(hasRecipe(entity)) {
+            entity.setStack(0, new ItemStack(recipe.get().getOutput().getItem(), entity.getStack(0).getCount() + 1));
+        }
+    }
+
+
+
     // ***************** //
     // FLUID HANDLING    //
     // ***************** //
@@ -144,7 +185,7 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
     private static void extractFluid(IEWorkbenchBlockEntity entity) {
         try(Transaction transaction = Transaction.openOuter()) {
             entity.fluidStorage.extract(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER),
-                    100, transaction);
+                    500, transaction);
             transaction.commit();
         }
     }
