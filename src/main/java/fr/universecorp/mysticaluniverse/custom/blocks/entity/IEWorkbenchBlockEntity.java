@@ -125,7 +125,6 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
             craftItem(entity);
         }
 
-        System.out.println(hasRecipe(entity));
         markDirty(world, blockPos, blockState);
     }
 
@@ -188,6 +187,10 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
                     500, transaction);
             transaction.commit();
         }
+    }
+
+    private static boolean hasEnoughFluid(IEFurnaceBlockEntity entity) {
+        return entity.fluidStorage.amount >= 500;
     }
 
     private static void transferFluidToFluidStorage(IEWorkbenchBlockEntity entity) {

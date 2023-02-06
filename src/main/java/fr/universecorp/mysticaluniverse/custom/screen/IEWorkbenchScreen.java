@@ -24,7 +24,7 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
     private FluidStackRenderer fluidStackRenderer;
 
     public IEWorkbenchScreen(IEWorkbenchScreenHandler handler, PlayerInventory inventory, Text title) {
-        super(handler, inventory, Text.of(title.getString()) );
+        super(handler, inventory, title );
     }
 
     @Override
@@ -45,9 +45,9 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x - 31, y - 29, 0, 0, 239, 198);
+        drawTexture(matrices, x - 31, y - 29, 0, 0, 239, 201);
 
-        if(!this.handler.inventory.getStack(1).isEmpty()) {
+        if(!this.handler.inventory.getStack(1).isEmpty() && this.handler.fluidStack.amount < this.handler.blockEntity.fluidStorage.getCapacity()) {
             drawTexture(matrices, x + 47 - 31, y + 20 - 29 + this.handler.getBubbleHeight(), 123, 201 + this.handler.getBubbleHeight(), 12, 34 - this.handler.getBubbleHeight());
         }
 
@@ -93,5 +93,10 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int x, int y, int offsetX, int offsetY, int width, int height) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, x + offsetX, y + offsetY, width, height);
+    }
+
+    @Override
+    protected boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top, int button) {
+        return mouseX < (double)left || mouseY < (double)top-18 || mouseX >= (double)(left + this.backgroundWidth) || mouseY >= (double)(top + this.backgroundHeight);
     }
 }

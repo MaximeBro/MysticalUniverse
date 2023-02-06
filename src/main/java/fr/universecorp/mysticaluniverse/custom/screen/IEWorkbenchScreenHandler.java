@@ -36,7 +36,7 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
         this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
         this.addSlot(new ModResultSlot(playerInventory.player, this.inventory, 0,202 - 31, 49 - 26));  // Craft output Slot
-        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 26));                                   // Essence Slot
+        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 26));                            // Essence Slot
 
         int nbOfSlots = 0;
         int offSetY = -18;
@@ -44,7 +44,7 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
         for(int i=2; i < 27; i++) {
             if(nbOfSlots % 5 == 0) { offSetY+= 18; offSetX=0; }
             this.addSlot(new Slot(this.inventory, i, 75 - 31 + 18*offSetX, 13 - 26 + offSetY));
-
+            System.out.println("Slot n°" + i + " | x:" + (75-31+18*offSetX) + " y:" + (13-26+offSetY));
             nbOfSlots++;
             offSetX++;
         }
@@ -58,8 +58,6 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
     public void setFluid(FluidStack stack) {
         this.fluidStack = stack;
     }
-
-
 
     @Override
     public ItemStack transferSlot(PlayerEntity player, int invSlot) {

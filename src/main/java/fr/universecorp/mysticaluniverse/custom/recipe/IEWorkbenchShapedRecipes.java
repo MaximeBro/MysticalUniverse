@@ -1,9 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.recipe;
 
 import fr.universecorp.mysticaluniverse.registry.ModItems;
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.util.Identifier;
@@ -11,7 +9,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
 
-public class IEWorkbenchShapedRecipes implements CraftingRecipe {
+public class IEWorkbenchShapedRecipes implements IECraftingRecipe {
     final int width;
     final int height;
     final DefaultedList<Ingredient> input;
@@ -29,7 +27,7 @@ public class IEWorkbenchShapedRecipes implements CraftingRecipe {
     }
 
     @Override
-    public boolean matches(CraftingInventory craftingInventory, World world) {
+    public boolean matches(IEWorkbenchCraftingInventory craftingInventory, World world) {
         for(int i = 0; i <= craftingInventory.getWidth() - this.width; ++i) {
             for(int j = 0; j <= craftingInventory.getHeight() - this.height; ++j) {
                 if (this.matchesPattern(craftingInventory, i, j, true)) {
@@ -45,7 +43,7 @@ public class IEWorkbenchShapedRecipes implements CraftingRecipe {
         return false;
     }
 
-    private boolean matchesPattern(CraftingInventory inv, int offsetX, int offsetY, boolean flipped) {
+    private boolean matchesPattern(IEWorkbenchCraftingInventory inv, int offsetX, int offsetY, boolean flipped) {
         for(int i = 0; i < inv.getWidth(); ++i) {
             for(int j = 0; j < inv.getHeight(); ++j) {
                 int k = i - offsetX;
@@ -69,7 +67,7 @@ public class IEWorkbenchShapedRecipes implements CraftingRecipe {
     }
 
     @Override
-    public ItemStack craft(CraftingInventory inventory) {
+    public ItemStack craft(IEWorkbenchCraftingInventory inventory) {
         return null;
     }
 
@@ -85,12 +83,12 @@ public class IEWorkbenchShapedRecipes implements CraftingRecipe {
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
-        return CraftingRecipe.super.getIngredients();
+        return IECraftingRecipe.super.getIngredients();
     }
 
     @Override
     public boolean isIgnoredInRecipeBook() {
-        return CraftingRecipe.super.isIgnoredInRecipeBook();
+        return IECraftingRecipe.super.isIgnoredInRecipeBook();
     }
 
     @Override

@@ -1,6 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.screen.slot;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
+import fr.universecorp.mysticaluniverse.registry.ModItems;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
@@ -12,7 +13,7 @@ public class ModFuelSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
-        return IEFurnaceBlockEntity.canUseAsFuel(stack);
+        return stack.getItem() == ModItems.ETERIUM_COAL;
     }
 
     @Override
