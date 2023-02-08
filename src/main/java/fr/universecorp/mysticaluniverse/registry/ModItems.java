@@ -24,6 +24,8 @@ public class ModItems {
     public static final Item MORTAR_AND_PESTLE = new MortarAndPestle(new FabricItemSettings().maxCount(1).group(MYSTICAL_GROUP));
     public static final Item BOTTLE_OF_ETHER = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final Item BLUE_CLEMATITE_ESSENCE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
+    public static final Item ETERIUM_ARMOR_CORE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
+    public static final Item INFUSED_ARMOR_CORE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
 
     // BlockItems
     public static final BlockItem ETERIUM_BLOCK = new BlockItem(ModBlocks.ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
@@ -55,6 +57,8 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mortar_and_pestle"), MORTAR_AND_PESTLE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "bottle_of_ether"), BOTTLE_OF_ETHER);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "blue_clematite_essence"), BLUE_CLEMATITE_ESSENCE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "eterium_armor_core"), ETERIUM_ARMOR_CORE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_armor_core"), INFUSED_ARMOR_CORE);
 
 
         //BlockItems

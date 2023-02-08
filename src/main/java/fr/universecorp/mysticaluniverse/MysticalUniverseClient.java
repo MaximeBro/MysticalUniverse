@@ -3,7 +3,7 @@ package fr.universecorp.mysticaluniverse;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreen;
-import fr.universecorp.mysticaluniverse.custom.screen.ModScreenHandlers;
+import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import net.fabricmc.api.ClientModInitializer;

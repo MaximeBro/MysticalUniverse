@@ -2,7 +2,7 @@ package fr.universecorp.mysticaluniverse;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.custom.recipe.ModRecipes;
-import fr.universecorp.mysticaluniverse.custom.screen.ModScreenHandlers;
+import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.*;
 import fr.universecorp.mysticaluniverse.world.feature.ModConfiguredFeatures;
 import fr.universecorp.mysticaluniverse.world.gen.ModFlowerGeneration;
@@ -48,6 +48,8 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.BLUE_CLEMATITE));
                 stacks.add(new ItemStack(ModItems.BLUE_CLEMATITE_ESSENCE));
                 stacks.add(new ItemStack(ModItems.BOTTLE_OF_ETHER));
+                stacks.add(new ItemStack(ModItems.ETERIUM_ARMOR_CORE));
+                stacks.add(new ItemStack(ModItems.INFUSED_ARMOR_CORE));
             })
             .build();
 

@@ -1,7 +1,8 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
-import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchRecipes;
+import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchCraftingInventory;
+import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchShapedRecipes;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
@@ -19,7 +20,6 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
-import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -41,7 +41,9 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
     private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(27, ItemStack.EMPTY);
     private int bubbleTime = 0;
     private int bubbleMaxTime = 16;
+    private int isCraftAvailable = 0;
     protected final PropertyDelegate propertyDelegate;
+    private static IEWorkbenchScreenHandler screenHandler;
 
     public IEWorkbenchBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.IEWORKBENCH, pos, state);
@@ -52,6 +54,7 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
                 return switch (index) {
                     case 0 -> IEWorkbenchBlockEntity.this.bubbleTime;
                     case 1 -> IEWorkbenchBlockEntity.this.bubbleMaxTime;
+                    case 2 -> IEWorkbenchBlockEntity.this.isCraftAvailable;
                     default -> 0;
                 };
             }
@@ -61,12 +64,13 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
                 switch(index) {
                   case 0 -> IEWorkbenchBlockEntity.this.bubbleTime = value;
                   case 1 -> IEWorkbenchBlockEntity.this.bubbleMaxTime = value;
+                  case 2 -> IEWorkbenchBlockEntity.this.isCraftAvailable = value;
                 };
             }
 
             @Override
             public int size() {
-                return 2;
+                return 3;
             }
         };
     }
@@ -80,7 +84,8 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
         sendFluidPacket();
-        return new IEWorkbenchScreenHandler(syncId, inv, this, this.propertyDelegate);
+        screenHandler = new IEWorkbenchScreenHandler(syncId, inv, this, this.propertyDelegate);
+        return screenHandler;
     }
 
 
@@ -121,9 +126,8 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
             consumeEssence(entity);
         }
 
-        if(hasRecipe(entity) && isConsumingEssence(entity)) {
-            craftItem(entity);
-        }
+        if(hasRecipe(entity)) { entity.propertyDelegate.set(2, 1); craftItem(entity); }
+        else { entity.propertyDelegate.set(2, 0); entity.setStack(0, ItemStack.EMPTY); }
 
         markDirty(world, blockPos, blockState);
     }
@@ -131,17 +135,21 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
     public static boolean hasRecipe(IEWorkbenchBlockEntity entity) {
         World world = entity.world;
 
-        SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
-        for (int i = 0; i < entity.inventory.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
+        if(screenHandler != null) {
+
+            IEWorkbenchCraftingInventory inventory = new IEWorkbenchCraftingInventory(screenHandler, 5, 5);
+            for (int i = 2; i < entity.inventory.size(); i++) {
+                inventory.setStack(i - 2, entity.getStack(i));
+            }
+
+            Optional<IEWorkbenchShapedRecipes> recipe = world.getRecipeManager().getFirstMatch(
+                    IEWorkbenchShapedRecipes.Type.INSTANCE, inventory, world);
+
+            boolean isPresent = recipe.isPresent();
+
+            return isPresent;
         }
-
-        Optional<IEWorkbenchRecipes> recipe = world.getRecipeManager().getFirstMatch(
-                IEWorkbenchRecipes.Type.INSTANCE, inventory, world);
-
-        boolean isPresent = recipe.isPresent();
-
-        return isPresent && entity.inventory.get(0).isEmpty();
+        return false;
     }
 
     public static boolean isConsumingEssence(IEWorkbenchBlockEntity entity) {
@@ -161,19 +169,26 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
     public static void craftItem(IEWorkbenchBlockEntity entity) {
         World world = entity.world;
 
-        SimpleInventory inventory = new SimpleInventory(entity.inventory.size());
-        for (int i = 0; i < entity.inventory.size(); i++) {
-            inventory.setStack(i, entity.getStack(i));
+        IEWorkbenchCraftingInventory inventory = new IEWorkbenchCraftingInventory(screenHandler, 5, 5);
+        for (int i = 2; i < entity.inventory.size(); i++) {
+            inventory.setStack(i-2, entity.getStack(i));
         }
 
-        Optional<IEWorkbenchRecipes> recipe = world.getRecipeManager().getFirstMatch(
-                IEWorkbenchRecipes.Type.INSTANCE, inventory, world);
+        Optional<IEWorkbenchShapedRecipes> recipe = world.getRecipeManager().getFirstMatch(
+                IEWorkbenchShapedRecipes.Type.INSTANCE, inventory, world);
 
         if(hasRecipe(entity)) {
-            entity.setStack(0, new ItemStack(recipe.get().getOutput().getItem(), entity.getStack(0).getCount() + 1));
+            if(entity.getStack(0).isEmpty()) {
+
+                for(int i=2; i < entity.inventory.size(); i++) {
+                    continue;
+                    //entity.getStack(i).decrement(1);
+                }
+
+                entity.setStack(0, new ItemStack(recipe.get().getOutput().getItem(), 1));
+            }
         }
     }
-
 
 
     // ***************** //

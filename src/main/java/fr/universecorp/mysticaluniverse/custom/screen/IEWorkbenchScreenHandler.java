@@ -2,7 +2,8 @@ package fr.universecorp.mysticaluniverse.custom.screen;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.screen.slot.EssenceSlot;
-import fr.universecorp.mysticaluniverse.custom.screen.slot.ModResultSlot;
+import fr.universecorp.mysticaluniverse.custom.screen.slot.IECraftingResultSlot;
+import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -16,27 +17,27 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 
 public class IEWorkbenchScreenHandler extends ScreenHandler {
-
     public final IEWorkbenchBlockEntity blockEntity;
     private final PropertyDelegate propertyDelegate;
+    private boolean craftAvailable = false;
     public final Inventory inventory;
     public FluidStack fluidStack;
 
     public IEWorkbenchScreenHandler(int syncId, PlayerInventory inventory, PacketByteBuf buf) {
-        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()), new ArrayPropertyDelegate(2));
+        this(syncId, inventory, inventory.player.getWorld().getBlockEntity(buf.readBlockPos()), new ArrayPropertyDelegate(3));
     }
 
     public IEWorkbenchScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity entity, PropertyDelegate delegate) {
         super(ModScreenHandlers.IEWORKBENCH_SCREEN_HANDLER, syncId);
         checkSize((Inventory) entity, 27);
         this.inventory = (Inventory) entity;
-        inventory.onOpen(playerInventory.player);
+        this.inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
         this.blockEntity = (IEWorkbenchBlockEntity) entity;
         this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
-        this.addSlot(new ModResultSlot(playerInventory.player, this.inventory, 0,202 - 31, 49 - 26));  // Craft output Slot
-        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 26));                            // Essence Slot
+        this.addSlot(new IECraftingResultSlot(this, playerInventory.player, this.inventory, 0,202 - 31, 49 - 26));  // Craft output Slot
+        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 26));                                   // Essence Slot
 
         int nbOfSlots = 0;
         int offSetY = -18;
@@ -44,7 +45,6 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
         for(int i=2; i < 27; i++) {
             if(nbOfSlots % 5 == 0) { offSetY+= 18; offSetX=0; }
             this.addSlot(new Slot(this.inventory, i, 75 - 31 + 18*offSetX, 13 - 26 + offSetY));
-            System.out.println("Slot n°" + i + " | x:" + (75-31+18*offSetX) + " y:" + (13-26+offSetY));
             nbOfSlots++;
             offSetX++;
         }
@@ -93,6 +93,10 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
         return maxBubble != 0 && bubbleProgress != 0 ? bubbleProgress * bubbleTextureHeight / maxBubble : 0;
     }
 
+
+    public int isCraftAvailable() {
+        return this.propertyDelegate.get(2);
+    }
 
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {

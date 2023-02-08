@@ -1,9 +1,9 @@
-package fr.universecorp.mysticaluniverse.custom.screen;
+package fr.universecorp.mysticaluniverse.registry;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
+import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreenHandler;
+import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
-import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

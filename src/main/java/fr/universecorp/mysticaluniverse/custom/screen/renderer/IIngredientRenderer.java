@@ -12,7 +12,6 @@ import java.util.List;
 public interface IIngredientRenderer<T> {
 
     default void render(MatrixStack stack, T ingredient) {
-        // if not implemented, this calls the old render function for backward compatibility
         render(stack, 0, 0, ingredient);
     }
 
@@ -34,7 +33,6 @@ public interface IIngredientRenderer<T> {
         return 16;
     }
 
-    @Deprecated(forRemoval = true, since = "9.3.0")
     default void render(MatrixStack stack, int xPosition, int yPosition, @Nullable T ingredient) {
 
     }

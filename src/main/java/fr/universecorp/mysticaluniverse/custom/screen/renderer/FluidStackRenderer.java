@@ -34,7 +34,6 @@ public class FluidStackRenderer implements IIngredientRenderer<FluidStack> {
     enum TooltipMode {
         SHOW_AMOUNT,
         SHOW_AMOUNT_AND_CAPACITY,
-        ITEM_LIST
     }
 
     public FluidStackRenderer() {
@@ -45,8 +44,6 @@ public class FluidStackRenderer implements IIngredientRenderer<FluidStack> {
         this(capacityMb, showCapacity ? TooltipMode.SHOW_AMOUNT_AND_CAPACITY : TooltipMode.SHOW_AMOUNT, width, height);
     }
 
-    @SuppressWarnings("DeprecatedIsStillUsed")
-    @Deprecated
     public FluidStackRenderer(int capacityMb, boolean showCapacity, int width, int height) {
         this(capacityMb, showCapacity ? TooltipMode.SHOW_AMOUNT_AND_CAPACITY : TooltipMode.SHOW_AMOUNT, width, height);
     }

@@ -1,0 +1,28 @@
+{
+  "type": "mysticaluniverse:ieworkbench_crafting",
+  "key": {
+    "E": {
+      "item": "mysticaluniverse:eterium_block"
+    },
+    "O": {
+      "item": "mysticaluniverse:eterium_armor_core"
+    },
+    "C": {
+      "item": "mysticaluniverse:charged_eterium_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "EIIIE",
+    "ICECI",
+    "IEOEI",
+    "ICECI",
+    "EIIIE"
+  ],
+  "result": {
+    "count": 1,
+    "item": "mysticaluniverse:infused_armor_core"
+  }
+}

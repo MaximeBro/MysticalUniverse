@@ -2,6 +2,7 @@ package fr.universecorp.mysticaluniverse.custom.blocks;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
+import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
@@ -17,6 +18,9 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Optional;
+import java.util.OptionalInt;
 
 public class IEWorkbench extends BlockWithEntity implements BlockEntityProvider {
 

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "key": {
+    "#": {
+      "item": "mysticaluniverse:eterium_ingot"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    " I ",
+    "I#I",
+    " I "
+  ],
+  "result": {
+    "count": 1,
+    "item": "mysticaluniverse:eterium_armor_core"
+  }
+}

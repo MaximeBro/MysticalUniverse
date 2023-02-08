@@ -51,6 +51,12 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
             drawTexture(matrices, x + 47 - 31, y + 20 - 29 + this.handler.getBubbleHeight(), 123, 201 + this.handler.getBubbleHeight(), 12, 34 - this.handler.getBubbleHeight());
         }
 
+        if(this.handler.isCraftAvailable() > 0) {
+            drawTexture(matrices, x + 169 - 31, y + 52 - 27, 99, 202, 22, 10);
+        }
+
+
+
         fluidStackRenderer.drawFluid(matrices, handler.fluidStack, x - 15, y - 8, 8, 79,
                 FluidStack.convertDropletsToMb(FluidConstants.BUCKET) * 20);
     }
@@ -97,6 +103,6 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> {
 
     @Override
     protected boolean isClickOutsideBounds(double mouseX, double mouseY, int left, int top, int button) {
-        return mouseX < (double)left || mouseY < (double)top-18 || mouseX >= (double)(left + this.backgroundWidth) || mouseY >= (double)(top + this.backgroundHeight);
+        return mouseX < (double)left || mouseY < (double)top-18 || mouseX >= (double)(left + this.backgroundWidth + 21) || mouseY >= (double)(top + this.backgroundHeight);
     }
 }
