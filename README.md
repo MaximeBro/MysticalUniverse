@@ -27,5 +27,5 @@ Misc :
   - Adding custom villagers trades
 
 
-#Licence
+# Licence
 + Tous droits réservés / All rights reserved
