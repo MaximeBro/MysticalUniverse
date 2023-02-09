@@ -25,3 +25,7 @@ Misc :
   - Adding the Eterium Composter
   - Adding flowers that generate ether
   - Adding custom villagers trades
+
+
+#Licence
++ Tous droits réservés / All rights reserved
