@@ -19,7 +19,6 @@ import net.minecraft.screen.slot.Slot;
 public class IEWorkbenchScreenHandler extends ScreenHandler {
     public final IEWorkbenchBlockEntity blockEntity;
     private final PropertyDelegate propertyDelegate;
-    private boolean craftAvailable = false;
     public final Inventory inventory;
     public FluidStack fluidStack;
 
@@ -36,15 +35,15 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
         this.blockEntity = (IEWorkbenchBlockEntity) entity;
         this.fluidStack = new FluidStack(blockEntity.fluidStorage.variant, blockEntity.fluidStorage.amount);
 
-        this.addSlot(new IECraftingResultSlot(this, playerInventory.player, this.inventory, 0,202 - 31, 49 - 26));  // Craft output Slot
-        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 26));                                   // Essence Slot
+        this.addSlot(new IECraftingResultSlot(this, playerInventory.player, this.inventory, 0,202 - 31, 49 - 29));  // Craft output Slot
+        this.addSlot(new EssenceSlot(this.inventory, 1, 44 - 31, 52 - 32));                                                // Essence Slot
 
         int nbOfSlots = 0;
         int offSetY = -18;
         int offSetX = 0;
         for(int i=2; i < 27; i++) {
             if(nbOfSlots % 5 == 0) { offSetY+= 18; offSetX=0; }
-            this.addSlot(new Slot(this.inventory, i, 75 - 31 + 18*offSetX, 13 - 26 + offSetY));
+            this.addSlot(new Slot(this.inventory, i, 75 - 31 + 18*offSetX, 13 - 29 + offSetY));
             nbOfSlots++;
             offSetX++;
         }
@@ -101,14 +100,14 @@ public class IEWorkbenchScreenHandler extends ScreenHandler {
     private void addPlayerInventory(PlayerInventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 90 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 87 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(PlayerInventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 148));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 145));
         }
     }
 

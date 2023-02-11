@@ -2,6 +2,7 @@ package fr.universecorp.mysticaluniverse;
 
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
+import fr.universecorp.mysticaluniverse.custom.screen.IEWBRecipeBookScreen;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreen;
 import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
@@ -36,6 +37,7 @@ public class MysticalUniverseClient implements ClientModInitializer {
 
         HandledScreens.register(ModScreenHandlers.IEFURNACE_SCREEN_HANDLER, IEFurnaceScreen::new);
         HandledScreens.register(ModScreenHandlers.IEWORKBENCH_SCREEN_HANDLER, IEWorkbenchScreen::new);
+        HandledScreens.register(ModScreenHandlers.IEWB_RECIPEBOOK_SCREEN_HANDLER, IEWBRecipeBookScreen::new);
 
         ModMessages.registerS2CPacket();
     }
