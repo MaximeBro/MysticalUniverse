@@ -30,7 +30,7 @@ public class IEFurnaceScreen extends HandledScreen<IEFurnaceScreenHandler> {
     protected void init() {
         super.init();
         titleX = (backgroundWidth - textRenderer.getWidth(title)) / 2;
-        this.playerInventoryTitleY+= 2;
+        this.playerInventoryTitleY+= 3;
         assignFluidStackRenderer();
     }
 

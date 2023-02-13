@@ -3,20 +3,26 @@ package fr.universecorp.mysticaluniverse.custom.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import fr.universecorp.mysticaluniverse.custom.screen.renderer.FluidStackRenderer;
+import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import fr.universecorp.mysticaluniverse.util.MouseUtil;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.loader.api.ModContainer;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.screen.ScreenHandlerFactory;
+import net.minecraft.screen.*;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -28,7 +34,6 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> i
 
     private static final Identifier TEXTURE =
             new Identifier(MysticalUniverse.MODID, "textures/gui/ieworkbench_gui.png");
-
     private PlayerInventory inventory;
     private FluidStackRenderer fluidStackRenderer;
 
@@ -126,19 +131,36 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> i
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        if(mouseX >= x + 173 - 30 && mouseX <= x + 192 - 30 &&
-           mouseY >= y + 84 - 31  && mouseY <= y + 101 - 31) {
+        if(mouseX >= x + 173 - 31 && mouseX <= x + 192 - 30 &&
+           mouseY >= y + 84 - 29  && mouseY <= y + 101 - 28) {
 
-            this.createMenu(this.inventory.player.getId(), this.inventory, this.inventory.player);
+            PlayerEntity player = this.inventory.player;
+            player.world.playSound(player, player.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 0.2f, 1f);
+
+            IEWbRecipeBookScreenHandler screenHandler = this.createMenu(player.getId(), this.inventory, player);
+
+            callRecipeScreen(screenHandler, player);
+
             return true; // → Open the ieworkbench recipe book showing every recipe handled by the ieworkbench ...
         }
 
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
+    public static void callRecipeScreen(IEWbRecipeBookScreenHandler screenHandler, PlayerEntity player) {
+        MinecraftClient.getInstance().setScreen(
+                new IEWbRecipeBookScreen(screenHandler, player.getInventory(), Text.of("Mystical RecipeBook"))
+        );
+    }
+
     @Nullable
     @Override
-    public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new IEWbRecipeBookScreenHandler(syncId, inv);
+    public IEWbRecipeBookScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
+        IEWbRecipeBookScreenHandler screenHandler = new IEWbRecipeBookScreenHandler(syncId, inv);
+
+        FluidStack fluidStack = new FluidStack(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER), 500);
+        screenHandler.setFluidStack(fluidStack);
+
+        return screenHandler;
     }
 }

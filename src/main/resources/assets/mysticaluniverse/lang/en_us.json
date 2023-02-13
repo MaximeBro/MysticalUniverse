@@ -15,7 +15,6 @@
 
 
   "block.mysticaluniverse.eterium_block": "Eterium Block",
-  "block.mysticaluniverse.infested_eterium_block": "Infested Eterium Block",
   "block.mysticaluniverse.charged_eterium_block": "Charged Eterium Block",
   "block.mysticaluniverse.eterium_ore": "Eterium Ore",
   "block.mysticaluniverse.refined_eterium_block": "Refined Eterium Block",
@@ -30,6 +29,7 @@
   "block.mysticaluniverse.blue_clematite": "Blue Clematite",
   
   "block.mysticaluniverse.still_liquid_ether": "Liquid Ether",
+  "block.mysticaluniverse.liquid_ether_block": "Liquid Ether",
   "mysticaluniverse.tooltip.liquid.amount.with.capacity": "%s / %s mB",
   "mysticaluniverse.tooltip.liquid.amount": "%s mB",
   "block.minecraft.empty": "Empty",

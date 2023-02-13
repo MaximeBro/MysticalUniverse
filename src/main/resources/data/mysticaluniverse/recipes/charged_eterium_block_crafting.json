@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "mysticaluniverse:charged_eterium_ingot"
+    }
+  },
+  "result": {
+    "item": "mysticaluniverse:charged_eterium_block"
+  }
+}
