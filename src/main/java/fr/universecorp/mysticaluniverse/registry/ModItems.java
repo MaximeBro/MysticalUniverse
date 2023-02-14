@@ -32,7 +32,6 @@ public class ModItems {
     public static final BlockItem ETERIUM_ORE = new BlockItem(ModBlocks.ETERIUM_ORE, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem CHARGED_ETERIUM_BLOCK = new BlockItem(ModBlocks.CHARGED_ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem REFINED_ETERIUM_BLOCK = new BlockItem(ModBlocks.REFINED_ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
-    public static final BlockItem INFESTED_ETERIUM_BLOCK = new BlockItem(ModBlocks.INFESTED_ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem INFUSED_ETERIUM_FURNACE = new BlockItem(ModBlocks.INFUSED_ETERIUM_FURNACE, new FabricItemSettings().maxCount(1).group(MYSTICAL_GROUP));
     public static final BlockItem INFUSED_ETERIUM_WORKBENCH = new BlockItem(ModBlocks.INFUSED_ETERIUM_WORKBENCH, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final BlockItem ETERIUM_CORE_BLOCK = new BlockItem(ModBlocks.ETERIUM_CORE_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
@@ -42,6 +41,7 @@ public class ModItems {
     public static final BlockItem MYCELIUM_LEAVES = new BlockItem(ModBlocks.MYCELIUM_LEAVES, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem MYCELIUM_SAPLING = new BlockItem(ModBlocks.MYCELIUM_SAPLING, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem BLUE_CLEMATITE = new BlockItem(ModBlocks.BLUE_CLEMATITE, new FabricItemSettings().group(MYSTICAL_GROUP));
+    public static final BlockItem IECOMPOSTER = new BlockItem(ModBlocks.IECOMPOSTER, new FabricItemSettings().group(MYSTICAL_GROUP));
 
 
     public static void registerAll() {
@@ -66,7 +66,6 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "eterium_ore"), ETERIUM_ORE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "charged_eterium_block"), CHARGED_ETERIUM_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "refined_eterium_block"), REFINED_ETERIUM_BLOCK);
-        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infested_eterium_block"), INFESTED_ETERIUM_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_furnace"), INFUSED_ETERIUM_FURNACE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_workbench"), INFUSED_ETERIUM_WORKBENCH);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "eterium_core_block"), ETERIUM_CORE_BLOCK);
@@ -76,5 +75,6 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_leaves"), MYCELIUM_LEAVES);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_sapling"), MYCELIUM_SAPLING);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "blue_clematite"), BLUE_CLEMATITE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "iecomposter"), IECOMPOSTER);
     }
 }

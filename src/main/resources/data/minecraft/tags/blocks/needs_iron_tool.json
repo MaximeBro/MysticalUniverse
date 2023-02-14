@@ -2,7 +2,8 @@
   "replace": false,
   "values": [
     "mysticaluniverse:eterium_block",
-    "mysticaluniverse:infested_eterium_block",
-    "mysticaluniverse:eterium_ore"
+    "mysticaluniverse:charged_eterium_block",
+    "mysticaluniverse:eterium_ore",
+    "mysticaluniverse:infused_eterium_furnace"
   ]
 }

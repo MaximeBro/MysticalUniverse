@@ -7,6 +7,7 @@ import fr.universecorp.mysticaluniverse.registry.*;
 import fr.universecorp.mysticaluniverse.world.feature.ModConfiguredFeatures;
 import fr.universecorp.mysticaluniverse.world.gen.ModFlowerGeneration;
 import fr.universecorp.mysticaluniverse.world.gen.ModOreGeneration;
+import fr.universecorp.mysticaluniverse.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -27,7 +28,6 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModBlocks.ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModItems.ETERIUM_INGOT));
                 stacks.add(new ItemStack(ModItems.ETERIUM_DUST));
-                stacks.add(new ItemStack(ModBlocks.INFESTED_ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModItems.CHARGED_ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModItems.CHARGED_ETERIUM_INGOT));
                 stacks.add(new ItemStack(ModItems.ETERIUM_COAL));
@@ -50,6 +50,7 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.BOTTLE_OF_ETHER));
                 stacks.add(new ItemStack(ModItems.ETERIUM_ARMOR_CORE));
                 stacks.add(new ItemStack(ModItems.INFUSED_ARMOR_CORE));
+                stacks.add(new ItemStack(ModItems.IECOMPOSTER));
             })
             .build();
 
@@ -63,8 +64,9 @@ public class MysticalUniverse implements ModInitializer {
         ModFluids.register();
         ModBlockEntities.registerBlockEntities();
         ModFlammableBlocks.registerFlammableBlocks();
-        ModOreGeneration.generateOres();
-        ModFlowerGeneration.generateFlowers();
+
+        ModWorldGen.generateWorldGen();
+
         ModScreenHandlers.registerAllScreenHandlers();
         ModRecipes.registerRecipes();
         ModSerializers.registerModSerializers();

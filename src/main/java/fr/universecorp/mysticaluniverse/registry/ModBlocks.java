@@ -2,6 +2,7 @@ package fr.universecorp.mysticaluniverse.registry;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import fr.universecorp.mysticaluniverse.custom.blocks.ChargedEteriumBlock;
+import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
 import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
 import fr.universecorp.mysticaluniverse.custom.blocks.IEWorkbench;
 import fr.universecorp.mysticaluniverse.world.feature.tree.MyceliumSaplingGenerator;
@@ -39,13 +40,6 @@ public class ModBlocks {
     );
 
     public static final Block REFINED_ETERIUM_BLOCK = new Block(FabricBlockSettings
-            .of(Material.METAL)
-            .strength(4.0f)
-            .requiresTool()
-            .sounds(BlockSoundGroup.METAL)
-    );
-
-    public static final Block INFESTED_ETERIUM_BLOCK = new Block(FabricBlockSettings
             .of(Material.METAL)
             .strength(4.0f)
             .requiresTool()
@@ -104,6 +98,12 @@ public class ModBlocks {
             FabricBlockSettings.copy(Blocks.DANDELION)
     );
 
+    public static final Block IECOMPOSTER = new IEComposter(FabricBlockSettings
+            .of(Material.WOOD)
+            .sounds(BlockSoundGroup.WOOD)
+            .nonOpaque()
+    );
+
 
 
     public static void registerAll() {
@@ -111,7 +111,6 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_ore"), ETERIUM_ORE);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "charged_eterium_block"), CHARGED_ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "refined_eterium_block"), REFINED_ETERIUM_BLOCK);
-        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infested_eterium_block"), INFESTED_ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_furnace"), INFUSED_ETERIUM_FURNACE);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_workbench"), INFUSED_ETERIUM_WORKBENCH);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_core_block"), ETERIUM_CORE_BLOCK);
@@ -121,5 +120,6 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_leaves"), MYCELIUM_LEAVES);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_sapling"), MYCELIUM_SAPLING);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "blue_clematite"), BLUE_CLEMATITE);
+        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "iecomposter"), IECOMPOSTER);
     }
 }

@@ -27,7 +27,8 @@
   "block.mysticaluniverse.mycelium_leaves": "Mycelium Leaves",
   "block.mysticaluniverse.mycelium_sapling": "Mycelium Sapling",
   "block.mysticaluniverse.blue_clematite": "Blue Clematite",
-  
+  "block.mysticaluniverse.iecomposter": "Infused Eterium Composter",
+
   "block.mysticaluniverse.still_liquid_ether": "Liquid Ether",
   "block.mysticaluniverse.liquid_ether_block": "Liquid Ether",
   "mysticaluniverse.tooltip.liquid.amount.with.capacity": "%s / %s mB",
