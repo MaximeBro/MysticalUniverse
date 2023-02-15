@@ -7,10 +7,13 @@
     },
     "C": {
       "item": "mysticaluniverse:eterium_armor_core"
+    },
+    "I": {
+      "item": "mysticaluniverse:charged_eterium_ingot"
     }
   },
   "pattern": [
-    "###",
+    "#I#",
     "#C#",
     "   "
   ],
