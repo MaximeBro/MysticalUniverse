@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "eterium",
+  "key": {
+    "#": {
+      "item": "mysticaluniverse:eterium_ingot"
+    },
+    "C": {
+      "item": "mysticaluniverse:eterium_armor_core"
+    }
+  },
+  "pattern": [
+    "###",
+    "#C#",
+    "   "
+  ],
+  "result": {
+    "item": "mysticaluniverse:infused_eterium_helmet",
+    "count": 1
+  }
+}

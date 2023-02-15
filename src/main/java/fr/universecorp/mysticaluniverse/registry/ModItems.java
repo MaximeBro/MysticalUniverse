@@ -2,8 +2,12 @@ package fr.universecorp.mysticaluniverse.registry;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import fr.universecorp.mysticaluniverse.custom.items.ChargedEteriumIngot;
+import fr.universecorp.mysticaluniverse.custom.items.ModArmorItem;
+import fr.universecorp.mysticaluniverse.custom.items.ModArmorMaterials;
 import fr.universecorp.mysticaluniverse.custom.items.MortarAndPestle;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
@@ -26,6 +30,14 @@ public class ModItems {
     public static final Item BLUE_CLEMATITE_ESSENCE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final Item ETERIUM_ARMOR_CORE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final Item INFUSED_ARMOR_CORE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
+    public static final Item INFUSED_ETERIUM_HELMET = new ModArmorItem(ModArmorMaterials.ETERIUM, EquipmentSlot.HEAD,
+            new FabricItemSettings().group(MYSTICAL_GROUP).fireproof());
+    public static final Item INFUSED_ETERIUM_CHESTPLATE = new ModArmorItem(ModArmorMaterials.ETERIUM, EquipmentSlot.CHEST,
+            new FabricItemSettings().group(MYSTICAL_GROUP).fireproof());
+    public static final Item INFUSED_ETERIUM_LEGGINGS = new ModArmorItem(ModArmorMaterials.ETERIUM, EquipmentSlot.LEGS,
+            new FabricItemSettings().group(MYSTICAL_GROUP).fireproof());
+    public static final Item INFUSED_ETERIUM_BOOTS = new ModArmorItem(ModArmorMaterials.ETERIUM, EquipmentSlot.FEET,
+            new FabricItemSettings().group(MYSTICAL_GROUP).fireproof());
 
     // BlockItems
     public static final BlockItem ETERIUM_BLOCK = new BlockItem(ModBlocks.ETERIUM_BLOCK, new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
@@ -59,6 +71,10 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "blue_clematite_essence"), BLUE_CLEMATITE_ESSENCE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "eterium_armor_core"), ETERIUM_ARMOR_CORE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_armor_core"), INFUSED_ARMOR_CORE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_helmet"), INFUSED_ETERIUM_HELMET);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_chestplate"), INFUSED_ETERIUM_CHESTPLATE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_leggings"), INFUSED_ETERIUM_LEGGINGS);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_boots"), INFUSED_ETERIUM_BOOTS);
 
 
         //BlockItems
