@@ -22,6 +22,7 @@ public class IEWbRecipeBookScreenHandler extends ScreenHandler {
     public FluidStack fluidStack;
 
     public ArrayList<ItemStack[]> alRecipes;
+    private int actualRecipe;
     public Text recipeTitle;
 
 
@@ -68,7 +69,19 @@ public class IEWbRecipeBookScreenHandler extends ScreenHandler {
             this.slots.get(i).setStack(tabStacks[i]);
         }
 
+        this.actualRecipe = 0;
         this.recipeTitle = Text.of("Infused Armor Core");
+    }
+
+    public void changeRecipe() {
+        if(++this.actualRecipe >= this.alRecipes.size()) { this.actualRecipe = 0; }
+
+        ItemStack[] tabStacks = this.alRecipes.get(this.actualRecipe);
+        for(int i=0; i < this.slots.size(); i++) {
+            this.slots.get(i).setStack(tabStacks[i]);
+        }
+
+        this.recipeTitle = tabStacks[25].getItem().getName();
     }
 
     public void initializeRecipes(ArrayList<ItemStack[]> alRecipesList) {
@@ -116,6 +129,50 @@ public class IEWbRecipeBookScreenHandler extends ScreenHandler {
 
         // Output
         tabStacks[25] = new ItemStack(ModItems.INFUSED_ARMOR_CORE);
+
+        alRecipesList.add(tabStacks);
+        // First Recipe added !
+
+
+        tabStacks = new ItemStack[26];
+        // Second Recipe -> Infused Core Block
+        // First Line
+        tabStacks[0] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+        tabStacks[1] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[2] = new ItemStack(ModItems.ETERIUM_INGOT);
+        tabStacks[3] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[4] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+
+        // Second Line
+        tabStacks[5] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[6] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+        tabStacks[7] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[8] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+        tabStacks[9] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+
+        // Third Line
+        tabStacks[10] = new ItemStack(ModItems.ETERIUM_INGOT);
+        tabStacks[11] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[12] = new ItemStack(ModBlocks.INFUSED_CORE_BLOCK);
+        tabStacks[13] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[14] = new ItemStack(ModItems.ETERIUM_INGOT);
+
+        // Fourth Line
+        tabStacks[15] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[16] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+        tabStacks[17] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[18] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+        tabStacks[19] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+
+        // Fifth Line
+        tabStacks[20] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+        tabStacks[21] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[22] = new ItemStack(ModItems.ETERIUM_INGOT);
+        tabStacks[23] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
+        tabStacks[24] = new ItemStack(ModBlocks.ETERIUM_BLOCK);
+
+        // Output
+        tabStacks[25] = new ItemStack(ModItems.INFUSED_CORE_BLOCK);
 
         alRecipesList.add(tabStacks);
     }

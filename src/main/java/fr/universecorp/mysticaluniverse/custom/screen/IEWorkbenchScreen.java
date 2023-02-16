@@ -103,7 +103,7 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> i
                                     FluidStack fluidStack, int offsetX, int offsetY, FluidStackRenderer renderer) {
         if(isMouseAboveArea(pMouseX, pMouseY, x, y, offsetX, offsetY, renderer)) {
             renderTooltip(matrices, renderer.getTooltip(fluidStack, TooltipContext.Default.NORMAL),
-                    Optional.empty(), pMouseX - x, pMouseY - y);
+                    Optional.empty(), pMouseX - x - 50, pMouseY - y - 25);
         }
     }
 

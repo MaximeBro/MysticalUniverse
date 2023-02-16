@@ -1,10 +1,13 @@
 package fr.universecorp.mysticaluniverse.custom.screen.slot;
 
+import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.slot.Slot;
+
+import static fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity.extractFluid;
 
 public class IECraftingResultSlot extends Slot {
     private final PlayerEntity player;
@@ -42,6 +45,9 @@ public class IECraftingResultSlot extends Slot {
         for(int i=2; i < 27; i++) {
             this.inventory.setStack(i, new ItemStack(this.inventory.getStack(i).getItem(), this.inventory.getStack(i).getCount()-1));
         }
+
+        IEWorkbenchBlockEntity entity = this.handler.blockEntity;
+        extractFluid(entity);
 
         this.markDirty();
         this.inventory.markDirty();

@@ -2,14 +2,11 @@
   "type": "minecraft:crafting_shaped",
   "group": "eterium",
   "pattern": [
-    "SCS",
-    "CBC",
-    "SCS"
+    "SSS",
+    "SBS",
+    "SSS"
   ],
   "key": {
-    "C": {
-      "item": "mysticaluniverse:charged_eterium_ingot"
-    },
     "B": {
       "item": "mysticaluniverse:eterium_block"
     },

@@ -95,7 +95,8 @@ public class IEWbRecipeBookScreen extends HandledScreen<IEWbRecipeBookScreenHand
            mouseY >= y + 117 && mouseY <= y + 126) {
 
             PlayerEntity player = this.inventory.player;
-            player.world.playSound(player, player.getBlockPos(), SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 0.5f, 1f);
+            player.world.playSound(player, player.getBlockPos(), SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1f, 1f);
+            this.handler.changeRecipe();
             return true;
         }
 
@@ -104,7 +105,8 @@ public class IEWbRecipeBookScreen extends HandledScreen<IEWbRecipeBookScreenHand
            mouseY >= y + 117 && mouseY <= y + 126) {
 
             PlayerEntity player = this.inventory.player;
-            player.world.playSound(player, player.getBlockPos(), SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 0.5f, 1f);
+            player.world.playSound(player, player.getBlockPos(), SoundEvents.ITEM_BOOK_PAGE_TURN, SoundCategory.NEUTRAL, 1f, 1f);
+            this.handler.changeRecipe();
             return true;
         }
 
@@ -112,7 +114,7 @@ public class IEWbRecipeBookScreen extends HandledScreen<IEWbRecipeBookScreenHand
         if(mouseX >= x + 182 && mouseX <= x + 191 &&
            mouseY >= y + 5   && mouseY <= y + 13) {
             PlayerEntity player = this.inventory.player;
-            player.world.playSound(player, player.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 0.2f, 1f);
+            player.world.playSound(player, player.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 0.5f, 1f);
             player.closeHandledScreen();
             return true;
         }

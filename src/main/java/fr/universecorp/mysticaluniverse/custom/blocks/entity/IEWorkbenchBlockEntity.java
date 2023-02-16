@@ -126,7 +126,7 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
             consumeEssence(entity);
         }
 
-        if(hasRecipe(entity)) { entity.propertyDelegate.set(2, 1); craftItem(entity); }
+        if(hasRecipe(entity) && hasEnoughFluid(entity)) { entity.propertyDelegate.set(2, 1); craftItem(entity); }
         else { entity.propertyDelegate.set(2, 0); entity.setStack(0, ItemStack.EMPTY); }
 
         markDirty(world, blockPos, blockState);
@@ -179,12 +179,6 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
 
         if(hasRecipe(entity)) {
             if(entity.getStack(0).isEmpty()) {
-
-                for(int i=2; i < entity.inventory.size(); i++) {
-                    continue;
-                    //entity.getStack(i).decrement(1);
-                }
-
                 entity.setStack(0, new ItemStack(recipe.get().getOutput().getItem(), 1));
             }
         }
@@ -196,7 +190,7 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
     // ***************** //
 
 
-    private static void extractFluid(IEWorkbenchBlockEntity entity) {
+    public static void extractFluid(IEWorkbenchBlockEntity entity) {
         try(Transaction transaction = Transaction.openOuter()) {
             entity.fluidStorage.extract(FluidVariant.of(ModFluids.STILL_LIQUID_ETHER),
                     500, transaction);
@@ -204,7 +198,7 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
         }
     }
 
-    private static boolean hasEnoughFluid(IEFurnaceBlockEntity entity) {
+    private static boolean hasEnoughFluid(IEWorkbenchBlockEntity entity) {
         return entity.fluidStorage.amount >= 500;
     }
 
