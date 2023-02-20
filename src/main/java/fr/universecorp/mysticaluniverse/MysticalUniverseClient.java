@@ -1,9 +1,12 @@
 package fr.universecorp.mysticaluniverse;
 
+import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
+import fr.universecorp.mysticaluniverse.custom.blocks.renderer.IEComposterFluidRenderer;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWbRecipeBookScreen;
 import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreen;
+import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
@@ -34,6 +37,8 @@ public class MysticalUniverseClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluids.STILL_LIQUID_ETHER, ModFluids.FLOWING_LIQUID_ETHER);
+
+        BlockEntityRendererRegistry.register(ModBlockEntities.IECOMPOSTER, IEComposterFluidRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.IEFURNACE_SCREEN_HANDLER, IEFurnaceScreen::new);
         HandledScreens.register(ModScreenHandlers.IEWORKBENCH_SCREEN_HANDLER, IEWorkbenchScreen::new);

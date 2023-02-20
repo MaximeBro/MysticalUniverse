@@ -1,12 +1,10 @@
 package fr.universecorp.mysticaluniverse;
 
-import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
+import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.custom.recipe.ModRecipes;
 import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.*;
 import fr.universecorp.mysticaluniverse.world.feature.ModConfiguredFeatures;
-import fr.universecorp.mysticaluniverse.world.gen.ModFlowerGeneration;
-import fr.universecorp.mysticaluniverse.world.gen.ModOreGeneration;
 import fr.universecorp.mysticaluniverse.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;

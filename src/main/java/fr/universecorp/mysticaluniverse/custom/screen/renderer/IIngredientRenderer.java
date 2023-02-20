@@ -9,6 +9,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+
+// CREDIT: https://github.com/mezz/JustEnoughItems by mezz
+// Under MIT-License: https://github.com/mezz/JustEnoughItems/blob/1.18/LICENSE.txt
 public interface IIngredientRenderer<T> {
 
     default void render(MatrixStack stack, T ingredient) {

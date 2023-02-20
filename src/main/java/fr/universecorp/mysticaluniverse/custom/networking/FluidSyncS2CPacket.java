@@ -1,5 +1,6 @@
 package fr.universecorp.mysticaluniverse.custom.networking;
 
+import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreenHandler;
@@ -41,6 +42,10 @@ public class FluidSyncS2CPacket {
                     blockEntity.setFluidLevel(fluidVariant, fluidLevel);
                     screenHandler.setFluid(new FluidStack(fluidVariant, fluidLevel));
                 }
+            }
+
+            if(client.world.getBlockEntity(position) instanceof IEComposterEntity blockentity) {
+                blockentity.setFluidLevel(fluidVariant, fluidLevel);
             }
         }
     }

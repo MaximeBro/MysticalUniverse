@@ -24,6 +24,9 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+// CREDIT: https://github.com/mezz/JustEnoughItems by mezz (Forge Version)
+// HIGHLY EDITED VERSION FOR FABRIC by Kaupenjoe
+// Under MIT-License: https://github.com/mezz/JustEnoughItems/blob/1.18/LICENSE.txt
 public class FluidStackRenderer implements IIngredientRenderer<FluidStack> {
     private static final NumberFormat nf = NumberFormat.getIntegerInstance();
     public final long capacityMb;
@@ -59,6 +62,10 @@ public class FluidStackRenderer implements IIngredientRenderer<FluidStack> {
     }
 
 
+    /*
+     * Method from https://github.com/TechReborn/TechReborn
+     * Under MIT-License : https://github.com/TechReborn/TechReborn/blob/1.19/LICENSE.md
+     */
     public void drawFluid(MatrixStack matrixStack, FluidStack fluid, int x, int y, int width, int height, long maxCapacity) {
         if (fluid.getFluidVariant().getFluid() == Fluids.EMPTY) {
             return;

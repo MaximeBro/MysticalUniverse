@@ -1,7 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.blocks;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
-import fr.universecorp.mysticaluniverse.custom.blocks.entity.ModBlockEntities;
+import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
