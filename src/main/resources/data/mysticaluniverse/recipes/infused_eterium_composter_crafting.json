@@ -4,15 +4,18 @@
   "key": {
     "P": {
       "item": "mysticaluniverse:mycelium_planks"
+    },
+    "E": {
+      "item": "mysticaluniverse:blue_clematite_essence"
     }
   },
   "pattern": [
-    "P P",
-    "P P",
+    "PEP",
+    "PEP",
     "PPP"
   ],
   "result": {
-    "item": "mysticaluniverse:iecomposter",
+    "item": "mysticaluniverse:infused_eterium_composter",
     "count": 1
   }
 }

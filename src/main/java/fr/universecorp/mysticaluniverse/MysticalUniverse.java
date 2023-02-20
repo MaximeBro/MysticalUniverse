@@ -32,7 +32,6 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModFluids.LIQUID_ETHER_BUCKET));
                 stacks.add(new ItemStack(ModBlocks.INFUSED_ETERIUM_FURNACE));
                 stacks.add(new ItemStack(ModBlocks.INFUSED_ETERIUM_WORKBENCH));
-                stacks.add(new ItemStack(ModBlocks.REFINED_ETERIUM_BLOCK));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_PESTLE));
                 stacks.add(new ItemStack(ModItems.MYCELIUM_MORTAR));
                 stacks.add(new ItemStack(ModItems.MORTAR_AND_PESTLE));
@@ -48,7 +47,7 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.BOTTLE_OF_ETHER));
                 stacks.add(new ItemStack(ModItems.ETERIUM_ARMOR_CORE));
                 stacks.add(new ItemStack(ModItems.INFUSED_ARMOR_CORE));
-                stacks.add(new ItemStack(ModItems.IECOMPOSTER));
+                stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_COMPOSTER));
                 stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_HELMET));
                 stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_CHESTPLATE));
                 stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_LEGGINGS));

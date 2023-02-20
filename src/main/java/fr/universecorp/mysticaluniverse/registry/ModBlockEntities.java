@@ -1,12 +1,9 @@
 package fr.universecorp.mysticaluniverse.registry;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
-import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
-import fr.universecorp.mysticaluniverse.registry.ModBlocks;
-import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.block.entity.BlockEntityType;
@@ -27,7 +24,7 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(IEWorkbenchBlockEntity::new, ModBlocks.INFUSED_ETERIUM_WORKBENCH).build(null));
 
         IECOMPOSTER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MysticalUniverse.MODID, "iecomposter_composting"),
-                FabricBlockEntityTypeBuilder.create(IEComposterEntity::new, ModBlocks.IECOMPOSTER).build(null));
+                FabricBlockEntityTypeBuilder.create(IEComposterEntity::new, ModBlocks.INFUSED_ETERIUM_COMPOSTER).build(null));
 
         FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, IEFURNACE);
     }

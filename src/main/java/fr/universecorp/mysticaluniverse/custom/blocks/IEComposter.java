@@ -36,7 +36,7 @@ public class IEComposter extends BlockWithEntity implements BlockEntityProvider 
             if(!entity.isComposting()) {
                 entity.startComposting();
 
-                player.playSound(SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                player.playSound(SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 0.5f, 1.0f);
                 player.getStackInHand(hand).decrement(1);
 
                 return ActionResult.SUCCESS;

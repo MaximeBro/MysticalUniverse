@@ -15,6 +15,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -24,11 +25,38 @@ public class IEComposterEntity extends BlockEntity {
 
     private int compostTime = 0;
     private int maxCompostTime = 300;
-    private boolean isComposting = false;
+    private boolean composting = false;
+
+    protected final PropertyDelegate propertyDelegate;
 
 
     public IEComposterEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.IECOMPOSTER, pos, state);
+        this.fluidStorage.variant = FluidVariant.of(ModFluids.STILL_LIQUID_ETHER);
+
+        this.propertyDelegate = new PropertyDelegate() {
+            @Override
+            public int get(int index) {
+                return switch (index) {
+                    case 0 -> IEComposterEntity.this.compostTime;
+                    case 1 -> IEComposterEntity.this.maxCompostTime;
+                    default -> 0;
+                };
+            }
+
+            @Override
+            public void set(int index, int value) {
+                switch (index) {
+                    case 0 -> IEComposterEntity.this.compostTime = value;
+                    case 1 -> IEComposterEntity.this.maxCompostTime = value;
+                }
+            }
+
+            @Override
+            public int size() {
+                return 0;
+            }
+        };
     }
 
 
@@ -37,7 +65,7 @@ public class IEComposterEntity extends BlockEntity {
         super.readNbt(nbt);
         this.compostTime = nbt.getInt("iecomposter.compostTime");
         this.maxCompostTime = nbt.getInt("iecomposter.maxCompostTime");
-        this.isComposting = nbt.getBoolean("iecomposter.isComposting");
+        this.composting = nbt.getBoolean("iecomposter.isComposting");
         fluidStorage.variant = FluidVariant.fromNbt((NbtCompound) nbt.get("iecomposter.variant"));
         fluidStorage.amount = nbt.getLong("iecomposter.fluid");
     }
@@ -47,7 +75,7 @@ public class IEComposterEntity extends BlockEntity {
         super.writeNbt(nbt);
         nbt.putInt("iecomposter.compostTime", this.compostTime);
         nbt.putInt("iecomposter.maxCompostTime", this.maxCompostTime);
-        nbt.putBoolean("iecomposter.isComposting", this.isComposting);
+        nbt.putBoolean("iecomposter.isComposting", this.composting);
         nbt.put("iecomposter.variant", fluidStorage.variant.toNbt());
         nbt.putLong("iecomposter.fluid", fluidStorage.amount);
     }
@@ -58,20 +86,16 @@ public class IEComposterEntity extends BlockEntity {
 
         if(entity.isComposting()) {
             entity.compostTime--;
-
-
-            if(entity.compostTime == 0) {
-                addFluidFromComposting(entity);
-                entity.isComposting = false;
-            }
-        } else {
-            entity.sendFluidPacket();
+            if(entity.compostTime == 0) { addFluidFromComposting(entity); }
         }
 
-        markDirty(world, blockPos, blockState, blockState);
+        if(entity.compostTime == 0) { entity.composting = false; }
+
+        entity.sendFluidPacket();
+        markDirty(world, blockPos, blockState);
     }
 
-    public static void markDirty(World world, BlockPos pos, BlockState state, BlockState newState) {
+    public static void markDirty(World world, BlockPos pos, BlockState state) {
         world.markDirty(pos);
         if (!state.isAir()) {
             world.updateComparators(pos, state.getBlock());
@@ -79,13 +103,12 @@ public class IEComposterEntity extends BlockEntity {
     }
 
     public void startComposting() {
-        if(this.isComposting) { return; }
-        this.isComposting = true;
-
+        this.composting = true;
         this.compostTime = this.maxCompostTime;
     }
 
-    public boolean isComposting() { return this.isComposting && this.compostTime > 0; }
+    public boolean isComposting() { return this.composting; }
+    public static int getCompostTime(IEComposterEntity entity) { return entity.propertyDelegate.get(0); }
 
     public void extractFluid() {
         extractFluidFromBucketing(this);

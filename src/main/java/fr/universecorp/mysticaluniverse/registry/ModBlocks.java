@@ -1,19 +1,13 @@
 package fr.universecorp.mysticaluniverse.registry;
 
-import dev.architectury.registry.registries.Registries;
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import fr.universecorp.mysticaluniverse.custom.blocks.ChargedEteriumBlock;
 import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
 import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
 import fr.universecorp.mysticaluniverse.custom.blocks.IEWorkbench;
-import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.world.feature.tree.MyceliumSaplingGenerator;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
@@ -44,12 +38,6 @@ public class ModBlocks {
             .sounds(BlockSoundGroup.METAL)
     );
 
-    public static final Block REFINED_ETERIUM_BLOCK = new Block(FabricBlockSettings
-            .of(Material.METAL)
-            .strength(4.0f)
-            .requiresTool()
-            .sounds(BlockSoundGroup.METAL)
-    );
 
     public static final Block INFUSED_ETERIUM_FURNACE = new IEFurnaceBlock(FabricBlockSettings
             .of(Material.METAL)
@@ -62,7 +50,6 @@ public class ModBlocks {
             .of(Material.WOOD)
             .sounds(BlockSoundGroup.WOOD)
             .strength(2.5f)
-            .requiresTool()
             .nonOpaque()
     );
 
@@ -86,7 +73,9 @@ public class ModBlocks {
     );
 
     public static final Block MYCELIUM_PLANKS = new Block(FabricBlockSettings
-            .copy(Blocks.OAK_PLANKS)
+            .of(Material.WOOD, MapColor.OAK_TAN)
+            .strength(2.0f, 3.0f)
+            .sounds(BlockSoundGroup.WOOD)
     );
 
     public static final Block MYCELIUM_LEAVES = new LeavesBlock(FabricBlockSettings
@@ -103,8 +92,9 @@ public class ModBlocks {
             FabricBlockSettings.copy(Blocks.DANDELION)
     );
 
-    public static final Block IECOMPOSTER = new IEComposter(FabricBlockSettings
+    public static final Block INFUSED_ETERIUM_COMPOSTER = new IEComposter(FabricBlockSettings
             .of(Material.WOOD)
+            .strength(0.6f)
             .sounds(BlockSoundGroup.WOOD)
             .nonOpaque()
     );
@@ -114,7 +104,6 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_block"), ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_ore"), ETERIUM_ORE);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "charged_eterium_block"), CHARGED_ETERIUM_BLOCK);
-        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "refined_eterium_block"), REFINED_ETERIUM_BLOCK);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_furnace"), INFUSED_ETERIUM_FURNACE);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_workbench"), INFUSED_ETERIUM_WORKBENCH);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "eterium_core_block"), ETERIUM_CORE_BLOCK);
@@ -124,6 +113,6 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_leaves"), MYCELIUM_LEAVES);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_sapling"), MYCELIUM_SAPLING);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "blue_clematite"), BLUE_CLEMATITE);
-        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "iecomposter"), IECOMPOSTER);
+        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_composter"), INFUSED_ETERIUM_COMPOSTER);
     }
 }

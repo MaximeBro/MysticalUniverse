@@ -21,7 +21,6 @@
   "block.mysticaluniverse.eterium_block": "Eterium Block",
   "block.mysticaluniverse.charged_eterium_block": "Charged Eterium Block",
   "block.mysticaluniverse.eterium_ore": "Eterium Ore",
-  "block.mysticaluniverse.refined_eterium_block": "Refined Eterium Block",
   "block.mysticaluniverse.infused_eterium_furnace": "Infused Eterium Furnace",
   "block.mysticaluniverse.infused_eterium_workbench": "Infused Eterium Workbench",
   "block.mysticaluniverse.eterium_core_block": "Eterium Core Block",
@@ -31,7 +30,7 @@
   "block.mysticaluniverse.mycelium_leaves": "Mycelium Leaves",
   "block.mysticaluniverse.mycelium_sapling": "Mycelium Sapling",
   "block.mysticaluniverse.blue_clematite": "Blue Clematite",
-  "block.mysticaluniverse.iecomposter": "Infused Eterium Composter",
+  "block.mysticaluniverse.infused_eterium_composter": "Infused Eterium Composter",
 
   "block.mysticaluniverse.still_liquid_ether": "Liquid Ether",
   "block.mysticaluniverse.liquid_ether_block": "Liquid Ether",
