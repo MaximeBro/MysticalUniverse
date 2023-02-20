@@ -5,7 +5,7 @@
   - Eterium Ingot, Eterium Coal, Charged Eterium Ingot, Mycelium Stick, Liquid Ether Bucket, Eterium Pestle, Eterium Mortar, Mortar and Pestle, Eterium Dust, Mycelium Sapling, Blue Clematite's Essence, Bottle of Ether
 
 - Blocks :
-  - Eterium Block, Charged Eterium Block, Refined Eterium Block, Eterium Ore, Mycelium Log, Mycelium Planks, Mycelium Leaves, Blue Clematite FlowerBlock, Eterium Core Block, Infused Core Block
+  - Eterium Block, Charged Eterium Block, Eterium Ore, Mycelium Log, Mycelium Planks, Mycelium Leaves, Blue Clematite FlowerBlock, Eterium Core Block, Infused Core Block
 
 BlockEntities :
   - Infused Eterium Furnace (= IEFurnace)
