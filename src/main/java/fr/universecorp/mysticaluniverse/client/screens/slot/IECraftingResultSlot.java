@@ -1,7 +1,7 @@
-package fr.universecorp.mysticaluniverse.custom.screen.slot;
+package fr.universecorp.mysticaluniverse.client.screens.slot;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
-import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
+import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreenHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;

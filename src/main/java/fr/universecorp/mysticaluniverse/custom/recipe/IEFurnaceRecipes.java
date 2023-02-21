@@ -12,6 +12,8 @@ import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class IEFurnaceRecipes implements Recipe<SimpleInventory> {
     private final Identifier id;
     private final ItemStack output;
@@ -31,6 +33,12 @@ public class IEFurnaceRecipes implements Recipe<SimpleInventory> {
 
         return recipeItems.get(0).test(inventory.getStack(1));
     }
+
+    @Override
+    public DefaultedList<Ingredient> getIngredients() {
+        return this.recipeItems;
+    }
+
 
     @Override
     public ItemStack createIcon() {

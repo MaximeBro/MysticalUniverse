@@ -3,7 +3,7 @@ package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEFurnaceRecipes;
-import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreenHandler;
+import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;

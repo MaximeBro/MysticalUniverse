@@ -1,11 +1,11 @@
-package fr.universecorp.mysticaluniverse.custom.screen;
+package fr.universecorp.mysticaluniverse.client.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
-import fr.universecorp.mysticaluniverse.custom.screen.renderer.FluidStackRenderer;
+import fr.universecorp.mysticaluniverse.client.screens.renderer.FluidStackRenderer;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import fr.universecorp.mysticaluniverse.util.MouseUtil;
-import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.GameRenderer;
@@ -26,10 +26,10 @@ public class IEWbRecipeBookScreen extends HandledScreen<IEWbRecipeBookScreenHand
 
     private FluidStackRenderer fluidStackRenderer;
     private PlayerInventory inventory;
+    private IEWorkbenchScreen screen;
 
     private int recipeX;
     private int recipeY;
-
 
     public IEWbRecipeBookScreen(IEWbRecipeBookScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
@@ -43,6 +43,10 @@ public class IEWbRecipeBookScreen extends HandledScreen<IEWbRecipeBookScreenHand
         this.recipeX = (backgroundWidth - textRenderer.getWidth(this.handler.recipeTitle)) / 2 - 10;
         this.recipeY = backgroundHeight / 2 + 27;
         assignFluidStackRenderer();
+    }
+
+    public void setParentScreen(HandledScreen<?> screen) {
+        this.screen = (IEWorkbenchScreen) screen;
     }
 
 
@@ -116,6 +120,7 @@ public class IEWbRecipeBookScreen extends HandledScreen<IEWbRecipeBookScreenHand
             PlayerEntity player = this.inventory.player;
             player.world.playSound(player, player.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 0.5f, 1f);
             player.closeHandledScreen();
+            MinecraftClient.getInstance().setScreen(this.screen);
             return true;
         }
 

@@ -1,6 +1,5 @@
-package fr.universecorp.mysticaluniverse.custom.screen.slot;
+package fr.universecorp.mysticaluniverse.client.screens.slot;
 
-import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;

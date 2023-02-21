@@ -29,6 +29,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvider {
@@ -61,7 +62,6 @@ public class IEFurnaceBlock extends BlockWithEntity implements BlockEntityProvid
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
     }
-
 
 
     //******************

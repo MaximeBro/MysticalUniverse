@@ -12,7 +12,6 @@ group = project.maven_group
 
 repositories {
 	maven { url 'https://maven.shedaniel.me/' }         // Required for Cloth Config and Roughly Enough Items
-	maven { url 'https://maven.terraformersmc.com/' }
 }
 
 
@@ -22,6 +21,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+	modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:$rei_version"
 	modApi "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
 }
 

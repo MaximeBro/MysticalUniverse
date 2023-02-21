@@ -3,7 +3,7 @@ package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchCraftingInventory;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchShapedRecipes;
-import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
+import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;

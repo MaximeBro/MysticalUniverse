@@ -1,4 +1,4 @@
-package fr.universecorp.mysticaluniverse.custom.screen;
+package fr.universecorp.mysticaluniverse.client.screens;
 
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
@@ -153,7 +153,7 @@ public class IEWbRecipeBookScreenHandler extends ScreenHandler {
         // Third Line
         tabStacks[10] = new ItemStack(ModItems.ETERIUM_INGOT);
         tabStacks[11] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
-        tabStacks[12] = new ItemStack(ModBlocks.INFUSED_CORE_BLOCK);
+        tabStacks[12] = new ItemStack(ModBlocks.ETERIUM_CORE_BLOCK);
         tabStacks[13] = new ItemStack(ModItems.CHARGED_ETERIUM_INGOT);
         tabStacks[14] = new ItemStack(ModItems.ETERIUM_INGOT);
 

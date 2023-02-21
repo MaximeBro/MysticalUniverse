@@ -1,4 +1,4 @@
-package fr.universecorp.mysticaluniverse.custom.screen.renderer;
+package fr.universecorp.mysticaluniverse.client.screens.renderer;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;

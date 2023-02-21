@@ -1,4 +1,4 @@
-package fr.universecorp.mysticaluniverse.custom.screen.slot;
+package fr.universecorp.mysticaluniverse.client.screens.slot;
 
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import net.minecraft.inventory.Inventory;

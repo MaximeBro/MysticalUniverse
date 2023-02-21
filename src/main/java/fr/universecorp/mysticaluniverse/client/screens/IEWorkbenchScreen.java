@@ -1,19 +1,15 @@
-package fr.universecorp.mysticaluniverse.custom.screen;
+package fr.universecorp.mysticaluniverse.client.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
-import fr.universecorp.mysticaluniverse.custom.screen.renderer.FluidStackRenderer;
+import fr.universecorp.mysticaluniverse.client.screens.renderer.FluidStackRenderer;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import fr.universecorp.mysticaluniverse.util.MouseUtil;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
-import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.math.MatrixStack;
@@ -21,14 +17,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.*;
 import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
-import java.util.OptionalInt;
 
 public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> implements ScreenHandlerFactory {
 
@@ -48,7 +42,7 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> i
         super.titleX = (backgroundWidth - textRenderer.getWidth(super.title)) / 2;
         super.titleY = -25;
 
-        this.playerInventoryTitleY+= 5;
+        this.playerInventoryTitleY = backgroundHeight / 2 - 6;
         assignFluidStackRenderer();
     }
 
@@ -138,19 +132,17 @@ public class IEWorkbenchScreen extends HandledScreen<IEWorkbenchScreenHandler> i
             player.world.playSound(player, player.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 0.2f, 1f);
 
             IEWbRecipeBookScreenHandler screenHandler = this.createMenu(player.getId(), this.inventory, player);
-
-            callRecipeScreen(screenHandler, player);
-
-            return true; // → Open the ieworkbench recipe book showing every recipe handled by the ieworkbench ...
+            callRecipeScreen(screenHandler, player, this); // → Opens the ieworkbench recipe book showing
+            return true;                                                   // every recipe handled by the ieworkbench ...
         }
 
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
-    public static void callRecipeScreen(IEWbRecipeBookScreenHandler screenHandler, PlayerEntity player) {
-        MinecraftClient.getInstance().setScreen(
-                new IEWbRecipeBookScreen(screenHandler, player.getInventory(), Text.of("Mystical RecipeBook"))
-        );
+    public static void callRecipeScreen(IEWbRecipeBookScreenHandler screenHandler, PlayerEntity player, IEWorkbenchScreen screen) {
+        IEWbRecipeBookScreen wbScreen = new IEWbRecipeBookScreen(screenHandler, player.getInventory(), Text.of("Mystical RecipeBook"));
+        wbScreen.setParentScreen(screen);
+        MinecraftClient.getInstance().setScreen(wbScreen);
     }
 
     @Nullable

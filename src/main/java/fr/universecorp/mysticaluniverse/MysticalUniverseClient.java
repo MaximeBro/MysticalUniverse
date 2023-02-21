@@ -1,11 +1,11 @@
 package fr.universecorp.mysticaluniverse;
 
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
-import fr.universecorp.mysticaluniverse.custom.blocks.renderer.IEComposterFluidRenderer;
+import fr.universecorp.mysticaluniverse.client.screens.renderer.IEComposterFluidRenderer;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
-import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreen;
-import fr.universecorp.mysticaluniverse.custom.screen.IEWbRecipeBookScreen;
-import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreen;
+import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
+import fr.universecorp.mysticaluniverse.client.screens.IEWbRecipeBookScreen;
+import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreen;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;

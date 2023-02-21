@@ -1,14 +1,18 @@
-package fr.universecorp.mysticaluniverse.custom.blocks.renderer;
+package fr.universecorp.mysticaluniverse.client.screens.renderer;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
+import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
+import net.fabricmc.fabric.api.transfer.v1.client.fluid.FluidVariantRendering;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.render.*;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
@@ -86,8 +90,10 @@ public class IEComposterFluidRenderer implements BlockEntityRenderer<IEComposter
 
         Sprite fluidSprite = fluidHandler.getFluidSprites(null, null, fluid.getDefaultState())[0];
         Sprite fluidSprite2 = fluidHandler.getFluidSprites(null, null, fluid.getDefaultState())[1];
+        
+        Identifier id = new Identifier(fluidSprite.getId().getNamespace(), "textures/" + fluidSprite.getId().getPath() + ".png");
 
-        VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(new Identifier(fluidSprite2.getId().getNamespace(), "textures/" + fluidSprite.getId().getPath() + ".png")));
+        VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(id, false));
         MatrixStack.Entry matrixEntry = matrices.peek();
         Matrix4f model = matrixEntry.getPositionMatrix();
         Matrix3f normal = matrixEntry.getNormalMatrix();

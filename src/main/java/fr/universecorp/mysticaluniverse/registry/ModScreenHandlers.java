@@ -1,12 +1,10 @@
 package fr.universecorp.mysticaluniverse.registry;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
-import fr.universecorp.mysticaluniverse.custom.screen.IEFurnaceScreenHandler;
-import fr.universecorp.mysticaluniverse.custom.screen.IEWbRecipeBookScreenHandler;
-import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
+import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreenHandler;
+import fr.universecorp.mysticaluniverse.client.screens.IEWbRecipeBookScreenHandler;
+import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;

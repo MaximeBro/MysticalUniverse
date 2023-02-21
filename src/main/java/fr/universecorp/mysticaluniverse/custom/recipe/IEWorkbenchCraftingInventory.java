@@ -1,6 +1,6 @@
 package fr.universecorp.mysticaluniverse.custom.recipe;
 
-import fr.universecorp.mysticaluniverse.custom.screen.IEWorkbenchScreenHandler;
+import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreenHandler;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventories;
 import net.minecraft.inventory.Inventory;

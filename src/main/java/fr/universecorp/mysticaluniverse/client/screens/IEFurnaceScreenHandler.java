@@ -1,9 +1,9 @@
-package fr.universecorp.mysticaluniverse.custom.screen;
+package fr.universecorp.mysticaluniverse.client.screens;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
-import fr.universecorp.mysticaluniverse.custom.screen.slot.FurnaceIngredientSlot;
-import fr.universecorp.mysticaluniverse.custom.screen.slot.ModFuelSlot;
-import fr.universecorp.mysticaluniverse.custom.screen.slot.ModResultSlot;
+import fr.universecorp.mysticaluniverse.client.screens.slot.FurnaceIngredientSlot;
+import fr.universecorp.mysticaluniverse.client.screens.slot.ModFuelSlot;
+import fr.universecorp.mysticaluniverse.client.screens.slot.ModResultSlot;
 import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import net.minecraft.block.entity.BlockEntity;
