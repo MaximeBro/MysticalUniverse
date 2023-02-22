@@ -23,6 +23,9 @@
     ],
     "client": [
       "fr.universecorp.mysticaluniverse.MysticalUniverseClient"
+    ],
+    "rei_client": [
+      "fr.universecorp.mysticaluniverse.client.rei.REIPlugin"
     ]
   },
   "mixins": [

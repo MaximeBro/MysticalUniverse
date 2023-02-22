@@ -76,7 +76,7 @@ public class IEFurnaceScreen extends HandledScreen<IEFurnaceScreenHandler> {
 
     private void renderProgressArrow(MatrixStack matrices, int x, int y) {
         if(handler.isCrafting()) {
-            drawTexture(matrices, x + 85, y + 38, 177, 15, handler.getScaledProgress(), 10);
+            drawTexture(matrices, x + 85, y + 37, 177, 15, handler.getScaledProgress(), 10);
         }
 
         if(handler.hasFuel()) {

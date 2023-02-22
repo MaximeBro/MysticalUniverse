@@ -90,7 +90,7 @@ public class IEComposterFluidRenderer implements BlockEntityRenderer<IEComposter
 
         Sprite fluidSprite = fluidHandler.getFluidSprites(null, null, fluid.getDefaultState())[0];
         Sprite fluidSprite2 = fluidHandler.getFluidSprites(null, null, fluid.getDefaultState())[1];
-        
+
         Identifier id = new Identifier(fluidSprite.getId().getNamespace(), "textures/" + fluidSprite.getId().getPath() + ".png");
 
         VertexConsumer consumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(id, false));
