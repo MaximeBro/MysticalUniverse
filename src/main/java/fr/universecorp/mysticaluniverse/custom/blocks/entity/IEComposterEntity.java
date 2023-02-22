@@ -1,5 +1,6 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
+import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
@@ -12,6 +13,7 @@ import net.fabricmc.fabric.api.transfer.v1.fluid.FluidVariant;
 import net.fabricmc.fabric.api.transfer.v1.storage.base.SingleVariantStorage;
 import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.LeveledCauldronBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -83,6 +85,26 @@ public class IEComposterEntity extends BlockEntity {
 
     public static void tick(World world, BlockPos blockPos, BlockState blockState, IEComposterEntity entity) {
         if(world.isClient) { return; }
+
+        long amount = entity.fluidStorage.getAmount();
+        if(amount == 0) {
+            world.setBlockState(blockPos, world.getBlockState(blockPos).with(IEComposter.EMPTY, true));
+        }
+
+        int level = 0;
+
+        if(amount >= 100)  { level = 1; }
+        if(amount >= 500)  { level = 2; }
+        if(amount == 1000) { level = 3; }
+
+        BlockState composter = world.getBlockState(blockPos);
+        if(level != 0) {
+            composter = composter.with(IEComposter.LEVEL, level).with(IEComposter.EMPTY, false);
+            world.setBlockState(blockPos, composter);
+        } else {
+            composter = composter.with(IEComposter.EMPTY, true);
+            world.setBlockState(blockPos, composter);
+        }
 
         if(entity.isComposting()) {
             entity.compostTime--;

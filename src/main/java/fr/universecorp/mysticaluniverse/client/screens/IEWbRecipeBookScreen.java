@@ -119,7 +119,6 @@ public class IEWbRecipeBookScreen extends HandledScreen<IEWbRecipeBookScreenHand
            mouseY >= y + 5   && mouseY <= y + 13) {
             PlayerEntity player = this.inventory.player;
             player.world.playSound(player, player.getBlockPos(), SoundEvents.UI_BUTTON_CLICK, SoundCategory.BLOCKS, 0.5f, 1f);
-            player.closeHandledScreen();
             MinecraftClient.getInstance().setScreen(this.screen);
             return true;
         }

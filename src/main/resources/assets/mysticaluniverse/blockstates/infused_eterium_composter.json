@@ -1,5 +1,60 @@
 {
   "variants": {
-    "": { "model": "mysticaluniverse:block/infused_eterium_composter" }
+    "level=0,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=1,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=2,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=3,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=4,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=5,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=6,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=7,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+    "level=8,empty=true": {
+      "model": "mysticaluniverse:block/infused_eterium_composter"
+    },
+
+
+    "level=0,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_1"
+    },
+    "level=1,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_1"
+    },
+    "level=2,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_2"
+    },
+    "level=3,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_3"
+    },
+    "level=4,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_3"
+    },
+    "level=5,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_3"
+    },
+    "level=6,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_3"
+    },
+    "level=7,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_3"
+    },
+    "level=8,empty=false": {
+      "model": "mysticaluniverse:block/infused_eterium_composter_3"
+    }
   }
 }

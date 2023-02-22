@@ -1,5 +1,6 @@
 package fr.universecorp.mysticaluniverse.custom.blocks;
 
+import fr.universecorp.mysticaluniverse.client.screens.renderer.ColoredBlock;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
@@ -13,6 +14,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
+import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -20,11 +25,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-public class IEComposter extends BlockWithEntity implements BlockEntityProvider {
+
+public class IEComposter extends BlockWithEntity implements BlockEntityProvider, ColoredBlock {
+
+    public static final IntProperty LEVEL = Properties.LEVEL_8;
+    public static final BooleanProperty EMPTY = BooleanProperty.of("empty");
     public IEComposter(Settings settings) {
         super(settings);
+        this.setDefaultState((this.stateManager.getDefaultState()).with(LEVEL, 0).with(EMPTY, false));
     }
 
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(LEVEL, EMPTY);
+    }
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
@@ -82,5 +96,15 @@ public class IEComposter extends BlockWithEntity implements BlockEntityProvider 
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public int getColor(int tint) {
+        return 0;
+    }
+
+    @Override
+    public int getColor(BlockState state, BlockPos pos, int tintIndex) {
+        return 0;
     }
 }

@@ -5,6 +5,7 @@
     "0": "mysticaluniverse:blocks/composter/side",
     "1": "mysticaluniverse:blocks/composter/top",
     "2": "mysticaluniverse:blocks/composter/bottom",
+    "content": "minecraft:block/water_still",
     "particle": "mysticaluniverse:blocks/composter/side"
   },
   "elements": [
@@ -37,9 +38,7 @@
       "to": [14, 16, 2],
       "faces": {
         "north": {"uv": [2, 0, 14, 16], "texture": "#0"},
-        "east": {"uv": [0, 0, 2, 16], "texture": "#missing"},
         "south": {"uv": [2, 0, 14, 16], "texture": "#0"},
-        "west": {"uv": [0, 0, 2, 16], "texture": "#missing"},
         "up": {"uv": [2, 0, 14, 2], "texture": "#1"},
         "down": {"uv": [2, 14, 14, 16], "texture": "#2"}
       }
@@ -49,9 +48,7 @@
       "to": [14, 16, 16],
       "faces": {
         "north": {"uv": [2, 0, 14, 16], "texture": "#0"},
-        "east": {"uv": [0, 0, 2, 16], "texture": "#missing"},
         "south": {"uv": [2, 0, 14, 16], "texture": "#0"},
-        "west": {"uv": [0, 0, 2, 16], "texture": "#missing"},
         "up": {"uv": [2, 14, 14, 16], "texture": "#1"},
         "down": {"uv": [2, 0, 14, 2], "texture": "#2"}
       }
@@ -60,12 +57,15 @@
       "from": [2, 0, 2],
       "to": [14, 2, 14],
       "faces": {
-        "north": {"uv": [0, 0, 12, 1], "texture": "#missing"},
-        "east": {"uv": [0, 0, 12, 1], "texture": "#missing"},
-        "south": {"uv": [0, 0, 12, 1], "texture": "#missing"},
-        "west": {"uv": [0, 0, 12, 1], "texture": "#missing"},
         "up": {"uv": [2, 2, 14, 14], "texture": "#2"},
         "down": {"uv": [2, 2, 14, 14], "texture": "#2"}
+      }
+    },
+    {
+      "from": [ 2, 4, 2 ],
+      "to": [ 14, 10, 14 ],
+      "faces": {
+        "up": { "texture": "#content", "tintindex": 0 }
       }
     }
   ]

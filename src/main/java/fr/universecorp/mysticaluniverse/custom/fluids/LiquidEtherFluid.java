@@ -32,6 +32,8 @@ public abstract class LiquidEtherFluid extends FlowableFluid {
         Block.dropStacks(state, world, pos, blockEntity);
     }
 
+
+
     @Override
     protected int getFlowSpeed(WorldView world) {
         return 4;
