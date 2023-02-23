@@ -5,6 +5,7 @@ import fr.universecorp.mysticaluniverse.registry.ModBlocks;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.Renderer;
+import me.shedaniel.rei.api.client.gui.widgets.Label;
 import me.shedaniel.rei.api.client.gui.widgets.Widget;
 import me.shedaniel.rei.api.client.gui.widgets.Widgets;
 import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
@@ -44,12 +45,17 @@ public class IEFurnaceREICategory implements DisplayCategory<IEFurnaceREIDisplay
     }
 
     @Override
+    public int getDisplayHeight() {
+        return DisplayCategory.super.getDisplayHeight() + 25 ;
+    }
+
+    @Override
     public List<Widget> setupDisplay(IEFurnaceREIDisplay display, Rectangle bounds) {
         List<Widget> widgets = Lists.newArrayList();
 
         // Setup Background
-        Point startPoint = new Point(bounds.getCenterX(), bounds.getCenterY());
-        widgets.add(Widgets.createRecipeBase(new Rectangle(bounds.x, bounds.y, bounds.getWidth(), bounds.getHeight() + 20)));
+        Point startPoint = new Point(bounds.getCenterX(), bounds.getCenterY() - 8);
+        widgets.add(Widgets.createRecipeBase(new Rectangle(bounds.x, bounds.y, bounds.getWidth(), bounds.getHeight())));
 
         // Add input slot
         widgets.add(createInputSlot(display, 0, startPoint.x - 40, startPoint.y - 15));
@@ -79,9 +85,9 @@ public class IEFurnaceREICategory implements DisplayCategory<IEFurnaceREIDisplay
         ));
 
         // Add recipe output name
-        widgets.add(Widgets.createLabel(new Point(startPoint.x + 50, startPoint.y + 10),
-                Text.of("")
-        ));
+        Text name = ((ItemStack) display.getOutputEntries().get(0).get(0).getValue()).getName();
+        Label lbl = Widgets.createLabel(new Point(startPoint.x, startPoint.y - 30), name);
+        widgets.add(lbl.noShadow().color(0xFF404040, 0xFFBBBBBB));
 
         // Add output slot
         widgets.add(Widgets.createResultSlotBackground(new Point(startPoint.x + 20, startPoint.y - 15)));

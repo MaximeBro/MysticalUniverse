@@ -2,7 +2,9 @@ package fr.universecorp.mysticaluniverse.client.rei;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
+import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreen;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEFurnaceRecipes;
+import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchShapedRecipes;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import me.shedaniel.math.Point;
@@ -47,11 +49,16 @@ public class REIPlugin implements REIClientPlugin {
     @Override
     public void registerCategories(CategoryRegistry registry) {
         registry.add(List.of(
-                new IEFurnaceREICategory()
+                new IEFurnaceREICategory(),
+                new IEWorkbenchREICategory()
         ));
 
         registry.addWorkstations(
             IEFurnaceREIDisplay.ID, EntryStacks.of(ModBlocks.INFUSED_ETERIUM_FURNACE)
+        );
+
+        registry.addWorkstations(
+            IEWorkbenchRecipeREIDisplay.ID, EntryStacks.of(ModBlocks.INFUSED_ETERIUM_WORKBENCH)
         );
 
     }
@@ -59,11 +66,13 @@ public class REIPlugin implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(IEFurnaceRecipes.class, IEFurnaceREIDisplay::new);
+        registry.registerFiller(IEWorkbenchShapedRecipes.class, IEWorkbenchRecipeREIDisplay::new);
     }
 
     @Override
     public void registerScreens(ScreenRegistry registry) {
         registry.registerContainerClickArea(new Rectangle(59, 41, 40, 10), IEFurnaceScreen.class, IEFurnaceREIDisplay.ID);
+        registry.registerContainerClickArea(new Rectangle(59, 41, 40, 10), IEWorkbenchScreen.class, IEWorkbenchRecipeREIDisplay.ID);
     }
 
 

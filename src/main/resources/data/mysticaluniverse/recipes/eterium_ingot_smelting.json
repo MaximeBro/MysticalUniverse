@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "experience": 0.7,
+  "group": "eterium",
+  "ingredient": {
+    "item": "mysticaluniverse:eterium_dust"
+  },
+  "result": "mysticaluniverse:eterium_ingot",
+  "count": 1
+}

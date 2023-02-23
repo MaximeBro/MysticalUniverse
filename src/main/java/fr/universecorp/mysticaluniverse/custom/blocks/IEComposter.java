@@ -1,6 +1,5 @@
 package fr.universecorp.mysticaluniverse.custom.blocks;
 
-import fr.universecorp.mysticaluniverse.client.screens.renderer.ColoredBlock;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
@@ -26,7 +25,7 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 
-public class IEComposter extends BlockWithEntity implements BlockEntityProvider, ColoredBlock {
+public class IEComposter extends BlockWithEntity implements BlockEntityProvider {
 
     public static final IntProperty LEVEL = Properties.LEVEL_8;
     public static final BooleanProperty EMPTY = BooleanProperty.of("empty");
@@ -96,15 +95,5 @@ public class IEComposter extends BlockWithEntity implements BlockEntityProvider,
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
-    }
-
-    @Override
-    public int getColor(int tint) {
-        return 0;
-    }
-
-    @Override
-    public int getColor(BlockState state, BlockPos pos, int tintIndex) {
-        return 0;
     }
 }
