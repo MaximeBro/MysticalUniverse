@@ -14,7 +14,6 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.realms.util.TextRenderingUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
@@ -28,13 +27,13 @@ import java.util.List;
 
 import static fr.universecorp.mysticaluniverse.client.rei.REIPlugin.*;
 
-public class IEWorkbenchREICategory implements DisplayCategory<IEWorkbenchRecipeREIDisplay> {
+public class IEWorkbenchREICategory implements DisplayCategory<IEWorkbenchREIDisplay> {
 
     private final EntryStack<ItemStack> IEWORKBENCH_ICON = EntryStacks.of(new ItemStack(ModBlocks.INFUSED_ETERIUM_WORKBENCH));
 
     @Override
-    public CategoryIdentifier<? extends IEWorkbenchRecipeREIDisplay> getCategoryIdentifier() {
-        return IEWorkbenchRecipeREIDisplay.ID;
+    public CategoryIdentifier<? extends IEWorkbenchREIDisplay> getCategoryIdentifier() {
+        return IEWorkbenchREIDisplay.ID;
     }
 
     @Override
@@ -53,12 +52,12 @@ public class IEWorkbenchREICategory implements DisplayCategory<IEWorkbenchRecipe
     }
 
     @Override
-    public int getDisplayWidth(IEWorkbenchRecipeREIDisplay display) {
+    public int getDisplayWidth(IEWorkbenchREIDisplay display) {
         return DisplayCategory.super.getDisplayWidth(display) + 50;
     }
 
     @Override
-    public List<Widget> setupDisplay(IEWorkbenchRecipeREIDisplay display, Rectangle bounds) {
+    public List<Widget> setupDisplay(IEWorkbenchREIDisplay display, Rectangle bounds) {
         List<Widget> widgets = Lists.newArrayList();
 
         // Setup Background

@@ -14,18 +14,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-public class IEWorkbenchRecipeREIDisplay<T extends Recipe<IEWorkbenchCraftingInventory>> extends BasicDisplay {
+public class IEWorkbenchREIDisplay<T extends Recipe<IEWorkbenchCraftingInventory>> extends BasicDisplay {
 
-    public static final CategoryIdentifier<IEWorkbenchRecipeREIDisplay> ID =
-            CategoryIdentifier.of(MysticalUniverse.MODID, "iecrafting");
+    public static final CategoryIdentifier<IEWorkbenchREIDisplay> ID =
+            CategoryIdentifier.of(MysticalUniverse.MODID, "ieworkbench");
 
-    public IEWorkbenchRecipeREIDisplay(IEWorkbenchShapedRecipes recipe) {
+    public IEWorkbenchREIDisplay(IEWorkbenchShapedRecipes recipe) {
         this(EntryIngredients.ofIngredients(recipe.getIngredients()),
                 Collections.singletonList(EntryIngredients.of(recipe.getOutput())),
                 Optional.ofNullable(recipe.getId()));
     }
 
-    public IEWorkbenchRecipeREIDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<Identifier> location) {
+    public IEWorkbenchREIDisplay(List<EntryIngredient> inputs, List<EntryIngredient> outputs, Optional<Identifier> location) {
         super(inputs, outputs, location);
     }
 

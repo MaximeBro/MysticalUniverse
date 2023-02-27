@@ -11,7 +11,6 @@ public class ModRecipes {
         Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(MysticalUniverse.MODID, IEFurnaceRecipes.Serializer.ID),
                 IEFurnaceRecipes.Serializer.INSTANCE
         );
-
         Registry.register(Registry.RECIPE_TYPE, new Identifier(MysticalUniverse.MODID, IEFurnaceRecipes.Type.ID),
                 IEFurnaceRecipes.Type.INSTANCE
         );
@@ -19,10 +18,19 @@ public class ModRecipes {
 
         // IEWorkbench Recipes Handling
         Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(MysticalUniverse.MODID, IEWorkbenchShapedRecipes.Serializer.ID),
-                IEWorkbenchShapedRecipes.Serializer.INSTANCE);
-
+                IEWorkbenchShapedRecipes.Serializer.INSTANCE
+        );
         Registry.register(Registry.RECIPE_TYPE, new Identifier(MysticalUniverse.MODID, IEWorkbenchShapedRecipes.Type.ID),
                 IEWorkbenchShapedRecipes.Type.INSTANCE
+        );
+
+
+        // IEComposter Recipes Handling (REI Integration ONLY)
+        Registry.register(Registry.RECIPE_SERIALIZER, new Identifier(MysticalUniverse.MODID, IEComposterRecipes.Serializer.ID),
+                IEComposterRecipes.Serializer.INSTANCE
+        );
+        Registry.register(Registry.RECIPE_TYPE, new Identifier(MysticalUniverse.MODID, IEComposterRecipes.Type.ID),
+                IEComposterRecipes.Type.INSTANCE
         );
     }
 }

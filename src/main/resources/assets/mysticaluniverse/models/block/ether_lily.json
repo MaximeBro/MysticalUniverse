@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "mysticaluniverse:blocks/ether_lily"
+  }
+}

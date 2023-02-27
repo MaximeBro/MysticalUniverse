@@ -3,6 +3,7 @@ package fr.universecorp.mysticaluniverse.client.rei;
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreen;
+import fr.universecorp.mysticaluniverse.custom.recipe.IEComposterRecipes;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEFurnaceRecipes;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchShapedRecipes;
 import fr.universecorp.mysticaluniverse.registry.ModBlocks;
@@ -50,7 +51,8 @@ public class REIPlugin implements REIClientPlugin {
     public void registerCategories(CategoryRegistry registry) {
         registry.add(List.of(
                 new IEFurnaceREICategory(),
-                new IEWorkbenchREICategory()
+                new IEWorkbenchREICategory(),
+                new IEComposterCategory()
         ));
 
         registry.addWorkstations(
@@ -58,7 +60,11 @@ public class REIPlugin implements REIClientPlugin {
         );
 
         registry.addWorkstations(
-            IEWorkbenchRecipeREIDisplay.ID, EntryStacks.of(ModBlocks.INFUSED_ETERIUM_WORKBENCH)
+            IEWorkbenchREIDisplay.ID, EntryStacks.of(ModBlocks.INFUSED_ETERIUM_WORKBENCH)
+        );
+
+        registry.addWorkstations(
+            IEComposterREIDisplay.ID, EntryStacks.of(ModBlocks.INFUSED_ETERIUM_COMPOSTER)
         );
 
     }
@@ -66,13 +72,14 @@ public class REIPlugin implements REIClientPlugin {
     @Override
     public void registerDisplays(DisplayRegistry registry) {
         registry.registerFiller(IEFurnaceRecipes.class, IEFurnaceREIDisplay::new);
-        registry.registerFiller(IEWorkbenchShapedRecipes.class, IEWorkbenchRecipeREIDisplay::new);
+        registry.registerFiller(IEWorkbenchShapedRecipes.class, IEWorkbenchREIDisplay::new);
+        registry.registerFiller(IEComposterRecipes.class, IEComposterREIDisplay::new);
     }
 
     @Override
     public void registerScreens(ScreenRegistry registry) {
         registry.registerContainerClickArea(new Rectangle(59, 41, 40, 10), IEFurnaceScreen.class, IEFurnaceREIDisplay.ID);
-        registry.registerContainerClickArea(new Rectangle(59, 41, 40, 10), IEWorkbenchScreen.class, IEWorkbenchRecipeREIDisplay.ID);
+        registry.registerContainerClickArea(new Rectangle(59, 41, 40, 10), IEWorkbenchScreen.class, IEWorkbenchREIDisplay.ID);
     }
 
 
@@ -103,7 +110,6 @@ public class REIPlugin implements REIClientPlugin {
 
     public class DrawUtil {
         public static void drawFluid(DrawableHelper helper, MatrixStack matrices, Identifier id, int u, int v, int x, int y, int width, int height, int amount) {
-
             // Drawing storage texture
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -129,6 +135,38 @@ public class REIPlugin implements REIClientPlugin {
                 final int curHeight = offsetHeight < iconHeight ? offsetHeight : iconHeight;
 
                 helper.drawSprite(matrices, x + 4, y - offsetHeight - 4, 0, width - 8, curHeight, sprite);
+                offsetHeight -= curHeight;
+                iteration++;
+                if (iteration > 50) {
+                    break;
+                }
+            }
+            RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
+
+            RenderSystem.setShaderTexture(0, FluidRenderHandlerRegistry.INSTANCE.get(variant.getFluid())
+                    .getFluidSprites(MinecraftClient.getInstance().world, null, variant.getFluid().getDefaultState())[0].getId());
+        }
+
+        public static void drawFluid(DrawableHelper helper, MatrixStack matrices, int x, int y, int width, int height) {
+
+            // Drawing fluid sprites
+            RenderSystem.setShaderTexture(0, PlayerScreenHandler.BLOCK_ATLAS_TEXTURE);
+
+            FluidVariant variant = FluidVariant.of(ModFluids.STILL_LIQUID_ETHER);
+            y += height;
+            final Sprite sprite = FluidVariantRendering.getSprite(variant);
+            int color = FluidVariantRendering.getColor(variant);
+
+            final int iconHeight = sprite.getHeight();
+            int offsetHeight = height;
+
+            RenderSystem.setShaderColor((color >> 16 & 255) / 255.0F, (float) (color >> 8 & 255) / 255.0F, (float) (color & 255) / 255.0F, 1F);
+
+            int iteration = 0;
+            while (offsetHeight != 0) {
+                final int curHeight = offsetHeight < iconHeight ? offsetHeight : iconHeight;
+
+                helper.drawSprite(matrices, x , y - offsetHeight, 0, width, curHeight, sprite);
                 offsetHeight -= curHeight;
                 iteration++;
                 if (iteration > 50) {

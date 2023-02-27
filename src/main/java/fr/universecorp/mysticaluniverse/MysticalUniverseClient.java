@@ -27,6 +27,7 @@ public class MysticalUniverseClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_LEAVES, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLUE_CLEMATITE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ETHER_LILY, RenderLayer.getCutout());
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_LIQUID_ETHER, ModFluids.FLOWING_LIQUID_ETHER,
                 new SimpleFluidRenderHandler(

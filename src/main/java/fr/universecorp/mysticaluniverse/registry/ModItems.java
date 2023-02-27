@@ -51,6 +51,7 @@ public class ModItems {
     public static final BlockItem MYCELIUM_LEAVES = new BlockItem(ModBlocks.MYCELIUM_LEAVES, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem MYCELIUM_SAPLING = new BlockItem(ModBlocks.MYCELIUM_SAPLING, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem BLUE_CLEMATITE = new BlockItem(ModBlocks.BLUE_CLEMATITE, new FabricItemSettings().group(MYSTICAL_GROUP));
+    public static final BlockItem ETHER_LILY = new BlockItem(ModBlocks.ETHER_LILY, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem INFUSED_ETERIUM_COMPOSTER = new BlockItem(ModBlocks.INFUSED_ETERIUM_COMPOSTER, new FabricItemSettings().group(MYSTICAL_GROUP));
 
 
@@ -88,6 +89,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_leaves"), MYCELIUM_LEAVES);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "mycelium_sapling"), MYCELIUM_SAPLING);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "blue_clematite"), BLUE_CLEMATITE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "ether_lily"), ETHER_LILY);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_composter"), INFUSED_ETERIUM_COMPOSTER);
     }
 }
