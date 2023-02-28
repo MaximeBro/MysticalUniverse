@@ -2,9 +2,7 @@ package fr.universecorp.mysticaluniverse.custom.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -40,17 +38,22 @@ public class IEComposterRecipes implements Recipe<SimpleInventory> {
 
     @Override
     public ItemStack getOutput() {
-        return ModFluids.LIQUID_ETHER_BLOCK.asItem().getDefaultStack().copy();
+        return this.output.copy();
     }
 
     @Override
     public boolean matches(SimpleInventory inventory, World world) {
-        return false;
+        if(world.isClient) {
+            return false;
+        }
+
+        return this.recipeItems.get(0).test(ModItems.BLUE_CLEMATITE_ESSENCE.getDefaultStack()) ||
+               this.recipeItems.get(0).test(ModItems.INFUSED_LILY.getDefaultStack());
     }
 
     @Override
     public ItemStack craft(SimpleInventory inventory) {
-        return null;
+        return this.output;
     }
 
     @Override

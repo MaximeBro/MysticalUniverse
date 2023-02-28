@@ -46,8 +46,20 @@ public class IEComposter extends BlockWithEntity implements BlockEntityProvider 
 
         // Right-Click with Blue Clematite's Essence
         if(player.getStackInHand(hand).getItem().equals(ModItems.BLUE_CLEMATITE_ESSENCE) && canCompostEssence(entity)) {
-            if(!entity.isComposting()) {
+            if(!entity.isComposting() && !entity.isInfusing()) {
                 entity.startComposting();
+
+                player.playSound(SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 0.5f, 1.0f);
+                player.getStackInHand(hand).decrement(1);
+
+                return ActionResult.SUCCESS;
+            }
+        }
+
+        //Right-Click with ether lily
+        if(player.getStackInHand(hand).getItem().equals(ModItems.ETHER_LILY) && canInfuseFlower(entity)) {
+            if(!entity.isInfusing() && !entity.isComposting()) {
+                entity.startInfusing();
 
                 player.playSound(SoundEvents.BLOCK_BREWING_STAND_BREW, SoundCategory.BLOCKS, 0.5f, 1.0f);
                 player.getStackInHand(hand).decrement(1);
@@ -72,6 +84,10 @@ public class IEComposter extends BlockWithEntity implements BlockEntityProvider 
 
     public boolean canCompostEssence(IEComposterEntity entity) {
         return entity.fluidStorage.amount + 250 <= entity.fluidStorage.getCapacity();
+    }
+
+    public boolean canInfuseFlower(IEComposterEntity entity) {
+        return entity.fluidStorage.amount >= 500;
     }
 
 

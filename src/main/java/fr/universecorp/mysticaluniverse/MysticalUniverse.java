@@ -45,6 +45,7 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.BLUE_CLEMATITE));
                 stacks.add(new ItemStack(ModItems.BLUE_CLEMATITE_ESSENCE));
                 stacks.add(new ItemStack(ModItems.ETHER_LILY));
+                stacks.add(new ItemStack(ModItems.INFUSED_LILY));
                 stacks.add(new ItemStack(ModItems.BOTTLE_OF_ETHER));
                 stacks.add(new ItemStack(ModItems.ETERIUM_ARMOR_CORE));
                 stacks.add(new ItemStack(ModItems.INFUSED_ARMOR_CORE));

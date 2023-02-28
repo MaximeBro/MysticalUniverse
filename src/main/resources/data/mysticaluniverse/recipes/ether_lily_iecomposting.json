@@ -1,0 +1,11 @@
+{
+  "type": "mysticaluniverse:iecomposter_composting",
+  "ingredients": [
+    {
+      "item": "mysticaluniverse:ether_lily"
+    }
+  ],
+  "output": {
+    "item": "mysticaluniverse:infused_lily"
+  }
+}

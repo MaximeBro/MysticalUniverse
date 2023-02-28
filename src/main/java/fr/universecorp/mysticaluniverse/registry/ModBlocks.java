@@ -97,6 +97,11 @@ public class ModBlocks {
             FabricBlockSettings.copy(Blocks.DANDELION)
     );
 
+    public static final Block INFUSED_LILY = new FlowerBlock(
+            StatusEffects.SATURATION, 7,
+            FabricBlockSettings.copy(Blocks.DANDELION)
+    );
+
     public static final Block INFUSED_ETERIUM_COMPOSTER = new IEComposter(FabricBlockSettings
             .of(Material.WOOD)
             .strength(0.6f)
@@ -119,6 +124,7 @@ public class ModBlocks {
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "mycelium_sapling"), MYCELIUM_SAPLING);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "blue_clematite"), BLUE_CLEMATITE);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "ether_lily"), ETHER_LILY);
+        Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_lily"), INFUSED_LILY);
         Registry.register(Registry.BLOCK, new Identifier(MysticalUniverse.MODID, "infused_eterium_composter"), INFUSED_ETERIUM_COMPOSTER);
     }
 }

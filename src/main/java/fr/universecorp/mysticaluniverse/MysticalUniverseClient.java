@@ -1,6 +1,7 @@
 package fr.universecorp.mysticaluniverse;
 
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
+import fr.universecorp.mysticaluniverse.client.screens.renderer.IEComposterFluidRenderer;
 import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWbRecipeBookScreen;
@@ -28,6 +29,7 @@ public class MysticalUniverseClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.MYCELIUM_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.BLUE_CLEMATITE, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ETHER_LILY, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.INFUSED_LILY, RenderLayer.getCutout());
 
         FluidRenderHandlerRegistry.INSTANCE.register(ModFluids.STILL_LIQUID_ETHER, ModFluids.FLOWING_LIQUID_ETHER,
                 new SimpleFluidRenderHandler(
@@ -40,6 +42,7 @@ public class MysticalUniverseClient implements ClientModInitializer {
                 ModFluids.STILL_LIQUID_ETHER, ModFluids.FLOWING_LIQUID_ETHER);
 
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0xA100C9FF, ModBlocks.INFUSED_ETERIUM_COMPOSTER);
+        BlockEntityRendererRegistry.register(ModBlockEntities.IECOMPOSTER, IEComposterFluidRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.IEFURNACE_SCREEN_HANDLER, IEFurnaceScreen::new);
         HandledScreens.register(ModScreenHandlers.IEWORKBENCH_SCREEN_HANDLER, IEWorkbenchScreen::new);

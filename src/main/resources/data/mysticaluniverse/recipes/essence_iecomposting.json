@@ -1,6 +1,5 @@
 {
   "type": "mysticaluniverse:iecomposter_composting",
-  "group": "ether",
   "ingredients": [
       {
         "item": "mysticaluniverse:blue_clematite_essence"
