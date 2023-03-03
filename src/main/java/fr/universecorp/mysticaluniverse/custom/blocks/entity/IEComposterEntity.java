@@ -1,7 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
-import fr.universecorp.mysticaluniverse.networking.ModMessages;
+import fr.universecorp.mysticaluniverse.registry.ModMessages;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;

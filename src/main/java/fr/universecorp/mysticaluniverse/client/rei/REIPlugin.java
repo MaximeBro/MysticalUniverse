@@ -78,8 +78,8 @@ public class REIPlugin implements REIClientPlugin {
 
     @Override
     public void registerScreens(ScreenRegistry registry) {
-        registry.registerContainerClickArea(new Rectangle(59, 41, 40, 10), IEFurnaceScreen.class, IEFurnaceREIDisplay.ID);
-        registry.registerContainerClickArea(new Rectangle(59, 41, 40, 10), IEWorkbenchScreen.class, IEWorkbenchREIDisplay.ID);
+        registry.registerContainerClickArea(new Rectangle(83, 37, 25, 10), IEFurnaceScreen.class, IEFurnaceREIDisplay.ID);
+        registry.registerContainerClickArea(new Rectangle(135, 23, 25, 10), IEWorkbenchScreen.class, IEWorkbenchREIDisplay.ID);
     }
 
 

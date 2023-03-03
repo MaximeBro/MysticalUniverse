@@ -20,7 +20,7 @@ public class MysticalUniverse implements ModInitializer {
 
     public static final ItemGroup MYSTICAL_GROUP = FabricItemGroupBuilder.create(
             new Identifier(MODID, "mysticalgroup"))
-            .icon(() -> new ItemStack(ModItems.CHARGED_ETERIUM_INGOT))
+            .icon(() -> new ItemStack(ModItems.ICON))
             .appendItems(stacks -> {
                 stacks.add(new ItemStack(ModBlocks.ETERIUM_ORE));
                 stacks.add(new ItemStack(ModBlocks.ETERIUM_BLOCK));
@@ -58,9 +58,11 @@ public class MysticalUniverse implements ModInitializer {
             .build();
 
 
+
     @Override
     public void onInitialize() {
         ModConfiguredFeatures.registerConfiguredFeatures();
+        ModWorldGen.generateWorldGen();
 
         ModItems.registerAll();
         ModBlocks.registerAll();
@@ -68,11 +70,8 @@ public class MysticalUniverse implements ModInitializer {
         ModBlockEntities.registerBlockEntities();
         ModFlammableBlocks.registerFlammableBlocks();
 
-        ModWorldGen.generateWorldGen();
-
         ModScreenHandlers.registerAllScreenHandlers();
         ModRecipes.registerRecipes();
-        ModSerializers.registerModSerializers();
 
         FuelRegistry.INSTANCE.add(ModItems.ETERIUM_COAL, 2400);
 

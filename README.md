@@ -11,7 +11,7 @@ BlockEntities :
   - Infused Eterium Furnace (= IEFurnace)
   - Infused Eterium Workbench (= IEWorkbench)
   - Infused Eterium Composter (= IEComposter)
-  - Infused Ether Flower (= IEFlower)
+  - Infused Lily (= IEFlower)
 
 Misc :
   - Liquid Ether Fluid
@@ -21,11 +21,10 @@ Misc :
 
   To-Do List:
   https://trello.com/b/kpNoyklO/mysticaluniverse
- 
-  - Adding the Eterium Composter
+
   - Adding flowers that generate ether
   - Adding custom villagers trades
-
+  - Adding 2 new entities
 
 # Licence
-+ Tous droits réservés / All rights reserved
++ All Rights Reserved.

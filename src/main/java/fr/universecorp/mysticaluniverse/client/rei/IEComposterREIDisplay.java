@@ -2,10 +2,12 @@ package fr.universecorp.mysticaluniverse.client.rei;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEComposterRecipes;
+import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 import java.util.Collections;
@@ -19,7 +21,7 @@ public class IEComposterREIDisplay extends BasicDisplay {
 
     public IEComposterREIDisplay(IEComposterRecipes recipe) {
         this(EntryIngredients.ofIngredients(recipe.getIngredients()),
-                Collections.singletonList(EntryIngredients.of(recipe.getOutput())),
+                List.of(EntryIngredients.of(recipe.getOutput()), EntryIngredients.of(ModFluids.STILL_LIQUID_ETHER)),
                 Optional.ofNullable(recipe.getId()));
     }
 

@@ -1,6 +1,6 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
-import fr.universecorp.mysticaluniverse.networking.ModMessages;
+import fr.universecorp.mysticaluniverse.registry.ModMessages;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchCraftingInventory;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchShapedRecipes;
 import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreenHandler;

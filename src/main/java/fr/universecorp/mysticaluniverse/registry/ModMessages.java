@@ -1,6 +1,8 @@
-package fr.universecorp.mysticaluniverse.networking;
+package fr.universecorp.mysticaluniverse.registry;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
+import fr.universecorp.mysticaluniverse.networking.ComposterSyncS2CPacket;
+import fr.universecorp.mysticaluniverse.networking.FluidSyncS2CPacket;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.util.Identifier;
 

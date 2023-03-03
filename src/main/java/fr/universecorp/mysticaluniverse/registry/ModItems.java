@@ -16,6 +16,10 @@ import static fr.universecorp.mysticaluniverse.MysticalUniverse.MYSTICAL_GROUP;
 
 public class ModItems {
 
+    // Icon
+    public static final Item ICON = new Item(new FabricItemSettings());
+
+
     // Items
     public static final Item CHARGED_ETERIUM_INGOT = new ChargedEteriumIngot(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final Item ETERIUM_INGOT = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
@@ -55,7 +59,6 @@ public class ModItems {
     public static final BlockItem INFUSED_LILY = new BlockItem(ModBlocks.INFUSED_LILY, new FabricItemSettings().group(MYSTICAL_GROUP));
     public static final BlockItem INFUSED_ETERIUM_COMPOSTER = new BlockItem(ModBlocks.INFUSED_ETERIUM_COMPOSTER, new FabricItemSettings().group(MYSTICAL_GROUP));
 
-
     public static void registerAll() {
 
         //Items
@@ -76,6 +79,8 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_leggings"), INFUSED_ETERIUM_LEGGINGS);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_boots"), INFUSED_ETERIUM_BOOTS);
 
+        // Icon
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "icon"), ICON);
 
         //BlockItems
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "eterium_block"), ETERIUM_BLOCK);

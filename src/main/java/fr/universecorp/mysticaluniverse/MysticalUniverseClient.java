@@ -2,7 +2,7 @@ package fr.universecorp.mysticaluniverse;
 
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import fr.universecorp.mysticaluniverse.client.renderers.IEComposterFluidRenderer;
-import fr.universecorp.mysticaluniverse.networking.ModMessages;
+import fr.universecorp.mysticaluniverse.registry.ModMessages;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWbRecipeBookScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreen;
@@ -19,7 +19,6 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
