@@ -2,7 +2,7 @@ package fr.universecorp.mysticaluniverse.client.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
-import fr.universecorp.mysticaluniverse.client.screens.renderer.FluidStackRenderer;
+import fr.universecorp.mysticaluniverse.client.renderers.FluidStackRenderer;
 import fr.universecorp.mysticaluniverse.util.FluidStack;
 import fr.universecorp.mysticaluniverse.util.MouseUtil;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidConstants;

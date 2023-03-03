@@ -1,8 +1,8 @@
 package fr.universecorp.mysticaluniverse;
 
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
-import fr.universecorp.mysticaluniverse.client.screens.renderer.IEComposterFluidRenderer;
-import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
+import fr.universecorp.mysticaluniverse.client.renderers.IEComposterFluidRenderer;
+import fr.universecorp.mysticaluniverse.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWbRecipeBookScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreen;
@@ -19,6 +19,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
@@ -42,12 +43,12 @@ public class MysticalUniverseClient implements ClientModInitializer {
                 ModFluids.STILL_LIQUID_ETHER, ModFluids.FLOWING_LIQUID_ETHER);
 
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0xA100C9FF, ModBlocks.INFUSED_ETERIUM_COMPOSTER);
+
+        ModMessages.registerS2CPacket();
         BlockEntityRendererRegistry.register(ModBlockEntities.IECOMPOSTER, IEComposterFluidRenderer::new);
 
         HandledScreens.register(ModScreenHandlers.IEFURNACE_SCREEN_HANDLER, IEFurnaceScreen::new);
         HandledScreens.register(ModScreenHandlers.IEWORKBENCH_SCREEN_HANDLER, IEWorkbenchScreen::new);
         HandledScreens.register(ModScreenHandlers.IEWB_RECIPEBOOK_SCREEN_HANDLER, IEWbRecipeBookScreen::new);
-
-        ModMessages.registerS2CPacket();
     }
 }

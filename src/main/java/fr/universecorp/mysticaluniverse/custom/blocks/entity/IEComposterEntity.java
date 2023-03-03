@@ -1,7 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
-import fr.universecorp.mysticaluniverse.custom.networking.ModMessages;
+import fr.universecorp.mysticaluniverse.networking.ModMessages;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
@@ -16,7 +16,6 @@ import net.fabricmc.fabric.api.transfer.v1.transaction.Transaction;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
@@ -35,6 +34,7 @@ public class IEComposterEntity extends BlockEntity {
     private int infusingMaxTime = 100;
     private boolean composting = false;
     private boolean infusing = false;
+    private ItemStack renderStack = ItemStack.EMPTY;
 
     protected final PropertyDelegate propertyDelegate;
 
@@ -137,8 +137,21 @@ public class IEComposterEntity extends BlockEntity {
         if(entity.compostTime  == 0) { entity.composting = false; }
         if(entity.infusingTime == 0) { entity.infusing   = false; }
 
+        if(entity.fluidStorage.amount == 1000) { setRenderStack(entity, ModFluids.LIQUID_ETHER_BUCKET.getDefaultStack()); }
+        else { setRenderStack(entity, ItemStack.EMPTY); }
+
+        if(entity.isComposting()) { setRenderStack(entity, ModItems.BLUE_CLEMATITE_ESSENCE.getDefaultStack()); }
+        if(entity.isInfusing()) { setRenderStack(entity, ModItems.ETHER_LILY.getDefaultStack()); }
+
         entity.sendFluidPacket();
+        entity.sendRenderStackData();
         markDirty(world, blockPos, blockState);
+    }
+
+    @Override
+    public void markDirty() {
+        sendRenderStackData();
+        super.markDirty();
     }
 
     public void startComposting() {
@@ -151,9 +164,8 @@ public class IEComposterEntity extends BlockEntity {
         this.infusingTime = this.infusingMaxTime;
     }
 
-    public boolean isComposting() { return this.composting; }
-    public boolean isInfusing() { return this.infusing; }
-    public static int getCompostTime(IEComposterEntity entity) { return entity.propertyDelegate.get(0); }
+    public boolean isComposting() { return this.composting && this.compostTime > 0; }
+    public boolean isInfusing() { return this.infusing && this.infusingTime > 0; }
 
     public void extractFluid() {
         extractFluidFromBucketing(this);
@@ -230,6 +242,28 @@ public class IEComposterEntity extends BlockEntity {
             ServerPlayNetworking.send(player, ModMessages.FLUID_SYNC, buf);
         }
     }
+
+    public void sendRenderStackData() {
+        PacketByteBuf buf = PacketByteBufs.create();
+
+        buf.writeItemStack(this.renderStack);
+        buf.writeBlockPos(getPos());
+
+        assert world != null;
+        for(ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
+            ServerPlayNetworking.send(player, ModMessages.COMPOSTER_RENDER_STACK, buf);
+        }
+    }
+
+    public static void setRenderStack(IEComposterEntity entity, ItemStack stack) {
+        entity.renderStack = stack;
+    }
+
+    public static ItemStack getRenderStack(IEComposterEntity entity) {
+        return entity.renderStack;
+    }
+
+
     public void setFluidLevel(FluidVariant fluidVariant, long fluidLevel) {
         this.fluidStorage.variant = fluidVariant;
         this.fluidStorage.amount = fluidLevel;

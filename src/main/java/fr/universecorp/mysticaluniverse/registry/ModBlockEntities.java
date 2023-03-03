@@ -27,5 +27,6 @@ public class ModBlockEntities {
                 FabricBlockEntityTypeBuilder.create(IEComposterEntity::new, ModBlocks.INFUSED_ETERIUM_COMPOSTER).build(null));
 
         FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, IEFURNACE);
+        FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, IEWORKBENCH);
     }
 }

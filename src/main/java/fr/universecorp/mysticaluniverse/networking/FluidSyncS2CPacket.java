@@ -1,4 +1,4 @@
-package fr.universecorp.mysticaluniverse.custom.networking;
+package fr.universecorp.mysticaluniverse.networking;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;

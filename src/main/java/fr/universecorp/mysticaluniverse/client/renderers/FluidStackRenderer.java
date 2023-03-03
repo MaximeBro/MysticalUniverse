@@ -1,4 +1,4 @@
-package fr.universecorp.mysticaluniverse.client.screens.renderer;
+package fr.universecorp.mysticaluniverse.client.renderers;
 
 import com.google.common.base.Preconditions;
 import com.mojang.blaze3d.systems.RenderSystem;
