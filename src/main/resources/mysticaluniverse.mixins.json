@@ -4,6 +4,7 @@
   "package": "fr.universecorp.mysticaluniverse.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "MUCreativeInventoryScreen"
   ],
   "client": [
   ],

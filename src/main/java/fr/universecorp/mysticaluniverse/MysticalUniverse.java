@@ -1,5 +1,6 @@
 package fr.universecorp.mysticaluniverse;
 
+import fr.universecorp.mysticaluniverse.client.MysticalTab;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.custom.recipe.ModRecipes;
 import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
@@ -18,9 +19,10 @@ public class MysticalUniverse implements ModInitializer {
 
     public static final String MODID = "mysticaluniverse";
 
-    public static final ItemGroup MYSTICAL_GROUP = FabricItemGroupBuilder.create(
-            new Identifier(MODID, "mysticalgroup"))
-            .icon(() -> new ItemStack(ModItems.ICON))
+    public static final MysticalTab MYSTICAL_GROUP = MysticalTab.MysticalTabBuilder.create(
+            new Identifier(MysticalUniverse.MODID, "mysticalgroup"))
+            .key("mysticalgroup")
+            .icon(ModItems.ICON.getDefaultStack())
             .appendItems(stacks -> {
                 stacks.add(new ItemStack(ModBlocks.ETERIUM_ORE));
                 stacks.add(new ItemStack(ModBlocks.ETERIUM_BLOCK));
@@ -58,7 +60,6 @@ public class MysticalUniverse implements ModInitializer {
             .build();
 
 
-
     @Override
     public void onInitialize() {
         ModConfiguredFeatures.registerConfiguredFeatures();
@@ -74,6 +75,5 @@ public class MysticalUniverse implements ModInitializer {
         ModRecipes.registerRecipes();
 
         FuelRegistry.INSTANCE.add(ModItems.ETERIUM_COAL, 2400);
-
     }
 }
