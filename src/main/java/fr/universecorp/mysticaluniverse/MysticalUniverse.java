@@ -1,6 +1,7 @@
 package fr.universecorp.mysticaluniverse;
 
 import fr.universecorp.mysticaluniverse.client.MysticalTab;
+import fr.universecorp.mysticaluniverse.entity.ModEntities;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.custom.recipe.ModRecipes;
 import fr.universecorp.mysticaluniverse.registry.ModScreenHandlers;
@@ -70,6 +71,8 @@ public class MysticalUniverse implements ModInitializer {
         ModFluids.register();
         ModBlockEntities.registerBlockEntities();
         ModFlammableBlocks.registerFlammableBlocks();
+
+        ModEntities.registerEntities();
 
         ModScreenHandlers.registerAllScreenHandlers();
         ModRecipes.registerRecipes();

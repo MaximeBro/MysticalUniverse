@@ -148,10 +148,12 @@ public class IEComposterEntity extends BlockEntity {
         markDirty(world, blockPos, blockState);
     }
 
-    @Override
-    public void markDirty() {
-        sendRenderStackData();
-        super.markDirty();
+    public static void markDirty(World world, BlockPos pos, BlockState state) {
+        world.markDirty(pos);
+        if (!state.isAir()) {
+            world.updateComparators(pos, state.getBlock());
+            ((IEComposterEntity) world.getBlockEntity(pos)).sendRenderStackData();
+        }
     }
 
     public void startComposting() {
