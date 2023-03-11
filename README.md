@@ -22,9 +22,9 @@ Misc :
   To-Do List:
   https://trello.com/b/kpNoyklO/mysticaluniverse
 
-  - Adding flowers that generate ether
-  - Adding custom villagers trades
-  - Adding 2 new entities
+  - Add a blockEntity for the infused Lily
+  - Add the celestial pig
+  - Add the demonic ovis
 
 # Licence
 + All Rights Reserved.
