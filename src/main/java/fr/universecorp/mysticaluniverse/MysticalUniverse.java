@@ -9,9 +9,7 @@ import fr.universecorp.mysticaluniverse.registry.*;
 import fr.universecorp.mysticaluniverse.world.feature.ModConfiguredFeatures;
 import fr.universecorp.mysticaluniverse.world.gen.ModWorldGen;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
@@ -50,6 +48,7 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.ETHER_LILY));
                 stacks.add(new ItemStack(ModItems.INFUSED_LILY));
                 stacks.add(new ItemStack(ModItems.BOTTLE_OF_ETHER));
+                stacks.add(new ItemStack(ModItems.DRUID_SPAWN_EGG));
                 stacks.add(new ItemStack(ModItems.ETERIUM_ARMOR_CORE));
                 stacks.add(new ItemStack(ModItems.INFUSED_ARMOR_CORE));
                 stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_COMPOSTER));

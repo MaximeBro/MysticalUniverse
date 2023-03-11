@@ -1,18 +1,25 @@
 package fr.universecorp.mysticaluniverse.entity;
 
-import com.google.common.collect.ImmutableList;
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
-import net.minecraft.client.render.entity.model.EntityModel;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
+import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.util.Arm;
+import net.minecraft.util.math.MathHelper;
 
-public class DruidEntityModel extends EntityModel<DruidEntity> {
+public class DruidEntityModel<E extends DruidEntity> extends SinglePartEntityModel<E> {
 
-    private final ModelPart base;
+    private final ModelPart root;
+    private final ModelPart head;
+    private final ModelPart leftLeg;
+    private final ModelPart rightLeg;
 
     public DruidEntityModel(ModelPart modelPart) {
-        this.base = modelPart.getChild(EntityModelPartNames.ROOT);
+        this.root = modelPart.getChild(EntityModelPartNames.ROOT);
+        this.head = this.root.getChild(EntityModelPartNames.HEAD);
+        this.leftLeg = this.root.getChild(EntityModelPartNames.LEFT_LEG);
+        this.rightLeg = this.root.getChild(EntityModelPartNames.RIGHT_LEG);
     }
 
     public static TexturedModelData getTextureModelData() {
@@ -55,11 +62,34 @@ public class DruidEntityModel extends EntityModel<DruidEntity> {
 
     @Override
     public void setAngles(DruidEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
+        this.getPart().traverse().forEach(ModelPart::resetTransform);
 
+        this.head.yaw = headYaw * ((float)Math.PI / 180);
+        this.head.pitch = headPitch * ((float)Math.PI / 180);
+        this.rightLeg.pitch = MathHelper.cos(limbAngle * 0.6662f) * 1.4f * limbDistance * 0.5f;
+        this.leftLeg.pitch = MathHelper.cos(limbAngle * 0.6662f + (float)Math.PI) * 1.4f * limbDistance * 0.5f;
+        this.rightLeg.yaw = 0.0f;
+        this.leftLeg.yaw = 0.0f;
+    }
+    public void setArmAngle(Arm arm, MatrixStack matrices) {
+        ModelPart leftArm = this.root.getChild(EntityModelPartNames.LEFT_ARM);
+        ModelPart rightArm = this.root.getChild(EntityModelPartNames.RIGHT_ARM);
+        float f = 0.5f * (float)(arm == Arm.RIGHT ? 1 : -1);
+        leftArm.pivotX += f;
+        leftArm.rotate(matrices);
+        leftArm.pivotX -= f;
+
+        rightArm.pivotX += f;
+        rightArm.rotate(matrices);
+        rightArm.pivotX -= f;
     }
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
-        ImmutableList.of(this.base).forEach((modelRenderer) -> modelRenderer.render(matrices, vertices, light, overlay, red, green, blue, alpha));
+        this.getPart().render(matrices, vertices, light, overlay, red, green, blue, alpha);
+    }
+
+    public ModelPart getPart() {
+        return this.root;
     }
 }

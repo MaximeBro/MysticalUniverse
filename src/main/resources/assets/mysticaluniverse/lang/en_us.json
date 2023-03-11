@@ -34,6 +34,9 @@
   "block.mysticaluniverse.infused_lily": "Infused Lily",
   "block.mysticaluniverse.infused_eterium_composter": "Infused Eterium Composter",
 
+  "entity.mysticaluniverse.druid": "Druid",
+  "item.mysticaluniverse.druid_spawn_egg": "Druid Spawn Egg",
+
   "block.mysticaluniverse.still_liquid_ether": "Liquid Ether",
   "block.mysticaluniverse.liquid_ether_block": "Liquid Ether",
   "mysticaluniverse.tooltip.liquid.amount.with.capacity": "%s / %s mB",

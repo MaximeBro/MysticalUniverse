@@ -5,10 +5,12 @@ import fr.universecorp.mysticaluniverse.custom.items.ChargedEteriumIngot;
 import fr.universecorp.mysticaluniverse.custom.items.ModArmorItem;
 import fr.universecorp.mysticaluniverse.custom.items.ModArmorMaterials;
 import fr.universecorp.mysticaluniverse.custom.items.MortarAndPestle;
+import fr.universecorp.mysticaluniverse.entity.ModEntities;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -33,6 +35,8 @@ public class ModItems {
     public static final Item BLUE_CLEMATITE_ESSENCE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final Item ETERIUM_ARMOR_CORE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final Item INFUSED_ARMOR_CORE = new Item(new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
+    public static final Item DRUID_SPAWN_EGG = new SpawnEggItem(ModEntities.DRUID_ENTITY, 0x1F7B1F, 0xF5F2E9,
+            new FabricItemSettings().maxCount(64).group(MYSTICAL_GROUP));
     public static final Item INFUSED_ETERIUM_HELMET = new ModArmorItem(ModArmorMaterials.ETERIUM, EquipmentSlot.HEAD,
             new FabricItemSettings().group(MYSTICAL_GROUP).fireproof());
     public static final Item INFUSED_ETERIUM_CHESTPLATE = new ModArmorItem(ModArmorMaterials.ETERIUM, EquipmentSlot.CHEST,
@@ -74,6 +78,7 @@ public class ModItems {
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "blue_clematite_essence"), BLUE_CLEMATITE_ESSENCE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "eterium_armor_core"), ETERIUM_ARMOR_CORE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_armor_core"), INFUSED_ARMOR_CORE);
+        Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "druid_spawn_egg"), DRUID_SPAWN_EGG);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_helmet"), INFUSED_ETERIUM_HELMET);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_chestplate"), INFUSED_ETERIUM_CHESTPLATE);
         Registry.register(Registry.ITEM, new Identifier(MysticalUniverse.MODID, "infused_eterium_leggings"), INFUSED_ETERIUM_LEGGINGS);

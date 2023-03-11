@@ -48,6 +48,6 @@ public class ModConfiguredFeatures {
                             new SimpleBlockFeatureConfig(BlockStateProvider.of(ModBlocks.BLUE_CLEMATITE)))));
 
     public static void registerConfiguredFeatures() {
-        System.out.println("ModConfiguredFeatures DEBUG");
+
     }
 }

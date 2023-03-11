@@ -3,7 +3,7 @@ package fr.universecorp.mysticaluniverse;
 import dev.architectury.registry.client.rendering.BlockEntityRendererRegistry;
 import fr.universecorp.mysticaluniverse.client.renderers.IEComposterFluidRenderer;
 import fr.universecorp.mysticaluniverse.entity.DruidEntityModel;
-import fr.universecorp.mysticaluniverse.entity.DruidEntityRenderer;
+import fr.universecorp.mysticaluniverse.entity.renderers.DruidEntityRenderer;
 import fr.universecorp.mysticaluniverse.entity.ModEntities;
 import fr.universecorp.mysticaluniverse.registry.ModMessages;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
