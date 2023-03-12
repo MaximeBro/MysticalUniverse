@@ -11,7 +11,7 @@ BlockEntities :
   - Infused Eterium Furnace (= IEFurnace)
   - Infused Eterium Workbench (= IEWorkbench)
   - Infused Eterium Composter (= IEComposter)
-  - Infused Lily (= IEFlower)
+  - Infused Lily
 
 Misc :
   - Liquid Ether Fluid
@@ -22,7 +22,6 @@ Misc :
   To-Do List:
   https://trello.com/b/kpNoyklO/mysticaluniverse
 
-  - Add a blockEntity for the infused Lily
   - Add the celestial pig
   - Add the demonic ovis
 

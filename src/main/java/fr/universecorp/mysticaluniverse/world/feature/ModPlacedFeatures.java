@@ -21,6 +21,11 @@ public class ModPlacedFeatures {
             PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()
     );
 
+    public static final RegistryEntry<PlacedFeature> ETHER_LILY = PlacedFeatures.register("ether_lily_placed",
+            ModConfiguredFeatures.ETHER_LILY, RarityFilterPlacementModifier.of(2), SquarePlacementModifier.of(),
+            PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()
+    );
+
     public static final RegistryEntry<PlacedFeature> MYCELIUM_TREE_PLACED = PlacedFeatures.register("mycelium_tree_placed",
             ModConfiguredFeatures.MYCELIUM_SPAWN,
             VegetationPlacedFeatures.modifiers(PlacedFeatures.createCountExtraModifier(1, 0.5f, 1))
