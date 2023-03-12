@@ -143,8 +143,7 @@ public class REIPlugin implements REIClientPlugin {
             }
             RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
 
-            RenderSystem.setShaderTexture(0, FluidRenderHandlerRegistry.INSTANCE.get(variant.getFluid())
-                    .getFluidSprites(MinecraftClient.getInstance().world, null, variant.getFluid().getDefaultState())[0].getId());
+            RenderSystem.setShaderTexture(0, new Identifier("minecraft", "textures/block/water_still.png"));
         }
 
         public static void drawFluid(DrawableHelper helper, MatrixStack matrices, int x, int y, int width, int height) {

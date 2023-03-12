@@ -4,6 +4,7 @@ import fr.universecorp.mysticaluniverse.MysticalUniverse;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEComposterEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEFurnaceBlockEntity;
 import fr.universecorp.mysticaluniverse.custom.blocks.entity.IEWorkbenchBlockEntity;
+import fr.universecorp.mysticaluniverse.custom.blocks.entity.InfusedLilyEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.transfer.v1.fluid.FluidStorage;
 import net.minecraft.block.entity.BlockEntityType;
@@ -13,8 +14,8 @@ import net.minecraft.util.registry.Registry;
 public class ModBlockEntities {
     public static BlockEntityType<IEFurnaceBlockEntity> IEFURNACE;
     public static BlockEntityType<IEWorkbenchBlockEntity> IEWORKBENCH;
-
     public static BlockEntityType<IEComposterEntity> IECOMPOSTER;
+    public static BlockEntityType<InfusedLilyEntity> INFUSED_LILY;
 
     public static void registerBlockEntities() {
         IEFURNACE = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MysticalUniverse.MODID, "iefurnace_smelting"),
@@ -25,6 +26,9 @@ public class ModBlockEntities {
 
         IECOMPOSTER = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MysticalUniverse.MODID, "iecomposter_composting"),
                 FabricBlockEntityTypeBuilder.create(IEComposterEntity::new, ModBlocks.INFUSED_ETERIUM_COMPOSTER).build(null));
+
+        INFUSED_LILY = Registry.register(Registry.BLOCK_ENTITY_TYPE, new Identifier(MysticalUniverse.MODID, "infused_lyly_producing"),
+                FabricBlockEntityTypeBuilder.create(InfusedLilyEntity::new, ModBlocks.INFUSED_LILY).build(null));
 
         FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, IEFURNACE);
         FluidStorage.SIDED.registerForBlockEntity((blockEntity, direction) -> blockEntity.fluidStorage, IEWORKBENCH);

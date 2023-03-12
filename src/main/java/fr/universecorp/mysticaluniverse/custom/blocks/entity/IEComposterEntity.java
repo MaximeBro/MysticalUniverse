@@ -1,7 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
-import fr.universecorp.mysticaluniverse.registry.ModMessages;
+import fr.universecorp.mysticaluniverse.registry.ModPackets;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
 import fr.universecorp.mysticaluniverse.registry.ModFluids;
 import fr.universecorp.mysticaluniverse.registry.ModItems;
@@ -241,7 +241,7 @@ public class IEComposterEntity extends BlockEntity {
         buf.writeBlockPos(getPos());
 
         for(ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-            ServerPlayNetworking.send(player, ModMessages.FLUID_SYNC, buf);
+            ServerPlayNetworking.send(player, ModPackets.FLUID_SYNC, buf);
         }
     }
 
@@ -253,7 +253,7 @@ public class IEComposterEntity extends BlockEntity {
 
         assert world != null;
         for(ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-            ServerPlayNetworking.send(player, ModMessages.COMPOSTER_RENDER_STACK, buf);
+            ServerPlayNetworking.send(player, ModPackets.COMPOSTER_RENDER_STACK, buf);
         }
     }
 

@@ -1,7 +1,7 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
 import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
-import fr.universecorp.mysticaluniverse.registry.ModMessages;
+import fr.universecorp.mysticaluniverse.registry.ModPackets;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEFurnaceRecipes;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreenHandler;
 import fr.universecorp.mysticaluniverse.registry.ModBlockEntities;
@@ -395,7 +395,7 @@ public class IEFurnaceBlockEntity extends BlockEntity implements ExtendedScreenH
         buf.writeBlockPos(getPos());
 
         for(ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-            ServerPlayNetworking.send(player, ModMessages.FLUID_SYNC, buf);
+            ServerPlayNetworking.send(player, ModPackets.FLUID_SYNC, buf);
         }
     }
     public void setFluidLevel(FluidVariant fluidVariant, long fluidLevel) {

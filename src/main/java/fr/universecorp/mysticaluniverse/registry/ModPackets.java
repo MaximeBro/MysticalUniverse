@@ -6,7 +6,7 @@ import fr.universecorp.mysticaluniverse.networking.FluidSyncS2CPacket;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.util.Identifier;
 
-public class ModMessages {
+public class ModPackets {
     public static final Identifier FLUID_SYNC = new Identifier(MysticalUniverse.MODID, "fluid_sync");
     public static final Identifier COMPOSTER_RENDER_STACK = new Identifier(MysticalUniverse.MODID, "composter_render_stack");
 

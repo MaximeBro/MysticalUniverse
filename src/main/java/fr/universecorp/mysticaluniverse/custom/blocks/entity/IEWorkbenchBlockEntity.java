@@ -1,6 +1,6 @@
 package fr.universecorp.mysticaluniverse.custom.blocks.entity;
 
-import fr.universecorp.mysticaluniverse.registry.ModMessages;
+import fr.universecorp.mysticaluniverse.registry.ModPackets;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchCraftingInventory;
 import fr.universecorp.mysticaluniverse.custom.recipe.IEWorkbenchShapedRecipes;
 import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreenHandler;
@@ -244,7 +244,7 @@ public class IEWorkbenchBlockEntity extends BlockEntity implements ExtendedScree
         buf.writeBlockPos(getPos());
 
         for(ServerPlayerEntity player : PlayerLookup.tracking((ServerWorld) world, getPos())) {
-            ServerPlayNetworking.send(player, ModMessages.FLUID_SYNC, buf);
+            ServerPlayNetworking.send(player, ModPackets.FLUID_SYNC, buf);
         }
     }
     public void setFluidLevel(FluidVariant fluidVariant, long fluidLevel) {

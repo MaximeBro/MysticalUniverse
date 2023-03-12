@@ -56,6 +56,7 @@ public class MysticalUniverse implements ModInitializer {
                 stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_CHESTPLATE));
                 stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_LEGGINGS));
                 stacks.add(new ItemStack(ModItems.INFUSED_ETERIUM_BOOTS));
+                stacks.add(new ItemStack(ModItems.BILLHOOK));
             })
             .build();
 

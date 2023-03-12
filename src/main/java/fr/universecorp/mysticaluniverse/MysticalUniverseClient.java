@@ -5,7 +5,7 @@ import fr.universecorp.mysticaluniverse.client.renderers.IEComposterFluidRendere
 import fr.universecorp.mysticaluniverse.entity.DruidEntityModel;
 import fr.universecorp.mysticaluniverse.entity.renderers.DruidEntityRenderer;
 import fr.universecorp.mysticaluniverse.entity.ModEntities;
-import fr.universecorp.mysticaluniverse.registry.ModMessages;
+import fr.universecorp.mysticaluniverse.registry.ModPackets;
 import fr.universecorp.mysticaluniverse.client.screens.IEFurnaceScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWbRecipeBookScreen;
 import fr.universecorp.mysticaluniverse.client.screens.IEWorkbenchScreen;
@@ -51,7 +51,7 @@ public class MysticalUniverseClient implements ClientModInitializer {
 
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> 0xA100C9FF, ModBlocks.INFUSED_ETERIUM_COMPOSTER);
 
-        ModMessages.registerS2CPacket();
+        ModPackets.registerS2CPacket();
         BlockEntityRendererRegistry.register(ModBlockEntities.IECOMPOSTER, IEComposterFluidRenderer::new);
         EntityRendererRegistry.register(ModEntities.DRUID_ENTITY, DruidEntityRenderer::new);
 

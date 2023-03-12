@@ -1,10 +1,7 @@
 package fr.universecorp.mysticaluniverse.registry;
 
 import fr.universecorp.mysticaluniverse.MysticalUniverse;
-import fr.universecorp.mysticaluniverse.custom.blocks.ChargedEteriumBlock;
-import fr.universecorp.mysticaluniverse.custom.blocks.IEComposter;
-import fr.universecorp.mysticaluniverse.custom.blocks.IEFurnaceBlock;
-import fr.universecorp.mysticaluniverse.custom.blocks.IEWorkbench;
+import fr.universecorp.mysticaluniverse.custom.blocks.*;
 import fr.universecorp.mysticaluniverse.world.feature.tree.MyceliumSaplingGenerator;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
@@ -97,7 +94,7 @@ public class ModBlocks {
             FabricBlockSettings.copy(Blocks.DANDELION)
     );
 
-    public static final Block INFUSED_LILY = new FlowerBlock(
+    public static final Block INFUSED_LILY = new InfusedLily(
             StatusEffects.SATURATION, 7,
             FabricBlockSettings.copy(Blocks.DANDELION)
     );

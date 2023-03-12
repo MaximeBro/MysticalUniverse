@@ -1,4 +1,4 @@
-package fr.universecorp.mysticaluniverse.custom.items;
+package fr.universecorp.mysticaluniverse.custom.items.materials;
 
 import fr.universecorp.mysticaluniverse.registry.ModItems;
 import net.fabricmc.loader.impl.ModContainerImpl;
