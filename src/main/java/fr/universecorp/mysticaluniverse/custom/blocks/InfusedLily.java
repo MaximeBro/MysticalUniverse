@@ -9,10 +9,14 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtList;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
@@ -31,10 +35,12 @@ public class InfusedLily extends CustomFlower implements BlockEntityProvider {
         ItemStack stack = player.getStackInHand(hand);
         InfusedLilyEntity entity = (InfusedLilyEntity) world.getBlockEntity(pos);
 
-        if(stack.getItem() instanceof Billhook && entity.hasEssence()) {
+        if(stack.getItem() instanceof Billhook billhook && entity.hasEssence()) {
             stack.damage(1, player, e -> e.sendEquipmentBreakStatus(EquipmentSlot.MAINHAND));
             entity.setEssence(false);
-            Block.dropStack(world, new BlockPos(pos.getX(), pos.getY()+0.4f, pos.getZ()), new ItemStack(ModItems.BLUE_CLEMATITE_ESSENCE, 2));
+            int essences = 2;
+
+            Block.dropStack(world, new BlockPos(pos.getX(), pos.getY()+0.4f, pos.getZ()), new ItemStack(ModItems.BLUE_CLEMATITE_ESSENCE, essences));
             return ActionResult.SUCCESS;
         }
 

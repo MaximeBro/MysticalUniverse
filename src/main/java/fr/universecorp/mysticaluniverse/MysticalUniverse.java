@@ -66,13 +66,13 @@ public class MysticalUniverse implements ModInitializer {
         ModConfiguredFeatures.registerConfiguredFeatures();
         ModWorldGen.generateWorldGen();
 
+        ModEntities.registerEntities();
+
         ModItems.registerAll();
         ModBlocks.registerAll();
         ModFluids.register();
         ModBlockEntities.registerBlockEntities();
         ModFlammableBlocks.registerFlammableBlocks();
-
-        ModEntities.registerEntities();
 
         ModScreenHandlers.registerAllScreenHandlers();
         ModRecipes.registerRecipes();

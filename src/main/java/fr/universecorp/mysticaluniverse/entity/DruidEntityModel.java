@@ -2,9 +2,13 @@ package fr.universecorp.mysticaluniverse.entity;
 
 import net.minecraft.client.model.*;
 import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.animation.Animation;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.client.render.entity.model.EntityModelPartNames;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.AnimationState;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Arm;
 import net.minecraft.util.math.MathHelper;
 
@@ -66,27 +70,22 @@ public class DruidEntityModel<E extends DruidEntity> extends SinglePartEntityMod
 
         this.head.yaw = headYaw * ((float)Math.PI / 180);
         this.head.pitch = headPitch * ((float)Math.PI / 180);
+
         this.rightLeg.pitch = MathHelper.cos(limbAngle * 0.6662f) * 1.4f * limbDistance * 0.5f;
         this.leftLeg.pitch = MathHelper.cos(limbAngle * 0.6662f + (float)Math.PI) * 1.4f * limbDistance * 0.5f;
         this.rightLeg.yaw = 0.0f;
         this.leftLeg.yaw = 0.0f;
-    }
-    public void setArmAngle(Arm arm, MatrixStack matrices) {
-        ModelPart leftArm = this.root.getChild(EntityModelPartNames.LEFT_ARM);
-        ModelPart rightArm = this.root.getChild(EntityModelPartNames.RIGHT_ARM);
-        float f = 0.5f * (float)(arm == Arm.RIGHT ? 1 : -1);
-        leftArm.pivotX += f;
-        leftArm.rotate(matrices);
-        leftArm.pivotX -= f;
 
-        rightArm.pivotX += f;
-        rightArm.rotate(matrices);
-        rightArm.pivotX -= f;
+        this.updateAnimations(entity, animationProgress);
     }
 
     @Override
     public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
         this.getPart().render(matrices, vertices, light, overlay, red, green, blue, alpha);
+    }
+
+    private void updateAnimations(DruidEntity entity, float progress) {
+        this.updateAnimation(entity.damageAnimation, DruidAnimations.ATTACKING, progress, 1.0F);
     }
 
     public ModelPart getPart() {

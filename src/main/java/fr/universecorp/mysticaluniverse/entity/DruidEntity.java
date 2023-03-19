@@ -1,18 +1,28 @@
 package fr.universecorp.mysticaluniverse.entity;
 
+import dev.architectury.event.events.common.InteractionEvent;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.SharedConstants;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.TargetPredicate;
+import net.minecraft.entity.ai.control.BodyControl;
 import net.minecraft.entity.ai.goal.LookAroundGoal;
 import net.minecraft.entity.ai.goal.LookAtCustomerGoal;
 import net.minecraft.entity.ai.goal.LookAtEntityGoal;
 import net.minecraft.entity.ai.goal.SwimGoal;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.MerchantEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.VillagerEntity;
@@ -29,12 +39,15 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.village.*;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
-public class DruidEntity extends MerchantEntity implements InteractionObserver {
+public class DruidEntity extends MerchantEntity implements InteractionObserver /*, Angerable */{
 
+    public static final TrackedData<DruidState> STATE = DataTracker.registerData(DruidEntity.class, ModEntities.DRUID_STATE);
     private int levelUpTimer;
     private boolean levelingUp;
     private int experience;
@@ -52,6 +65,7 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
         this.experience = 0;
         this.level = 1; // IMPORTANT : the first trade offer is index (1) !
         this.levelingUp = true;
+        this.getNavigation().setCanSwim(true);
     }
 
     public static DefaultAttributeContainer.Builder setAttribute() {
@@ -67,6 +81,30 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
         this.goalSelector.add(1, new LookAroundGoal(this));
         this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 8.0f));
         this.goalSelector.add(3, new LookAtCustomerGoal(this));
+    }
+
+    @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData, @Nullable NbtCompound entityNbt) {
+        this.dataTracker.set(LAST_STATE_TICK, (float) world.toServerWorld().getTime() - DAMAGE_LENGTH);
+        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.decayGossip();
+
+        if(this.world.isClient()) {
+            this.updateAnimations();
+        }
+        this.updateState();
+    }
+
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(STATE, DruidState.STANDING);
+        this.dataTracker.startTracking(LAST_STATE_TICK, (float) -DAMAGE_LENGTH);
     }
 
     @Nullable
@@ -93,10 +131,6 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
     @Override
     protected SoundEvent getTradingSound(boolean sold) {
         return SoundEvents.ENTITY_ILLUSIONER_AMBIENT;
-    }
-
-    public ItemStack getStackInHand(Hand hand) {
-        return new ItemStack(Items.DIAMOND_SWORD);
     }
 
     @Override
@@ -157,12 +191,6 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
         return super.interactMob(player, hand);
     }
 
-    @Override
-    public void tick() {
-        super.tick();
-        this.decayGossip();
-    }
-
     private void decayGossip() {
         long l = this.world.getTime();
         if (this.lastGossipDecayTime == 0L) {
@@ -214,8 +242,6 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
     @Override
     public int getExperience() { return this.experience; }
 
-    public void setExperience(int experience) { this.experience = experience; }
-
     private void levelUp() {
         this.setLevel(this.getLevel() + 1);
         this.fillRecipes();
@@ -223,7 +249,7 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
 
     @Override
     public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
-        return super.canSpawn(world, spawnReason) || spawnReason.equals(SpawnReason.SPAWN_EGG);
+        return super.canSpawn(world, spawnReason);
     }
 
     @Override
@@ -289,6 +315,16 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
         this.lastGossipDecayTime = nbt.getLong("LastGossipDecay");
         this.restocksToday = nbt.getInt("RestocksToday");
         this.setCanPickUpLoot(false);
+
+        if(nbt.getBoolean(STANDING_KEY)) {
+            this.dataTracker.set(STATE, DruidState.STANDING);
+        }
+
+        if(nbt.getBoolean(DAMAGED_KEY)) {
+            this.dataTracker.set(STATE, DruidState.DAMAGE);
+        }
+
+        this.setLastStateTick(nbt.getFloat(LAST_STATE_TICK_KEY));
     }
 
     @Override
@@ -300,10 +336,89 @@ public class DruidEntity extends MerchantEntity implements InteractionObserver {
         nbt.putLong("LastRestock", this.lastRestockTime);
         nbt.putLong("LastGossipDecay", this.lastGossipDecayTime);
         nbt.putInt("RestocksToday", this.restocksToday);
+
+        nbt.putBoolean(DAMAGED_KEY, this.isDamaged());
+        nbt.putBoolean(STANDING_KEY, this.isStanding());
+        nbt.putFloat(LAST_STATE_TICK_KEY, this.dataTracker.get(LAST_STATE_TICK));
     }
 
     @Override
-    public void onInteractionWith(EntityInteraction interaction, Entity entity) {
+    protected void applyDamage(DamageSource source, float amount) {
+        Entity entity = source.getAttacker();
+        if(entity instanceof PlayerEntity player) {
+            this.dataTracker.set(STATE, DruidState.DAMAGE);
+        }
+
+        super.applyDamage(source, amount);
+    }
+
+    @Override
+    public void onInteractionWith(EntityInteraction interaction, Entity entity) { }
+
+    @Override
+    protected BodyControl createBodyControl() {
+        return new DruidBodyControl(this);
+    }
+
+    static class DruidBodyControl extends BodyControl {
+        public DruidBodyControl(DruidEntity entity) {
+            super(entity);
+        }
+
+        @Override
+        public void tick() {
+            super.tick();
+        }
+    }
+
+
+    /*
+     * Animation Part :
+     * - STANDING (basic body control)
+     * - DAMAGE (custom animation)
+     */
+
+    public static final TrackedData<Float> LAST_STATE_TICK =
+            DataTracker.registerData(DruidEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    public final AnimationState damageAnimation = new AnimationState();
+    public static final String LAST_STATE_TICK_KEY = "LastStateTick";
+    public static final String DAMAGED_KEY = "Damaged";
+    public static final String STANDING_KEY = "Standing";
+    public static final long DAMAGE_LENGTH = (long) (SharedConstants.TICKS_PER_SECOND * 2.54167f);
+    @Environment(EnvType.CLIENT)
+    private void updateAnimations() {
+
+        if(this.isDamaged()) {
+            this.damageAnimation.startIfNotRunning(this.age);
+        }
+
+        if(this.isStanding()) {
+            this.damageAnimation.stop();
+        }
+    }
+
+    private void updateState() {
+        if(this.dataTracker.get(STATE) == DruidState.DAMAGE && this.getLastStateTickDelta() > DAMAGE_LENGTH) {
+            this.standUp();
+        }
 
     }
+
+    public boolean isDamaged() { return this.dataTracker.get(STATE) == DruidState.DAMAGE; }
+    public boolean isStanding() { return this.dataTracker.get(STATE) == DruidState.STANDING; }
+
+    public void setLastStateTick(float t) {
+        this.dataTracker.set(LAST_STATE_TICK, t);
+    }
+
+    public float getLastStateTickDelta() {
+        return this.world.getTime() - this.dataTracker.get(LAST_STATE_TICK);
+    }
+
+
+    public void standUp() {
+        this.dataTracker.set(STATE, DruidState.STANDING);
+        this.setLastStateTick(this.world.getTime());
+    }
+
 }

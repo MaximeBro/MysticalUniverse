@@ -18,6 +18,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import java.text.NumberFormat;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // CREDIT: https://github.com/mezz/JustEnoughItems by mezz (Forge Version)
-// HIGHLY EDITED VERSION FOR FABRIC by Kaupenjoe
+// HIGHLY EDITED VERSION FOR FABRIC
 // Under MIT-License: https://github.com/mezz/JustEnoughItems/blob/1.18/LICENSE.txt
 public class FluidStackRenderer implements IIngredientRenderer<FluidStack> {
     private static final NumberFormat nf = NumberFormat.getIntegerInstance();
@@ -65,6 +66,7 @@ public class FluidStackRenderer implements IIngredientRenderer<FluidStack> {
     /*
      * Method from https://github.com/TechReborn/TechReborn
      * Under MIT-License : https://github.com/TechReborn/TechReborn/blob/1.19/LICENSE.md
+     * Modified for Mystical Universe mod
      */
     public void drawFluid(MatrixStack matrixStack, FluidStack fluid, int x, int y, int width, int height, long maxCapacity) {
         if (fluid.getFluidVariant().getFluid() == Fluids.EMPTY) {
@@ -92,10 +94,9 @@ public class FluidStackRenderer implements IIngredientRenderer<FluidStack> {
                 break;
             }
         }
-        RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
 
-        RenderSystem.setShaderTexture(0, FluidRenderHandlerRegistry.INSTANCE.get(fluid.getFluidVariant().getFluid())
-                .getFluidSprites(MinecraftClient.getInstance().world, null, fluid.getFluidVariant().getFluid().getDefaultState())[0].getId());
+        RenderSystem.setShaderColor(1F, 1F, 1F, 1F);
+        RenderSystem.setShaderTexture(0, new Identifier("minecraft", "textures/block/water_still.png"));
     }
 
     @Override
